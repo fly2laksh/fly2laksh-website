@@ -183,6 +183,14 @@
             padding: 20px;
             text-align: center;
             border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .user-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-blue);
         }
         .user-card img { width: 100%; height: 140px; object-fit: cover; border-radius: 6px; margin-bottom: 10px; }
 
@@ -226,9 +234,9 @@
     <!-- Navigation Bar -->
     <nav>
         <a href="#home" class="logo">
-    <img src="https://lh3.googleusercontent.com/d/1d6yjRJqEmXFS8gcC24X4KDOLw4_Tr0D8" alt="fly2laksh Logo" style="height: 40px; width: auto; vertical-align: middle;">
-    <span class="ai-dynamic-text">fly2laksh</span>
-</a>
+            <img src="https://lh3.googleusercontent.com/d/1d6yjRJqEmXFS8gcC24X4KDOLw4_Tr0D8" alt="fly2laksh Logo" style="height: 40px; width: auto; vertical-align: middle;">
+            <span class="ai-dynamic-text">fly2laksh</span>
+        </a>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#services">Services</a></li>
@@ -240,8 +248,8 @@
     <!-- ================= HOME TAB SECTION ================= -->
     <div id="home">
         <div class="container" style="text-align: center; margin-top: 40px;">
-    <img src="https://drive.google.com/file/d/1Tq6p4MOqx7cT7fUKdoO2A1fmPsJeiwXK/view?usp=sharing" alt="Flying Birds" style="width: 80px; height: auto; margin-bottom: 10px;">
-    <p style="color: var(--text-dim); max-width: 700px; margin: 0 auto 20px auto;">
+            <img src="https://lh3.googleusercontent.com/d/1Tq6p4MOqx7cT7fUKdoO2A1fmPsJeiwXK" alt="Flying Birds" style="width: 80px; height: auto; margin-bottom: 10px;">
+            <p style="color: var(--text-dim); max-width: 700px; margin: 0 auto 20px auto;">
                 We help companies turn messy data into clear insights and automate their sales workflows so they can grow faster.
             </p>
             <div style="display: flex; gap: 15px; justify-content: center;">
@@ -272,7 +280,7 @@
             </div>
 
             <div style="text-align: center; margin-bottom: 20px;">
-                <a href="https://docs.google.com/forms/d/1T9WXoipl7oacv4jtijYJIEcnXawosKZzfR_kUr5OMVY/viewform" target="_blank" class="btn-green">Book Consulting with Fiverr</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfU9iYd9jDZP5c3NwymyGr2PIrhxytVPN3KKAaMk9jG1y8t0Q/viewform?usp=sharing&ouid=112727410440113803582" target="_blank" class="btn-green">Book Consulting</a>
             </div>
 
             <div class="three-pillars">
@@ -369,6 +377,12 @@
         </div>
 
         <div class="container">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <a href="https://docs.google.com/forms/d/1xLauzGfnOgAxt0v4u1WUlWVdKVq3UmEZAZSJapr-uR8/viewform" target="_blank" class="btn-green" style="font-size: 1.1rem; padding: 12px 25px;">
+                    📋 Request a Free Consultation
+                </a>
+            </div>
+
             <div class="portfolio-grid">
                 <div class="portfolio-card">
                     <img src="https://lh3.googleusercontent.com/d/1lh1PDRZIHA30KYSPWzd_PCiRT4cAuc7Z" alt="Sales Dashboard" onerror="this.src='https://via.placeholder.com/280x160?text=Sales+%26+KPI+Dashboard'">
@@ -389,7 +403,7 @@
                     <h4>Excel Automation Flyer</h4>
                 </div>
                 <div class="portfolio-card">
-                    <img src="https://drive.google.com/file/d/1wieMDvzxo4GG_h_xJt-egoSio18uToyc/view?usp=sharing" alt="Finance Flyer" onerror="this.src='https://via.placeholder.com/200x200?text=Accounts+%26+Finance+Services'">
+                    <img src="https://lh3.googleusercontent.com/d/1wieMDvzxo4GG_h_xJt-egoSio18uToyc" alt="Finance Flyer" onerror="this.src='https://via.placeholder.com/200x200?text=Accounts+%26+Finance+Services'">
                     <h4>Finance/GST Services</h4>
                 </div>
                 <div class="portfolio-card">
@@ -409,22 +423,25 @@
                 <li>📍 <strong>Based in Delhi – we understand local business needs</strong></li>
             </ul>
 
+            <!-- Clickable Target Audience Cards pointing to Google Forms -->
             <div class="user-type-grid">
-                <div class="user-card">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf4pN3YlZrRTX05xWbZM2TXQ_sMDDTI614TwKhiGgEcqoW7rw/viewform?usp=sharing&ouid=112727410440113803582" target="_blank" class="user-card">
                     <img src="https://lh3.googleusercontent.com/d/1AWytaTh_6xiMiDqgpUY0ghjoAAKlodao" alt="Students" onerror="this.src='https://via.placeholder.com/200x140?text=Students'">
                     <h4>🎓 Students</h4>
                     <p style="font-size:0.8rem; color:var(--text-dim);">Learn Excel, Power BI & Data Analytics</p>
-                </div>
-                <div class="user-card">
+                </a>
+                
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfy_f8XxKX-WpShsvXXxp1y8e_QUmLOgEbHb87usFOw7RdO4Q/viewform?usp=sharing&ouid=112727410440113803582" target="_blank" class="user-card">
                     <img src="https://lh3.googleusercontent.com/d/1yqRF5z0biggBapCY-dH2P6MduWIo3mSZ" alt="Professionals" onerror="this.src='https://via.placeholder.com/200x140?text=Professionals'">
                     <h4>👨‍💼 Professionals</h4>
                     <p style="font-size:0.8rem; color:var(--text-dim);">Upskill & Advance Your Career</p>
-                </div>
-                <div class="user-card">
+                </a>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfU9iYd9jDZP5c3NwymyGr2PIrhxytVPN3KKAaMk9jG1y8t0Q/viewform?usp=sharing&ouid=112727410440113803582" target="_blank" class="user-card">
                     <img src="https://lh3.googleusercontent.com/d/1v_Cr969uAKtjOOlKUbTGP8heuSdydr5W" alt="Businesses" onerror="this.src='https://via.placeholder.com/200x140?text=Businesses'">
                     <h4>🏢 Businesses</h4>
                     <p style="font-size:0.8rem; color:var(--text-dim);">Automate Reports & Grow Business</p>
-                </div>
+                </a>
             </div>
 
             <div style="text-align: center;">
@@ -439,10 +456,10 @@
     <!-- ================= CONTACT & FOOTER SECTION ================= -->
     <footer id="contact">
         <div class="social-btns">
-            <a href="https://https://www.linkedin.com/company/fly2laksh" target="_blank" class="social-btn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            <a href="https://linkedin.com" target="_blank" class="social-btn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
             <a href="https://wa.me/919891881990" target="_blank" class="social-btn"><i class="fa-solid fa-robot"></i> <span class="ai-dynamic-text">fly2laksh</span>-AI-Bot</a>
-            <a href="https://https://www.youtube.com/@fly2laksh" target="_blank" class="social-btn"><i class="fa-brands fa-youtube"></i> Youtube</a>
-            <a href="https://www.facebook.com/fly2laksh" target="_blank" class="social-btn"><i class="fa-brands fa-facebook"></i> Facebook</a>
+            <a href="https://youtube.com" target="_blank" class="social-btn"><i class="fa-brands fa-youtube"></i> Youtube</a>
+            <a href="https://facebook.com" target="_blank" class="social-btn"><i class="fa-brands fa-facebook"></i> Facebook</a>
         </div>
         <p style="font-size: 0.85rem; color: var(--text-dim);">
             Power BI • Excel Automation • Zoho CRM • Data Analytics • Corporate Training
