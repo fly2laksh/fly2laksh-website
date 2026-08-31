@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>fly2laksh - Smart Data & Automation Solutions</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts: Merriweather for Headings & Orbitron/Roboto for Tech UI -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;1,400;1,700&family=Orbitron:wght@500;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -16,12 +18,14 @@
             --card-border: rgba(0, 242, 254, 0.2);
             --neon-blue: #00f2fe;
             --accent-green: #8BBB67;
+            --olive-dark: #4F694D;
+            --tint-sage: #EEF3E5;
             --text-white: #FFFFFF;
             --text-dim: #A0AEC0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        
         body { 
             font-family: 'Roboto', sans-serif; 
             color: var(--text-white); 
@@ -29,7 +33,7 @@
             line-height: 1.6;
         }
 
-        /* DYNAMIC CONTINUOUS COLOR CHANGING CLASS FOR FLY2LAKSH TEXT */
+        /* Continuous Color Changing Gradient Text */
         .ai-dynamic-text { 
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
@@ -46,15 +50,23 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Top Bar */
+        /* Top Bar Marquee */
         .top-bar { 
             background: #040810; 
             color: var(--text-dim); 
             font-size: 0.85rem; 
-            padding: 8px 8%; 
-            display: flex; 
-            justify-content: space-between; 
+            padding: 8px 0; 
+            overflow: hidden;
+            white-space: nowrap;
             border-bottom: 1px solid rgba(255,255,255,0.05); 
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100%); }
         }
 
         /* Navigation Menu */
@@ -72,12 +84,13 @@
         }
 
         .logo { 
-            font-size: 1.2rem; 
+            font-size: 1.3rem; 
             text-decoration: none; 
             display: flex; 
             align-items: center; 
-            gap: 8px; 
+            gap: 12px; 
         }
+        .bird-logo-img { height: 35px; width: auto; }
 
         .nav-links { display: flex; gap: 25px; list-style: none; }
         .nav-links a { 
@@ -86,20 +99,100 @@
             font-size: 0.9rem; 
             font-family: 'Orbitron', sans-serif; 
             transition: 0.3s; 
+            cursor: pointer;
         }
-        .nav-links a:hover { color: var(--neon-blue); }
+        .nav-links a:hover, .nav-links a.active-link { 
+            color: var(--neon-blue); 
+            border-bottom: 2px solid var(--neon-blue);
+            padding-bottom: 4px;
+        }
 
-        .btn-green {
-            background: var(--accent-green);
-            color: #000 !important;
-            padding: 8px 18px;
-            border-radius: 4px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-block;
-            transition: 0.3s;
+        /* Multi-Page Tab Sections Logic */
+        .page-tab { display: none; }
+        .page-tab.active-tab { display: block; }
+
+        /* ================= NEW HOME HERO TOP SECTION ================= */
+        .hero-ai-wrapper {
+            background: #ffffff;
+            color: #333333;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 25px;
+            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.15);
         }
-        .btn-green:hover { filter: brightness(1.2); }
+
+        .hero-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            padding: 30px 40px;
+        }
+
+        .hero-logo-box {
+            flex: 0 0 320px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-logo-box img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-text-box {
+            flex: 1;
+            text-align: center;
+        }
+        .hero-main-title {
+            font-family: 'Merriweather', Georgia, serif;
+            font-style: italic;
+            color: var(--olive-dark);
+            font-size: 1.65rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        .hero-desc-text {
+            font-family: 'Roboto', sans-serif;
+            color: #444444;
+            font-size: 1rem;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* Green Strip Buttons Bottom */
+        .hero-buttons-strip {
+            background-color: var(--tint-sage);
+            border-top: 1px dashed #c0d1b5;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn-olive-hero {
+            display: inline-block;
+            background-color: var(--olive-dark);
+            color: #ffffff !important;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 10px 40px;
+            border-radius: 4px;
+            min-width: 180px;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-olive-hero:hover {
+            background-color: #3b5039;
+            transform: translateY(-2px);
+        }
 
         /* Generic Section Headings */
         .banner-header {
@@ -110,9 +203,7 @@
             margin: 40px 0 30px 0;
             text-align: center;
         }
-        .banner-header h2 {
-            font-size: 1.5rem;
-        }
+        .banner-header h2 { font-size: 1.5rem; }
 
         /* Container Layout */
         .container { padding: 0 8%; margin-bottom: 50px; }
@@ -133,7 +224,7 @@
         .profile-text li { margin-bottom: 12px; color: var(--text-dim); }
         .profile-text li strong { color: var(--text-white); }
 
-        /* 3 Pillar Cards (Home) */
+        /* 3 Pillar Cards */
         .three-pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
         .pillar-card {
             background: var(--card-bg);
@@ -146,7 +237,7 @@
         .pillar-card h3 { color: var(--accent-green); font-size: 1.1rem; margin-bottom: 8px; }
         .pillar-card p { font-size: 0.85rem; color: var(--text-dim); }
 
-        /* Services Row (Services Tab) */
+        /* Services Row */
         .service-row {
             display: flex;
             gap: 25px;
@@ -163,7 +254,7 @@
         .service-content h3 { color: var(--accent-green); font-size: 1.2rem; margin-bottom: 10px; }
         .service-content ul { padding-left: 20px; color: var(--text-dim); font-size: 0.9rem; }
 
-        /* Portfolio Items (Portfolio Tab) */
+        /* Portfolio Items */
         .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 25px; }
         .portfolio-card {
             background: var(--card-bg);
@@ -196,12 +287,27 @@
 
         .dashboard-large { width: 100%; border-radius: 8px; border: 2px solid var(--neon-blue); margin-top: 20px; }
 
+        .btn-green {
+            background: var(--accent-green);
+            color: #000 !important;
+            padding: 8px 18px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-green:hover { filter: brightness(1.2); }
+
         /* Footer & Social Bar */
         footer {
             background: #040810;
             padding: 30px 8%;
             border-top: 2px solid var(--accent-green);
             text-align: center;
+            margin-top: 50px;
         }
         .social-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 15px; }
         .social-btn {
@@ -216,7 +322,16 @@
             gap: 8px;
         }
 
-        @media(max-width: 768px) {
+        /* Responsive Breakpoints */
+        @media(max-width: 850px) {
+            .hero-top-row {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+            .hero-logo-box { flex: 0 0 auto; width: 250px; }
+            .hero-buttons-strip { flex-direction: column; gap: 12px; }
+            .btn-olive-hero { width: 100%; }
             .profile-flex, .service-row { flex-direction: column; text-align: center; }
             .profile-img, .service-img { width: 100%; max-width: 250px; }
             .nav-links { gap: 12px; }
@@ -225,37 +340,53 @@
 </head>
 <body>
 
-    <!-- Top Bar -->
+    <!-- Top Bar Scrolling Marquee -->
     <div class="top-bar">
-        <div>Smart Data & Automation Solutions for Growing Businesses</div>
-        <div>New Delhi | Gurugram | Noida</div>
+        <div class="marquee-content">
+            ⚡ Smart Data & Automation Solutions for Growing Businesses &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; 📍 Serving New Delhi | Gurugram | Noida &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; 📊 Power BI, Excel Automation & Zoho CRM Experts
+        </div>
     </div>
 
     <!-- Navigation Bar -->
     <nav>
-        <a href="#home" class="logo">
-            <img src="https://lh3.googleusercontent.com/d/1d6yjRJqEmXFS8gcC24X4KDOLw4_Tr0D8" alt="fly2laksh Logo" style="height: 40px; width: auto; vertical-align: middle;">
+        <div class="logo">
+            <img src="https://lh3.googleusercontent.com/d/1Tq6p4MOqx7cT7fUKdoO2A1fmPsJeiwXK" alt="Bird Logo" class="bird-logo-img">
             <span class="ai-dynamic-text">fly2laksh</span>
-        </a>
+        </div>
+        
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a onclick="showTab('home')" id="link-home" class="active-link">Home</a></li>
+            <li><a onclick="showTab('services')" id="link-services">Services</a></li>
+            <li><a onclick="showTab('portfolio')" id="link-portfolio">Portfolio</a></li>
+            <li><a onclick="showTab('contact')" id="link-contact">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- ================= HOME TAB SECTION ================= -->
-    <div id="home">
-        <div class="container" style="text-align: center; margin-top: 40px;">
-            <img src="https://lh3.googleusercontent.com/d/1Tq6p4MOqx7cT7fUKdoO2A1fmPsJeiwXK" alt="Flying Birds" style="width: 80px; height: auto; margin-bottom: 10px;">
-            <p style="color: var(--text-dim); max-width: 700px; margin: 0 auto 20px auto;">
-                We help companies turn messy data into clear insights and automate their sales workflows so they can grow faster.
-            </p>
-            <div style="display: flex; gap: 15px; justify-content: center;">
-                <a href="#services" class="btn-green">Explore Services</a>
-                <a href="#portfolio" class="btn-green">View Our Work</a>
+    <!-- ================= PAGE 1: HOME TAB ================= -->
+    <div id="tab-home" class="page-tab active-tab">
+        <div class="container">
+            
+            <!-- NEW EXACT IMAGE LAYOUT HERO SECTION -->
+            <div class="hero-ai-wrapper">
+                <div class="hero-top-row">
+                    <div class="hero-logo-box">
+                        <img src="https://lh3.googleusercontent.com/d/1d6yjRJqEmXFS8gcC24X4KDOLw4_Tr0D8" alt="Fly2Laksh Full Logo">
+                    </div>
+                    
+                    <div class="hero-text-box">
+                        <h1 class="hero-main-title">Smart Data & Automation Solutions for Growing Businesses</h1>
+                        <p class="hero-desc-text">
+                            We help companies turn messy data into clear insights and automate their sales workflows so they can grow faster.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="hero-buttons-strip">
+                    <button onclick="showTab('services')" class="btn-olive-hero">Explore Services</button>
+                    <button onclick="showTab('portfolio')" class="btn-olive-hero">View Our Work</button>
+                </div>
             </div>
+
         </div>
 
         <div class="banner-header">
@@ -305,9 +436,8 @@
         </div>
     </div>
 
-
-    <!-- ================= SERVICES TAB SECTION ================= -->
-    <div id="services">
+    <!-- ================= PAGE 2: SERVICES TAB ================= -->
+    <div id="tab-services" class="page-tab">
         <div class="banner-header">
             <h2>10 Years of Expertise in Data Analytics, CRM Setup, & Financial Insights</h2>
         </div>
@@ -369,9 +499,8 @@
         </div>
     </div>
 
-
-    <!-- ================= PORTFOLIO TAB SECTION ================= -->
-    <div id="portfolio">
+    <!-- ================= PAGE 3: PORTFOLIO TAB ================= -->
+    <div id="tab-portfolio" class="page-tab">
         <div class="banner-header">
             <h2>Our Works & Portfolio Showcase</h2>
         </div>
@@ -423,7 +552,6 @@
                 <li>📍 <strong>Based in Delhi – we understand local business needs</strong></li>
             </ul>
 
-            <!-- Clickable Target Audience Cards pointing to Google Forms -->
             <div class="user-type-grid">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSf4pN3YlZrRTX05xWbZM2TXQ_sMDDTI614TwKhiGgEcqoW7rw/viewform?usp=sharing&ouid=112727410440113803582" target="_blank" class="user-card">
                     <img src="https://lh3.googleusercontent.com/d/1AWytaTh_6xiMiDqgpUY0ghjoAAKlodao" alt="Students" onerror="this.src='https://via.placeholder.com/200x140?text=Students'">
@@ -452,14 +580,57 @@
         </div>
     </div>
 
+    <!-- ================= PAGE 4: CONTACT TAB ================= -->
+    <div id="tab-contact" class="page-tab">
+        <div class="banner-header">
+            <h2>Contact & Get In Touch</h2>
+        </div>
 
-    <!-- ================= CONTACT & FOOTER SECTION ================= -->
-    <footer id="contact">
+        <div class="container" style="text-align: center;">
+            <p style="color: var(--text-dim); margin-bottom: 30px;">Select your category below or message us directly on WhatsApp to get started.</p>
+            
+            <div class="user-type-grid" style="max-width: 900px; margin: 0 auto 40px auto;">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf4pN3YlZrRTX05xWbZM2TXQ_sMDDTI614TwKhiGgEcqoW7rw/viewform?usp=sharing&ouid=112727410440113803582" target="_blank" class="user-card">
+                    <img src="https://lh3.googleusercontent.com/d/1AWytaTh_6xiMiDqgpUY0ghjoAAKlodao" alt="Students">
+                    <h4>🎓 Student Form</h4>
+                    <p style="font-size:0.8rem; color:var(--text-dim);">Fill details for mentorship & learning</p>
+                </a>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfy_f8XxKX-WpShsvXXxp1y8e_QUmLOgEbHb87usFOw7RdO4Q/viewform?usp=sharing&ouid=112727410440113803582" target="_blank" class="user-card">
+                    <img src="https://lh3.googleusercontent.com/d/1yqRF5z0biggBapCY-dH2P6MduWIo3mSZ" alt="Professionals">
+                    <h4>👨‍💼 Professional Form</h4>
+                    <p style="font-size:0.8rem; color:var(--text-dim);">Fill details for analytics & career roles</p>
+                </a>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfU9iYd9jDZP5c3NwymyGr2PIrhxytVPN3KKAaMk9jG1y8t0Q/viewform?usp=sharing&ouid=112727410440113803582" target="_blank" class="user-card">
+                    <img src="https://lh3.googleusercontent.com/d/1v_Cr969uAKtjOOlKUbTGP8heuSdydr5W" alt="Businesses">
+                    <h4>🏢 Business Inquiry</h4>
+                    <p style="font-size:0.8rem; color:var(--text-dim);">Fill details for automation & consultancy</p>
+                </a>
+            </div>
+
+            <!-- Side-by-Side WhatsApp & Telegram Buttons -->
+<div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/919891881990" target="_blank" class="btn-green" style="font-size: 1rem; padding: 12px 25px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none;">
+        <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i> Chat Direct on WhatsApp
+    </a>
+
+    <!-- Telegram Button -->
+    <a href="https://t.me/fly2laksh" target="_blank" style="background-color: #24A1DE; color: #ffffff !important; font-size: 1rem; padding: 12px 25px; border-radius: 4px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+        <i class="fa-brands fa-telegram" style="font-size: 1.3rem;"></i> Join on Telegram
+    </a>
+</div>
+        </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
         <div class="social-btns">
-            <a href="https://linkedin.com" target="_blank" class="social-btn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            <a href="linkedin.com/in/fly2laksh" target="_blank" class="social-btn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
             <a href="https://wa.me/919891881990" target="_blank" class="social-btn"><i class="fa-solid fa-robot"></i> <span class="ai-dynamic-text">fly2laksh</span>-AI-Bot</a>
-            <a href="https://youtube.com" target="_blank" class="social-btn"><i class="fa-brands fa-youtube"></i> Youtube</a>
-            <a href="https://facebook.com" target="_blank" class="social-btn"><i class="fa-brands fa-facebook"></i> Facebook</a>
+            <a href="https://www.youtube.com/@fly2laksh" target="_blank" class="social-btn"><i class="fa-brands fa-youtube"></i> Youtube</a>
+            <a href="https://www.facebook.com/fly2laksh" target="_blank" class="social-btn"><i class="fa-brands fa-facebook"></i> Facebook</a>
         </div>
         <p style="font-size: 0.85rem; color: var(--text-dim);">
             Power BI • Excel Automation • Zoho CRM • Data Analytics • Corporate Training
@@ -468,6 +639,26 @@
             © 2026 <span class="ai-dynamic-text">fly2laksh</span>. All Rights Reserved. Contact: 098918 81990
         </p>
     </footer>
+
+    <!-- JavaScript For Page Tab Switching -->
+    <script>
+        function showTab(tabName) {
+            // Hide all tab sections
+            const tabs = document.querySelectorAll('.page-tab');
+            tabs.forEach(tab => tab.classList.remove('active-tab'));
+
+            // Remove active class from all nav links
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => link.classList.remove('active-link'));
+
+            // Show current tab and highlight active link
+            document.getElementById('tab-' + tabName).classList.add('active-tab');
+            document.getElementById('link-' + tabName).classList.add('active-link');
+
+            // Scroll smoothly back to top on tab switch
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 
 </body>
 </html>
