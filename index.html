@@ -5,23 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>fly2laksh - Enterprise Data, Automation & AI Solutions</title>
 
-    <!-- Google Fonts: Orbitron & Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* NEW ROYAL NAVY & SAPPHIRE COLOR PALETTE */
         :root {
-            --bg-dark: #030712;
-            --card-bg: rgba(15, 23, 42, 0.65);
-            --card-border: rgba(56, 189, 248, 0.2);
-            --neon-blue: #38bdf8;
-            --neon-cyan: #06b6d4;
-            --accent-glow: rgba(56, 189, 248, 0.15);
+            --bg-dark: #0b132b;          /* Deep Royal Navy */
+            --card-bg: rgba(28, 37, 65, 0.85); /* Sapphire Slate */
+            --card-border: rgba(56, 189, 248, 0.3);
+            --neon-blue: #38bdf8;        /* Sky Cyan Glow */
+            --neon-cyan: #06b6d4;        /* Deep Cyan */
+            --neon-purple: #818cf8;      /* Royal Indigo */
+            --neon-pink: #f43f5e;        /* Crimson Pink Accent */
             --accent-green: #10b981;
             --text-white: #f8fafc;
-            --text-dim: #94a3b8;
+            --text-dim: #cbd5e1;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,35 +29,37 @@
         body { 
             font-family: 'Inter', sans-serif; 
             color: var(--text-white); 
-            background-color: var(--bg-dark); 
+            background: var(--bg-dark);
             line-height: 1.6;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 85% 60%, rgba(6, 182, 212, 0.08) 0%, transparent 40%);
+                radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.2) 0%, transparent 45%),
+                radial-gradient(circle at 85% 60%, rgba(14, 165, 233, 0.2) 0%, transparent 45%),
+                radial-gradient(circle at 50% 90%, rgba(168, 85, 247, 0.15) 0%, transparent 45%);
             background-attachment: fixed;
             position: relative;
         }
 
-        /* Fullscreen Interactive Canvas for Cursor Dot-Grid Effect */
+        /* Fullscreen Interactive Canvas */
         #dotCanvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            pointer-events: none; /* Allows clicks to pass through */
+            pointer-events: none;
             z-index: 1;
         }
 
+        /* Dynamic Animated Multi-Color Text */
         .ai-dynamic-text { 
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
-            background: linear-gradient(90deg, #38bdf8, #818cf8, #34d399, #38bdf8);
+            background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc, #38bdf8);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: dynamicAiColor 6s linear infinite;
+            animation: dynamicAiColor 5s linear infinite;
             display: inline-block;
         }
         @keyframes dynamicAiColor {
@@ -67,7 +69,7 @@
         }
 
         .top-bar { 
-            background: rgba(3, 7, 18, 0.9); 
+            background: rgba(11, 19, 43, 0.95); 
             color: var(--neon-blue); 
             font-size: 0.8rem; 
             padding: 8px 0; 
@@ -88,8 +90,9 @@
             100% { transform: translateX(-100%); }
         }
 
+        /* Responsive Navigation Bar */
         nav { 
-            background: rgba(3, 7, 18, 0.8); 
+            background: rgba(11, 19, 43, 0.92); 
             padding: 1.2rem 8%; 
             display: flex; 
             justify-content: space-between; 
@@ -108,10 +111,20 @@
             align-items: center; 
             gap: 12px; 
             cursor: pointer;
+            transition: transform 0.3s ease;
         }
-        .bird-logo-img { height: 38px; width: auto; filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4)); }
+        .logo:hover { transform: scale(1.03); }
+        .bird-logo-img { height: 38px; width: auto; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.6)); }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--neon-blue);
+            cursor: pointer;
+        }
 
         .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links li { position: relative; }
         .nav-links a { 
             color: var(--text-dim); 
             text-decoration: none; 
@@ -121,35 +134,94 @@
             transition: all 0.3s ease; 
             cursor: pointer;
             position: relative;
-            padding: 6px 0;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         .nav-links a:hover, .nav-links a.active-link { 
             color: var(--neon-blue); 
-        }
-        .nav-links a.active-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--neon-blue);
-            box-shadow: 0 0 8px var(--neon-blue);
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
         }
 
-        .page-tab { display: none; position: relative; z-index: 2; }
-        .page-tab.active-tab { display: block; }
+        /* --- Dropdown Sub-Menu Styles --- */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(28, 37, 65, 0.98);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 8px 0;
+            min-width: 260px;
+            display: none;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            backdrop-filter: blur(16px);
+            z-index: 1001;
+            list-style: none;
+        }
+        .nav-links li:hover .dropdown-menu {
+            display: block;
+            animation: dropDownFade 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes dropDownFade {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .dropdown-item {
+            padding: 10px 18px !important;
+            color: var(--text-dim) !important;
+            display: flex !important;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.8rem !important;
+            text-decoration: none;
+            transition: all 0.2s ease !important;
+            white-space: nowrap;
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 500;
+        }
+        .dropdown-item:hover {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--neon-blue) !important;
+            padding-left: 24px !important;
+        }
+        .dropdown-item i {
+            font-size: 0.85rem;
+            color: var(--neon-cyan);
+        }
+
+        /* Page Tab Animation */
+        .page-tab { 
+            display: none; 
+            position: relative; 
+            z-index: 2; 
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .page-tab.active-tab { 
+            display: block; 
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         .container { padding: 0 8%; margin-bottom: 60px; }
 
         .hero-ai-wrapper {
-            background: rgba(15, 23, 42, 0.6);
+            background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 16px;
             overflow: hidden;
             margin-top: 30px;
             backdrop-filter: blur(12px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 2px rgba(56, 189, 248, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(129, 140, 248, 0.15);
             position: relative;
         }
 
@@ -166,43 +238,46 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
             padding: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
         }
         .hero-logo-box img {
             max-width: 100%;
             height: auto;
-            filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.3));
+            filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.5));
         }
 
         .hero-text-box { flex: 1; }
         .hero-main-title {
             font-family: 'Orbitron', sans-serif;
             color: var(--text-white);
-            font-size: 2rem;
+            font-size: clamp(1.4rem, 2.5vw, 2.2rem);
             font-weight: 800;
             margin-bottom: 16px;
             line-height: 1.3;
-            letter-spacing: -0.5px;
         }
         .hero-desc-text {
             color: var(--text-dim);
-            font-size: 1.05rem;
+            font-size: clamp(0.9rem, 1.2vw, 1.05rem);
             max-width: 700px;
             font-weight: 300;
         }
 
         .banner-header {
             padding: 20px 0;
-            margin: 50px 0 30px 0;
+            margin: 40px 0 20px 0;
             text-align: center;
-            position: relative;
         }
         .banner-header h2 { 
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.6rem; 
+            font-size: clamp(1.2rem, 2vw, 1.6rem); 
             letter-spacing: 1px;
         }
 
@@ -219,9 +294,10 @@
         }
         .profile-img { 
             width: 180px; 
+            max-width: 100%;
             border-radius: 12px; 
             border: 2px solid var(--neon-blue); 
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
         }
         .profile-text ul { list-style: none; }
         .profile-text li { 
@@ -236,7 +312,7 @@
 
         .three-pillars { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
             gap: 25px; 
             margin-top: 30px; 
         }
@@ -246,14 +322,14 @@
             padding: 30px 20px;
             border-radius: 12px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .pillar-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--neon-blue);
-            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
+            transform: translateY(-8px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 12px 35px rgba(6, 182, 212, 0.3);
         }
-        .pillar-card img { width: 100%; max-height: 140px; object-fit: contain; margin-bottom: 20px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)); }
+        .pillar-card img { width: 100%; max-height: 140px; object-fit: contain; margin-bottom: 20px; }
         .pillar-card h3 { 
             font-family: 'Orbitron', sans-serif;
             color: var(--neon-blue); 
@@ -271,29 +347,26 @@
             padding: 30px;
             border-radius: 12px;
             margin-bottom: 25px;
-            transition: border-color 0.3s ease;
+            scroll-margin-top: 100px;
         }
-        .service-row:hover { border-color: var(--neon-blue); }
-        .service-img { width: 220px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); }
+        .service-img { width: 220px; max-width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); }
         .service-content { flex: 1; }
         .service-content h3 { font-family: 'Orbitron', sans-serif; color: var(--neon-blue); font-size: 1.2rem; margin-bottom: 12px; }
         .service-content ul { padding-left: 20px; color: var(--text-dim); font-size: 0.92rem; }
         .service-content li { margin-bottom: 8px; }
 
-        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 25px; }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; margin-top: 25px; }
         .portfolio-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 12px;
             padding: 20px;
             text-align: center;
-            transition: all 0.3s ease;
         }
-        .portfolio-card:hover { transform: translateY(-4px); border-color: var(--neon-blue); }
         .portfolio-card img { width: 100%; border-radius: 8px; margin-bottom: 15px; }
         .portfolio-card h4 { font-family: 'Orbitron', sans-serif; color: var(--text-white); font-size: 1rem; margin-bottom: 6px; }
 
-        .user-type-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin: 30px 0; }
+        .user-type-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin: 30px 0; }
         .user-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -303,13 +376,10 @@
             text-decoration: none;
             color: inherit;
             display: block;
-            transition: all 0.3s ease;
+            scroll-margin-top: 100px;
+            transition: transform 0.3s ease;
         }
-        .user-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--neon-blue);
-            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.15);
-        }
+        .user-card:hover { transform: translateY(-5px); border-color: var(--neon-blue); }
         .user-card img { width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
         .user-card h4 { font-family: 'Orbitron', sans-serif; color: var(--neon-blue); }
 
@@ -318,12 +388,12 @@
             border-radius: 12px; 
             border: 1px solid var(--card-border); 
             margin-top: 20px; 
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
 
         .btn-ai-primary {
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-cyan));
-            color: #030712 !important;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            color: #ffffff !important;
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
             font-size: 0.85rem;
@@ -331,16 +401,11 @@
             border-radius: 6px;
             border: none;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-        }
-        .btn-ai-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
         }
 
         .btn-ai-outline {
@@ -353,20 +418,205 @@
             padding: 12px 30px;
             border-radius: 6px;
             cursor: pointer;
-            transition: all 0.3s ease;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
-        .btn-ai-outline:hover {
-            background: rgba(56, 189, 248, 0.1);
-            border-color: var(--neon-blue);
-            transform: translateY(-2px);
+
+        /* ================= CHATBOT WIDGET STYLING ================= */
+        .chat-widget-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 1.6rem;
+            cursor: pointer;
+            z-index: 9999;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        .chat-widget-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.9);
+        }
+        
+        .chat-box-container {
+            position: fixed;
+            bottom: 95px;
+            right: 25px;
+            width: 370px;
+            max-width: 90vw;
+            height: 500px;
+            background: rgba(11, 19, 43, 0.96);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 20px rgba(56, 189, 248, 0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 9999;
+            overflow: hidden;
+            animation: chatBoxFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes chatBoxFadeIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
+        .chat-header {
+            background: linear-gradient(135deg, rgba(28, 37, 65, 0.9), rgba(11, 19, 43, 0.95));
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .chat-header-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .chat-bot-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(56, 189, 248, 0.2);
+            border: 1px solid var(--neon-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-blue);
+            font-size: 1rem;
+        }
+        .chat-header h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-white);
+        }
+        .chat-status {
+            font-size: 0.7rem;
+            color: var(--accent-green);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .chat-close-btn {
+            color: var(--text-dim);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: color 0.2s;
+        }
+        .chat-close-btn:hover { color: var(--neon-pink); }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 0.88rem;
+        }
+        .chat-messages::-webkit-scrollbar { width: 5px; }
+        .chat-messages::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.3); border-radius: 4px; }
+
+        .msg-bubble {
+            max-width: 82%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+        .msg-bot {
+            align-self: flex-start;
+            background: rgba(28, 37, 65, 0.9);
+            border: 1px solid var(--card-border);
+            color: var(--text-white);
+            border-bottom-left-radius: 2px;
+        }
+        .msg-user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            color: #ffffff;
+            border-bottom-right-radius: 2px;
+            font-weight: 500;
+        }
+
+        .chat-chips {
+            display: flex;
+            gap: 6px;
+            padding: 8px 15px;
+            overflow-x: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(11, 19, 43, 0.6);
+        }
+        .chat-chips::-webkit-scrollbar { display: none; }
+        .chip-btn {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid var(--card-border);
+            color: var(--neon-blue);
+            font-size: 0.72rem;
+            padding: 5px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .chip-btn:hover {
+            background: var(--neon-blue);
+            color: #0b132b;
+            font-weight: 600;
+        }
+
+        .chat-input-area {
+            padding: 12px 15px;
+            background: rgba(28, 37, 65, 0.8);
+            border-top: 1px solid var(--card-border);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .chat-input-area input {
+            flex: 1;
+            background: rgba(11, 19, 43, 0.8);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 9px 12px;
+            color: var(--text-white);
+            font-size: 0.85rem;
+            outline: none;
+        }
+        .chat-input-area input:focus {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
+        }
+        .chat-send-btn {
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            border: none;
+            color: #ffffff;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+        .chat-send-btn:hover { transform: scale(1.05); }
+
         footer {
-            background: rgba(3, 7, 18, 0.95);
+            background: rgba(11, 19, 43, 0.98);
             padding: 40px 8%;
             border-top: 1px solid var(--card-border);
             text-align: center;
@@ -377,6 +627,7 @@
         .social-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 20px; }
         .social-btn {
             border: 1px solid var(--card-border);
+            background: rgba(255,255,255,0.03);
             color: var(--text-dim);
             padding: 8px 20px;
             text-decoration: none;
@@ -387,49 +638,119 @@
             gap: 8px;
             transition: all 0.3s ease;
         }
-        .social-btn:hover {
-            color: var(--neon-blue);
-            border-color: var(--neon-blue);
-            background: rgba(56, 189, 248, 0.05);
+        .social-btn:hover { background: rgba(56, 189, 248, 0.15); color: var(--neon-blue); }
+
+        /* ================= MEDIA QUERIES (MOBILE, TABLET & TV RESPONSIVENESS) ================= */
+        @media(max-width: 992px) {
+            .container { padding: 0 5%; }
+            nav { padding: 1rem 5%; }
+            .hero-top-row { flex-direction: column; text-align: center; padding: 30px 20px; }
+            .hero-logo-box { flex: 0 0 auto; width: 200px; }
+            .profile-flex, .service-row { flex-direction: column; text-align: center; padding: 25px 20px; }
+            .service-content ul { text-align: left; }
         }
 
-        @media(max-width: 850px) {
-            .hero-top-row { flex-direction: column; text-align: center; padding: 30px; }
-            .hero-logo-box { flex: 0 0 auto; width: 220px; }
-            .profile-flex, .service-row { flex-direction: column; text-align: center; }
-            .profile-img, .service-img { width: 100%; max-width: 250px; }
-            .nav-links { gap: 15px; }
+        @media(max-width: 768px) {
+            .mobile-toggle { display: block; }
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(11, 19, 43, 0.98);
+                flex-direction: column;
+                gap: 0;
+                display: none;
+                border-bottom: 1px solid var(--card-border);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.8);
+            }
+            .nav-links.active-menu { display: flex; }
+            .nav-links li { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            .nav-links a { padding: 14px 20px; width: 100%; justify-content: space-between; }
+            
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                background: rgba(28, 37, 65, 0.9);
+                border: none;
+                border-radius: 0;
+                padding: 0;
+            }
+            .dropdown-item { padding: 12px 30px !important; }
+            .nav-links li.open-dropdown .dropdown-menu { display: block; }
+
+            .chat-box-container {
+                right: 5vw;
+                bottom: 85px;
+                width: 90vw;
+            }
+        }
+
+        @media(min-width: 1400px) {
+            .container { max-width: 1300px; margin: 0 auto 60px auto; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Dynamic Interactive Dot Grid Canvas -->
     <canvas id="dotCanvas"></canvas>
 
-    <!-- Top Ticker Bar -->
     <div class="top-bar">
         <div class="marquee-content">
-            ⚡ NEXT-GEN ENTERPRISE DATA & CRM AUTOMATION &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; 📍 SERVING NEW DELHI | GURUGRAM | NOIDA &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; 📊 POWER BI, EXCEL UTILITIES & ZOHO CRM ARCHITECTURE
+            ⚡ NEXT-GEN ENTERPRISE DATA & CRM AUTOMATION     |     📍 SERVING NEW DELHI | GURUGRAM | NOIDA     |     📊 POWER BI, EXCEL UTILITIES & ZOHO CRM ARCHITECTURE
         </div>
     </div>
 
-    <!-- Navigation Bar -->
     <nav>
         <a class="logo" onclick="showTab('home')">
             <img src="https://lh3.googleusercontent.com/d/1Tq6p4MOqx7cT7fUKdoO2A1fmPsJeiwXK" alt="Bird Logo" class="bird-logo-img">
             <span class="ai-dynamic-text">fly2laksh</span>
         </a>
         
-        <ul class="nav-links">
+        <div class="mobile-toggle" onclick="toggleMobileMenu()">
+            <i class="fa-solid fa-bars" id="menu-icon"></i>
+        </div>
+
+        <ul class="nav-links" id="nav-links">
             <li><a onclick="showTab('home')" id="link-home" class="active-link">HOME</a></li>
-            <li><a onclick="showTab('services')" id="link-services">SERVICES</a></li>
-            <li><a onclick="showTab('portfolio')" id="link-portfolio">PORTFOLIO</a></li>
-            <li><a onclick="showTab('contact')" id="link-contact">CONTACT</a></li>
+            
+            <li onclick="toggleDropdown(this)">
+                <a id="link-services">
+                    SERVICES <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 2px;"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a onclick="showTab('services', 'service-data')" class="dropdown-item"><i class="fa-solid fa-chart-pie"></i> Data Management & BI</a></li>
+                    <li><a onclick="showTab('services', 'service-zoho')" class="dropdown-item"><i class="fa-solid fa-diagram-project"></i> Zoho Customisation & Implementation</a></li>
+                    <li><a onclick="showTab('services', 'service-website')" class="dropdown-item"><i class="fa-solid fa-code"></i> Website & Tool Building</a></li>
+                    <li><a onclick="showTab('services', 'service-training')" class="dropdown-item"><i class="fa-solid fa-user-graduate"></i> Staff Training & Freelancing</a></li>
+                    <li><a onclick="showTab('services', 'service-accounting')" class="dropdown-item"><i class="fa-solid fa-calculator"></i> Accounting & Financial Compliance</a></li>
+                </ul>
+            </li>
+
+            <li onclick="toggleDropdown(this)">
+                <a id="link-portfolio">
+                    PORTFOLIO <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 2px;"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a onclick="showTab('portfolio', 'case-studies')" class="dropdown-item"><i class="fa-solid fa-briefcase"></i> Case Studies & Dashboards</a></li>
+                    <li><a onclick="showTab('portfolio', 'user-portals')" class="dropdown-item"><i class="fa-solid fa-users"></i> Tailored User Portals</a></li>
+                </ul>
+            </li>
+
+            <li onclick="toggleDropdown(this)">
+                <a id="link-contact">
+                    CONTACT <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 2px;"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a onclick="showTab('contact', 'contact-student')" class="dropdown-item"><i class="fa-solid fa-graduation-cap"></i> Student Portal</a></li>
+                    <li><a onclick="showTab('contact', 'contact-pro')" class="dropdown-item"><i class="fa-solid fa-user-tie"></i> Professional Portal</a></li>
+                    <li><a onclick="showTab('contact', 'contact-biz')" class="dropdown-item"><i class="fa-solid fa-building"></i> Business Consultation</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
 
-    <!-- ================= TAB 1: HOME ================= -->
     <div id="tab-home" class="page-tab active-tab">
         <div class="container">
             
@@ -470,7 +791,7 @@
 
             <div class="three-pillars">
                 <div class="pillar-card">
-                    <img src="https://lh3.googleusercontent.com/d/14IqT_fh6Atk_dHegzbgARski2sRIM37z" alt="Smart Automation" onerror="this.src='https://via.placeholder.com/200x150?text=Automation'">
+                    <img src="https://lh3.googleusercontent.com/d/1QOJCYUsTWrg3YfGtHd9MCFJqSPXLHyAf" alt="Smart Automation" onerror="this.src='https://via.placeholder.com/200x150?text=Automation'">
                     <h3>Smart Automation</h3>
                     <p>Eliminate manual entry errors. We build automated Excel-to-JSON tools and robust Zoho CRM workflows operating on autopilot.</p>
                 </div>
@@ -490,7 +811,6 @@
         </div>
     </div>
 
-    <!-- ================= TAB 2: SERVICES ================= -->
     <div id="tab-services" class="page-tab">
         <div class="container">
             <div class="banner-header">
@@ -499,10 +819,10 @@
             
             <p style="text-align:center; color: var(--text-dim); margin-bottom: 30px; font-weight:300;">10 Years of Expertise in Data Analytics, Enterprise CRM Setup & Financial Architecture.</p>
 
-            <div class="service-row">
+            <div class="service-row" id="service-data">
                 <img src="https://lh3.googleusercontent.com/d/1GLxyZMHp9U4rFFHsEY9Z3wNKixERomp1" alt="Data Analytics" class="service-img" onerror="this.src='https://via.placeholder.com/220x150?text=Data+Analytics'">
                 <div class="service-content">
-                    <h3>🎯 Data Analytics & Business Intelligence</h3>
+                    <h3>🎯 Data Management & Business Intelligence</h3>
                     <ul>
                         <li><strong>Interactive Power BI Dashboards:</strong> Turn complex datasets into live visual reports for executive decision-making.</li>
                         <li><strong>Advanced Excel & Google Sheets Automation:</strong> Custom macros, scripts, and trackers built to eliminate repetitive manual work.</li>
@@ -511,10 +831,10 @@
                 </div>
             </div>
 
-            <div class="service-row">
+            <div class="service-row" id="service-zoho">
                 <img src="https://lh3.googleusercontent.com/d/1Ibn-ZC_qkSV3GOkgw77FTLgBx_toEw-R" alt="Zoho CRM" class="service-img" onerror="this.src='https://via.placeholder.com/220x150?text=Zoho+CRM'">
                 <div class="service-content">
-                    <h3>🚀 Zoho CRM Setup & Automation Architecture</h3>
+                    <h3>🚀 Zoho Customisation & Implementation</h3>
                     <ul>
                         <li><strong>End-to-End Implementation:</strong> Full pipeline, lead management, and custom modules set up from scratch.</li>
                         <li><strong>Workflow & Notification Rules:</strong> Automated email triggers, task assignments, and follow-up rules.</li>
@@ -523,10 +843,22 @@
                 </div>
             </div>
 
-            <div class="service-row">
+            <div class="service-row" id="service-website">
+                <img src="https://via.placeholder.com/220x150?text=Website+%26+Tools" alt="Website & Tool Building" class="service-img">
+                <div class="service-content">
+                    <h3>💻 Website & Tool Building</h3>
+                    <ul>
+                        <li><strong>Custom Web Applications:</strong> Fast, responsive, aur modern enterprise websites jo aapke business ke mutabiq customize ho.</li>
+                        <li><strong>Internal Utility Tools:</strong> Business workflows aur manual tasks ko automate karne ke liye custom web tools & calculators.</li>
+                        <li><strong>API & Web Integration:</strong> CRM, databases, aur third-party services ke sath seamless integrations.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-row" id="service-accounting">
                 <img src="https://lh3.googleusercontent.com/d/1_NsBCMBh4IBqZ-QlRsvZL6tFR9ZPdQSP" alt="Finance & Accounting" class="service-img" onerror="this.src='https://via.placeholder.com/220x150?text=Finance'">
                 <div class="service-content">
-                    <h3>⚖️ Financial Intelligence & Accounting Solutions</h3>
+                    <h3>⚖️ Accounting & Financial Compliance</h3>
                     <ul>
                         <li>GST registration, monthly compliance filings, and Income Tax Return (ITR) filing for companies.</li>
                         <li>Automated financial models, cash flow dashboards, and P&L statements.</li>
@@ -535,23 +867,23 @@
                 </div>
             </div>
 
-            <div class="service-row">
+            <div class="service-row" id="service-training">
                 <img src="https://lh3.googleusercontent.com/d/1irpPp3DX-x4JQGbKid0UbzEFCSuuA9cv" alt="Staff Training" class="service-img" onerror="this.src='https://via.placeholder.com/220x150?text=Training'">
                 <div class="service-content">
-                    <h3>⚙️ Corporate Training & Upskilling</h3>
+                    <h3>⚙️ Staff Training & Freelancing Consultancy</h3>
                     <ul>
                         <li><strong>Corporate Staff Training:</strong> Coaching internal teams in Advanced Excel, Power BI, and Data Analytics.</li>
                         <li><strong>Career Placement Guidance:</strong> Professional resume structuring, interview prep, and strategy for MIS & Analytics roles.</li>
+                        <li><strong>Freelance Project Consulting:</strong> On-demand technical consulting for automated data systems.</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ================= TAB 3: PORTFOLIO ================= -->
     <div id="tab-portfolio" class="page-tab">
         <div class="container">
-            <div class="banner-header">
+            <div class="banner-header" id="case-studies">
                 <h2>Delivered Work & Case Studies</h2>
             </div>
 
@@ -584,7 +916,7 @@
                 </div>
             </div>
 
-            <div class="banner-header">
+            <div class="banner-header" id="user-portals">
                 <h2>Tailored Solutions For Every Need</h2>
             </div>
 
@@ -615,7 +947,6 @@
         </div>
     </div>
 
-    <!-- ================= TAB 4: CONTACT ================= -->
     <div id="tab-contact" class="page-tab">
         <div class="container">
             <div class="banner-header">
@@ -625,19 +956,19 @@
             <p style="text-align:center; color: var(--text-dim); margin-bottom: 30px;">Select your inquiry type to initiate immediate consultation.</p>
             
             <div class="user-type-grid" style="max-width: 900px; margin: 0 auto 40px auto;">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf4pN3YlZrRTX05xWbZM2TXQ_sMDDTI614TwKhiGgEcqoW7rw/viewform" target="_blank" class="user-card">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf4pN3YlZrRTX05xWbZM2TXQ_sMDDTI614TwKhiGgEcqoW7rw/viewform" target="_blank" class="user-card" id="contact-student">
                     <img src="https://lh3.googleusercontent.com/d/1AWytaTh_6xiMiDqgpUY0ghjoAAKlodao" alt="Students">
                     <h4>🎓 Student Portal</h4>
                     <p style="font-size:0.8rem; color:var(--text-dim); margin-top:5px;">Mentorship & Learning tracks</p>
                 </a>
 
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfy_f8XxKX-WpShsvXXxp1y8e_QUmLOgEbHb87usFOw7RdO4Q/viewform" target="_blank" class="user-card">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfy_f8XxKX-WpShsvXXxp1y8e_QUmLOgEbHb87usFOw7RdO4Q/viewform" target="_blank" class="user-card" id="contact-pro">
                     <img src="https://lh3.googleusercontent.com/d/1yqRF5z0biggBapCY-dH2P6MduWIo3mSZ" alt="Professionals">
                     <h4>👨‍💼 Professional Portal</h4>
                     <p style="font-size:0.8rem; color:var(--text-dim); margin-top:5px;">Analytics career development</p>
                 </a>
 
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfU9iYd9jDZP5c3NwymyGr2PIrhxytVPN3KKAaMk9jG1y8t0Q/viewform" target="_blank" class="user-card">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfU9iYd9jDZP5c3NwymyGr2PIrhxytVPN3KKAaMk9jG1y8t0Q/viewform" target="_blank" class="user-card" id="contact-biz">
                     <img src="https://lh3.googleusercontent.com/d/1v_Cr969uAKtjOOlKUbTGP8heuSdydr5W" alt="Businesses">
                     <h4>🏢 Business Consultation</h4>
                     <p style="font-size:0.8rem; color:var(--text-dim); margin-top:5px;">Enterprise automation & audit</p>
@@ -656,7 +987,44 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    <div class="chat-widget-btn" onclick="toggleChatBox()">
+        <i class="fa-solid fa-robot" id="chat-widget-icon"></i>
+    </div>
+
+    <div class="chat-box-container" id="chat-box">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-bot-avatar">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <div>
+                    <h4>fly2laksh AI Assistant</h4>
+                    <div class="chat-status"><i class="fa-solid fa-circle" style="font-size:0.5rem;"></i> Online • Instant Support</div>
+                </div>
+            </div>
+            <i class="fa-solid fa-xmark chat-close-btn" onclick="toggleChatBox()"></i>
+        </div>
+
+        <div class="chat-messages" id="chat-messages">
+            <div class="msg-bubble msg-bot">
+                Namaste! 👋 Main **fly2laksh** ka AI Assistant hoon. Main aapki kya madad kar sakta hoon? Below options select karein ya apana question type karein!
+            </div>
+        </div>
+
+        <div class="chat-chips">
+            <div class="chip-btn" onclick="sendQuickReply('Zoho CRM Services')">🚀 Zoho CRM</div>
+            <div class="chip-btn" onclick="sendQuickReply('Power BI Dashboards')">📊 Power BI & Excel</div>
+            <div class="chip-btn" onclick="sendQuickReply('Website Building')">💻 Web & Tools</div>
+            <div class="chip-btn" onclick="sendQuickReply('GST & Accounting')">⚖️ GST & Accounting</div>
+            <div class="chip-btn" onclick="sendQuickReply('Contact Details')">📞 Contact Info</div>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Type your query here..." onkeypress="handleKeyPress(event)">
+            <button class="chat-send-btn" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
     <footer>
         <div class="social-btns">
             <a href="https://linkedin.com/in/fly2laksh" target="_blank" class="social-btn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
@@ -672,129 +1040,238 @@
         </p>
     </footer>
 
-    <!-- Tab Switching & Interactive Dot Grid Engine Scripts -->
     <script>
-        // --- 1. Tab Navigation Script ---
-        function showTab(tabName) {
-            const tabs = document.querySelectorAll('.page-tab');
-            tabs.forEach(tab => tab.classList.remove('active-tab'));
+        // Toggle Mobile Navigation Bar
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const icon = document.getElementById('menu-icon');
+            navLinks.classList.toggle('active-menu');
+            
+            if (navLinks.classList.contains('active-menu')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
 
-            const links = document.querySelectorAll('.nav-links a');
+        // Toggle Sub-dropdowns on Mobile Touch
+        function toggleDropdown(element) {
+            if (window.innerWidth <= 768) {
+                element.classList.toggle('open-dropdown');
+            }
+        }
+
+        // Tab Navigation Functionality
+        function showTab(tabId, sectionId = null) {
+            const tabs = document.querySelectorAll('.page-tab');
+            const links = document.querySelectorAll('.nav-links > li > a');
+
+            tabs.forEach(tab => tab.classList.remove('active-tab'));
             links.forEach(link => link.classList.remove('active-link'));
 
-            const targetTab = document.getElementById('tab-' + tabName);
-            const targetLink = document.getElementById('link-' + tabName);
+            const targetTab = document.getElementById('tab-' + tabId);
+            const targetLink = document.getElementById('link-' + tabId);
 
             if (targetTab) targetTab.classList.add('active-tab');
             if (targetLink) targetLink.classList.add('active-link');
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (window.innerWidth <= 768) {
+                document.getElementById('nav-links').classList.remove('active-menu');
+                document.getElementById('menu-icon').className = 'fa-solid fa-bars';
+            }
+
+            if (sectionId) {
+                setTimeout(() => {
+                    const element = document.getElementById(sectionId);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 150);
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
 
-        // --- 2. Interactive Neural Dot Grid Canvas Script ---
+        /* ================= CHATBOT JAVASCRIPT LOGIC ================= */
+        function toggleChatBox() {
+            const chatBox = document.getElementById('chat-box');
+            if (chatBox.style.display === 'flex') {
+                chatBox.style.display = 'none';
+            } else {
+                chatBox.style.display = 'flex';
+                document.getElementById('chat-input').focus();
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendQuickReply(text) {
+            document.getElementById('chat-input').value = text;
+            sendMessage();
+        }
+
+        function sendMessage() {
+            const inputField = document.getElementById('chat-input');
+            const message = inputField.value.trim();
+            if (!message) return;
+
+            // Append User Message
+            appendMessage(message, 'user');
+            inputField.value = '';
+
+            // Generate Bot Response
+            setTimeout(() => {
+                const botReply = getBotResponse(message.toLowerCase());
+                appendMessage(botReply, 'bot');
+            }, 400);
+        }
+
+        function appendMessage(text, sender) {
+            const chatMessages = document.getElementById('chat-messages');
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('msg-bubble');
+            msgDiv.classList.add(sender === 'user' ? 'msg-user' : 'msg-bot');
+            
+            // Format line breaks and basic formatting
+            msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function getBotResponse(input) {
+            if (input.includes('hi') || input.includes('hello') || input.includes('hey') || input.includes('namaste')) {
+                return "Namaste! 🙏 Welcome to **fly2laksh**. Hum enterprise data, Zoho CRM, Power BI, Website building, aur Financial compliance me specialize karte hain. Aap kis service ke baare me janna chahte hain?";
+            }
+            if (input.includes('zoho') || input.includes('crm')) {
+                return "🚀 **Zoho CRM Solutions:**\n- End-to-end setup & module customization.\n- Lead management & automated workflow rules.\n- Large scale data migration (60 Lakh+ records expertise).\n\nDirect WhatsApp: +91 98918 81990";
+            }
+            if (input.includes('power bi') || input.includes('excel') || input.includes('dashboard') || input.includes('data') || input.includes('bi')) {
+                return "📊 **Data Analytics & Power BI:**\n- Custom Power BI dashboards for live KPIs.\n- Advanced Excel macros & automated trackers.\n- SQL data pipelines & cleanup.\n\nAap custom analytics dashboard banwane ke liye contact kar sakte hain!";
+            }
+            if (input.includes('website') || input.includes('tool') || input.includes('web') || input.includes('app') || input.includes('software')) {
+                return "💻 **Website & Tool Building:**\n- Custom fast & responsive web apps.\n- Business utility tools & calculators.\n- Seamless API & CRM integrations.";
+            }
+            if (input.includes('gst') || input.includes('accounting') || input.includes('tax') || input.includes('itr') || input.includes('finance')) {
+                return "⚖️ **Accounting & Financial Compliance:**\n- GST registration & monthly return filing.\n- Income Tax Filing (ITR) for businesses.\n- Excel to JSON invoice conversion utilities.";
+            }
+            if (input.includes('training') || input.includes('student') || input.includes('learn') || input.includes('course')) {
+                return "🎓 **Training & Mentorship:**\n- Corporate staff training in Advanced Excel & Power BI.\n- Career mentorship & interview preparation for MIS/Analytics roles.";
+            }
+            if (input.includes('price') || input.includes('cost') || input.includes('charge') || input.includes('fees') || input.includes('rate')) {
+                return "💰 Pricing aapke project scope aur custom requirements par depend karti hai. Fast quotation ke liye WhatsApp par connect karein: +91 98918 81990";
+            }
+            if (input.includes('contact') || input.includes('number') || input.includes('phone') || input.includes('whatsapp') || input.includes('call') || input.includes('address')) {
+                return "📞 **Contact Details:**\n- **WhatsApp:** +91 98918 81990\n- **Telegram:** t.me/fly2laksh\n- **Locations:** New Delhi | Gurugram | Noida";
+            }
+
+            return "Aapke inquiry ke liye shukriya! Main is topic par ziada details dene me madad kar sakta hoon: **Zoho CRM, Power BI Dashboards, Website Building, GST Compliance, ya Training**. Aap humse direct WhatsApp +91 98918 81990 par bhi chat kar sakte hain! 🚀";
+        }
+
+        // Interactive Canvas Dynamic Particle Network
         const canvas = document.getElementById('dotCanvas');
         const ctx = canvas.getContext('2d');
 
-        let width, height;
-        let dots = [];
-        const spacing = 35; // Grid point spacing
-        const mouse = { x: -1000, y: -1000, radius: 150 };
-
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            initGrid();
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
-        function initGrid() {
-            dots = [];
-            for (let x = 0; x < width; x += spacing) {
-                for (let y = 0; y < height; y += spacing) {
-                    dots.push({
-                        baseX: x,
-                        baseY: y,
-                        x: x,
-                        y: y,
-                        ox: Math.random() * 2 - 1,
-                        oy: Math.random() * 2 - 1
-                    });
-                }
-            }
-        }
+        const mouse = { x: null, y: null, radius: 140 };
 
-        window.addEventListener('resize', resize);
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.x;
+            mouse.y = event.y;
         });
 
         window.addEventListener('mouseleave', () => {
-            mouse.x = -1000;
-            mouse.y = -1000;
+            mouse.x = null;
+            mouse.y = null;
         });
 
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.8;
+                this.speedY = (Math.random() - 0.5) * 0.8;
+            }
 
-            for (let i = 0; i < dots.length; i++) {
-                let d = dots[i];
-                
-                // Calculate distance from mouse
-                let dx = mouse.x - d.baseX;
-                let dy = mouse.y - d.baseY;
-                let dist = Math.sqrt(dx * dx + dy * dy);
-
-                // Displace dots slightly on mouse proximity
-                if (dist < mouse.radius) {
-                    let angle = Math.atan2(dy, dx);
-                    let force = (mouse.radius - dist) / mouse.radius;
-                    let targetX = d.baseX - Math.cos(angle) * force * 20;
-                    let targetY = d.baseY - Math.sin(angle) * force * 20;
-                    d.x += (targetX - d.x) * 0.1;
-                    d.y += (targetY - d.y) * 0.1;
-                } else {
-                    d.x += (d.baseX - d.x) * 0.05;
-                    d.y += (d.baseY - d.y) * 0.05;
-                }
-
-                // Render dot
-                let alpha = dist < mouse.radius ? 0.8 : 0.18;
-                let radius = dist < mouse.radius ? 2.2 : 1.2;
-
+            draw() {
+                ctx.fillStyle = 'rgba(56, 189, 248, 0.7)';
                 ctx.beginPath();
-                ctx.arc(d.x, d.y, radius, 0, Math.PI * 2);
-                ctx.fillStyle = dist < mouse.radius ? '#38bdf8' : 'rgba(56, 189, 248, 0.25)';
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
+            }
 
-                // Connect nearby dots near mouse cursor (Neural Mesh Effect)
-                if (dist < mouse.radius) {
-                    for (let j = i + 1; j < dots.length; j++) {
-                        let d2 = dots[j];
-                        let d2x = mouse.x - d2.baseX;
-                        let d2y = mouse.y - d2.baseY;
-                        let d2Dist = Math.sqrt(d2x * d2x + d2y * d2y);
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
 
-                        if (d2Dist < mouse.radius) {
-                            let pDist = Math.sqrt((d.x - d2.x) ** 2 + (d.y - d2.y) ** 2);
-                            if (pDist < spacing * 1.5) {
-                                ctx.beginPath();
-                                ctx.moveTo(d.x, d.y);
-                                ctx.lineTo(d2.x, d2.y);
-                                ctx.strokeStyle = `rgba(56, 189, 248, ${(1 - pDist / (spacing * 1.5)) * 0.35})`;
-                                ctx.lineWidth = 0.8;
-                                ctx.stroke();
-                            }
-                        }
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+
+                if (mouse.x != null && mouse.y != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < mouse.radius) {
+                        const angle = Math.atan2(dy, dx);
+                        const force = (mouse.radius - distance) / mouse.radius;
+                        this.x -= Math.cos(angle) * force * 3;
+                        this.y -= Math.sin(angle) * force * 3;
                     }
                 }
             }
-
-            requestAnimationFrame(animate);
         }
 
-        // Initialize and Start Animation Loop
-        resize();
-        animate();
+        const particleArray = [];
+        const particleCount = Math.min(Math.floor(window.innerWidth / 15), 90);
+
+        for (let i = 0; i < particleCount; i++) {
+            particleArray.push(new Particle());
+        }
+
+        function connectParticles() {
+            for (let a = 0; a < particleArray.length; a++) {
+                for (let b = a; b < particleArray.length; b++) {
+                    let dx = particleArray[a].x - particleArray[b].x;
+                    let dy = particleArray[a].y - particleArray[b].y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 110) {
+                        let opacity = 1 - (distance / 110);
+                        ctx.strokeStyle = `rgba(129, 140, 248, ${opacity * 0.3})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particleArray[a].x, particleArray[a].y);
+                        ctx.lineTo(particleArray[b].x, particleArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particleArray.length; i++) {
+                particleArray[i].draw();
+                particleArray[i].update();
+            }
+            connectParticles();
+            requestAnimationFrame(animateCanvas);
+        }
+
+        animateCanvas();
     </script>
 </body>
 </html>
