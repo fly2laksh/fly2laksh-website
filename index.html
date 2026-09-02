@@ -313,7 +313,40 @@
         }
         .pillar-card p { font-size: 0.88rem; color: var(--text-dim); }
 
-        /* --- RATE CARD & SERVICE GRID --- */
+        /* --- FILTER BUTTONS --- */
+        .filter-buttons-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 25px 0 35px 0;
+        }
+        .service-filter-btn {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--card-border);
+            color: var(--text-dim);
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.78rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .service-filter-btn:hover, .service-filter-btn.active-filter {
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+        }
+
+        /* --- CATEGORY BLOCKS & CONTACT CARDS --- */
+        .service-category-block, .contact-category-block {
+            transition: all 0.4s ease;
+        }
+
         .services-section-title {
             font-family: 'Orbitron', sans-serif;
             color: var(--neon-blue);
@@ -407,6 +440,82 @@
         }
         .card-features li i { color: var(--accent-green); }
 
+        /* Media / Charts Wrapper */
+        .media-preview-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Dedicated Contact Detailed Cards */
+        .contact-detail-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            transition: border-color 0.3s ease;
+        }
+        .contact-detail-card:hover { border-color: var(--neon-blue); }
+        .contact-detail-img-box {
+            flex: 0 0 220px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+        }
+        .contact-detail-img-box img { width: 100%; height: 180px; object-fit: cover; display: block; }
+        .contact-detail-content { flex: 1; }
+        .contact-detail-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+            color: var(--neon-blue);
+            margin-bottom: 8px;
+        }
+        .contact-detail-content p {
+            color: var(--text-dim);
+            font-size: 0.88rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        .contact-feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+            list-style: none;
+        }
+        .contact-feature-list li {
+            font-size: 0.82rem;
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .contact-feature-list li i { color: var(--accent-green); }
+
         .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
         .portfolio-card {
             background: var(--card-bg);
@@ -473,6 +582,11 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .btn-ai-outline:hover {
+            border-color: var(--neon-blue);
+            background: rgba(56, 189, 248, 0.1);
         }
 
         /* --- CHATBOT WIDGET --- */
@@ -590,7 +704,7 @@
             gap: 6px;
         }
 
-        /* ================= MOBILE RESPONSIVE MEDIA QUERIES ================= */
+        /* Responsive Media Queries */
         @media(max-width: 992px) {
             .container { padding: 0 5%; }
             nav { padding: 0.9rem 5%; }
@@ -598,6 +712,9 @@
             .hero-logo-box { flex: 0 0 auto; width: 200px; }
             .profile-flex { flex-direction: column; text-align: center; padding: 25px 20px; }
             .profile-img { width: 140px; }
+            .contact-detail-card { flex-direction: column; text-align: center; }
+            .contact-detail-img-box { width: 100%; flex: 0 0 auto; }
+            .contact-feature-list { text-align: left; }
         }
 
         @media(max-width: 768px) {
@@ -704,6 +821,7 @@
         </ul>
     </nav>
 
+    <!-- HOME TAB -->
     <div id="tab-home" class="page-tab active-tab">
         <div class="container">
             <div class="hero-ai-wrapper">
@@ -763,267 +881,384 @@
         </div>
     </div>
 
+    <!-- SERVICES TAB -->
     <div id="tab-services" class="page-tab">
         <div class="container">
             <div class="banner-header">
-                <h2>Official Services & Rate Cards</h2>
-                <p style="color: var(--text-dim); margin-top: 6px; font-size: 0.9rem;">Detailed deliverables and official pricing packages across all service lines:</p>
-            </div>
-
-            <div class="services-section-title" id="sec-data">
-                <i class="fa-solid fa-chart-line"></i> 1. Data Management (Excel & Power BI)
-            </div>
-            <div class="services-grid">
-                <div class="service-card-item">
-                    <div class="card-badge">Excel</div>
-                    <h3>Basic Excel Cleanup</h3>
-                    <p>Cleaning messy datasets, formatting, deduplication, and bank statement conversions.</p>
-                    <div class="card-price-tag">₹1,500 – ₹3,000 <span>/ project</span></div>
-                    <ul class="card-features">
-                        <li><i class="fa-solid fa-check"></i> Remove Duplicates & Blanks</li>
-                        <li><i class="fa-solid fa-check"></i> Bank Statement to Clean Excel</li>
-                        <li><i class="fa-solid fa-check"></i> Standard Formatting</li>
-                    </ul>
-                    <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Basic%20Excel%20Cleanup" target="_blank" class="btn-ai-primary">Inquire Now</a>
-                </div>
-
-                <div class="service-card-item">
-                    <div class="card-badge gold">Popular</div>
-                    <h3>Advanced Excel Dashboard</h3>
-                    <p>Dynamic executive business dashboards built using XLOOKUP, INDEX/MATCH, and Pivots.</p>
-                    <div class="card-price-tag">₹5,000 – ₹15,000 <span>/ dashboard</span></div>
-                    <ul class="card-features">
-                        <li><i class="fa-solid fa-check"></i> Dynamic Pivot & Chart Layouts</li>
-                        <li><i class="fa-solid fa-check"></i> Automated KPI Summary Cards</li>
-                        <li><i class="fa-solid fa-check"></i> Multi-Source Data Links</li>
-                    </ul>
-                    <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Advanced%20Excel%20Dashboard" target="_blank" class="btn-ai-primary">Inquire Now</a>
-                </div>
-
-                <div class="service-card-item">
-                    <div class="card-badge">Automation</div>
-                    <h3>Excel Macros & Automation</h3>
-                    <p>VBA macros and Google Apps Scripts for 1-click repetitive work automation.</p>
-                    <div class="card-price-tag">₹3,000 – ₹12,000 <span>/ automation</span></div>
-                    <ul class="card-features">
-                        <li><i class="fa-solid fa-check"></i> Custom VBA / Script Code</li>
-                        <li><i class="fa-solid fa-check"></i> One-Click Auto Processing</li>
-                        <li><i class="fa-solid fa-check"></i> Error-Free Bulk Generation</li>
-                    </ul>
-                    <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Excel%20Automation" target="_blank" class="btn-ai-primary">Inquire Now</a>
-                </div>
-
-                <div class="service-card-item">
-                    <div class="card-badge">Power BI</div>
-                    <h3>Power BI Dashboards</h3>
-                    <p>Interactive Power BI reports with DAX calculations, Power Query ETL, and real-time insights.</p>
-                    <div class="card-price-tag">₹10,000 – ₹35,000 <span>/ report</span></div>
-                    <ul class="card-features">
-                        <li><i class="fa-solid fa-check"></i> Single or Multi-Page Tab Layouts</li>
-                        <li><i class="fa-solid fa-check"></i> Power Query ETL & DAX Measures</li>
-                        <li><i class="fa-solid fa-check"></i> Interactive Slicers & Filters</li>
-                    </ul>
-                    <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Power%20BI%20Dashboard" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                <h2>Official Services, Demos & Pricing</h2>
+                <p style="color: var(--text-dim); margin-top: 6px; font-size: 0.9rem;">Explore video demonstrations, sample dashboards, and official rate cards across all domain pillars:</p>
+                <div style="margin-top: 15px;">
+                    <a href="https://drive.google.com/file/d/1o5c7M15Wtm7VIm_iP2VKny-AtwQpJSLT/view?usp=sharing" target="_blank" class="btn-ai-outline">
+                        <i class="fa-solid fa-file-pdf" style="color: var(--neon-pink);"></i> View Master Pricing Rate Card
+                    </a>
                 </div>
             </div>
 
-            <div class="services-section-title" id="sec-zoho">
-                <i class="fa-solid fa-diagram-project"></i> 2. Zoho Services
-            </div>
-            <div class="services-grid">
-                <div class="service-card-item">
-                    <div class="card-badge gold">Full Suite</div>
-                    <h3>Zoho Implementation</h3>
-                    <p>End-to-end Zoho CRM deployment, multi-module architecture, and 60L+ record data migration.</p>
-                    <div class="card-price-tag">₹35,000 – ₹80,000 <span>/ setup</span></div>
-                    <ul class="card-features">
-                        <li><i class="fa-solid fa-check"></i> Full System Deployment & User Roles</li>
-                        <li><i class="fa-solid fa-check"></i> Bulk Data Migration (60L+ Records)</li>
-                        <li><i class="fa-solid fa-check"></i> End-to-End Sales Pipeline Setup</li>
-                    </ul>
-                    <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Zoho%20Implementation" target="_blank" class="btn-ai-primary">Inquire Now</a>
-                </div>
-
-                <div class="service-card-item">
-                    <div class="card-badge">Custom UI</div>
-                    <h3>Zoho Customisation</h3>
-                    <p>Tailored module design, custom fields, layout rules, and specific business logic mapping.</p>
-                    <div class="card-price-tag">₹12,000 – ₹25,000 <span>/ project</span></div>
-                    <ul class="card-features">
-                        <li><i class="fa-solid fa-check"></i> Custom Modules & Field Layouts</li>
-                        <li><i class="fa-solid fa-check"></i> Conditional Layout Rules</li>
-                        <li><i class="fa-solid fa-check"></i> Business Logic Mapping</li>
-                    </ul>
-                    <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Zoho%20Customisation" target="_blank" class="btn-ai-primary">Inquire Now</a>
-                </div>
-
-                <div class="service-card-item">
-                    <div class="card-badge">Automation</div>
-                    <h3>Zoho Automation</h3>
-                    <p>Automated lead routing, Deluge scripts, email/WhatsApp triggers, and workflow blueprints.</p>
-                    <div class="card-price-tag">₹15,000 – ₹40,000 <span>/ workflow</span></div>
-                    <ul class="card-features">
-                        <li><i class="fa-solid fa-check"></i> Deluge Scripting & API Webhooks</li>
-                        <li><i class="fa-solid fa-check"></i> Automatic Lead Assignment Rules</li>
-                        <li><i class="fa-solid fa-check"></i> Email & WhatsApp Triggers</li>
-                    </ul>
-                    <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Zoho%20Automation" target="_blank" class="btn-ai-primary">Inquire Now</a>
-                </div>
+            <!-- SERVICE FILTER BUTTONS -->
+            <div class="filter-buttons-container">
+                <button class="service-filter-btn active-filter" onclick="filterServices('all', this)">
+                    <i class="fa-solid fa-border-all"></i> All Services
+                </button>
+                <button class="service-filter-btn" onclick="filterServices('sec-data', this)">
+                    <i class="fa-solid fa-chart-line"></i> Data Management
+                </button>
+                <button class="service-filter-btn" onclick="filterServices('sec-zoho', this)">
+                    <i class="fa-solid fa-diagram-project"></i> Zoho Services
+                </button>
+                <button class="service-filter-btn" onclick="filterServices('sec-training', this)">
+                    <i class="fa-solid fa-user-graduate"></i> Staff Training
+                </button>
+                <button class="service-filter-btn" onclick="filterServices('sec-web', this)">
+                    <i class="fa-solid fa-code"></i> Website & Tools
+                </button>
+                <button class="service-filter-btn" onclick="filterServices('sec-finance', this)">
+                    <i class="fa-solid fa-calculator"></i> Account & Finance
+                </button>
+                <button class="service-filter-btn" onclick="filterServices('sec-maintenance', this)">
+                    <i class="fa-solid fa-arrows-rotate"></i> Maintenance
+                </button>
             </div>
 
-            <div class="services-section-title" id="sec-training">
-                <i class="fa-solid fa-user-graduate"></i> 3. Staff & Freelancing Training
-            </div>
-            <div class="services-grid">
-                <div class="service-card-item">
-                    <div class="card-badge">Corporate</div>
-                    <h3>Staff Training & Workshops</h3>
-                    <p>Corporate team coaching for Excel, Power BI, and MIS automation to boost team productivity.</p>
-                    <div class="card-price-tag">₹4,000 – ₹25,000 <span>/ workshop</span></div>
-                    <ul class="card-features">
-                        <li><i class="fa-solid fa-check"></i> Group Batches (3-10 Staff) & Workshops</li>
-                        <li><i class="fa-solid fa-check"></i> Real Company Dataset Practice</li>
-                        <li><i class="fa-solid fa-check"></i> SOPs & Practical Study Material</li>
-                    </ul>
-                    <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Staff%20Training" target="_blank" class="btn-ai-primary">Inquire Now</a>
+            <!-- DATA MANAGEMENT BLOCK -->
+            <div class="service-category-block" id="sec-data">
+                <div class="services-section-title">
+                    <i class="fa-solid fa-chart-line"></i> 1. Data Management (Excel & Power BI)
                 </div>
 
-                <div class="service-card-item">
-                    <div class="card-badge gold">New Career</div>
-                    <h3>Freelancing Mentorship</h3>
-                    <p>Guidance to set up Fiverr/Upwork profiles, get international clients, and deliver data/MIS projects.</p>
-                    <div class="card-price-tag">₹5,000 – ₹10,000 <span>/ course</span></div>
-                    <ul class="card-features">
-                        <li><i class="fa-solid fa-check"></i> Fiverr & Upwork Account Optimisation</li>
-                        <li><i class="fa-solid fa-check"></i> Client Pitching & Proposal Writing</li>
-                        <li><i class="fa-solid fa-check"></i> Portfolio Building & Live Projects</li>
-                    </ul>
-                    <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Freelancing%20Training" target="_blank" class="btn-ai-primary">Inquire Now</a>
-                </div>
-            </div>
-
-            <div class="services-section-title" id="sec-web">
-                <i class="fa-solid fa-code"></i> 4. Website & Tools Building
-            </div>
-            <div class="services-grid">
-                <div class="service-card-item">
-                    <div class="card-badge">Web Dev</div>
-                    <h3>Business Website Development</h3>
-                    <p>Modern, fast-loading, responsive business website with contact forms and mobile optimisation.</p>
-                    <div class="card-price-tag">₹8,000 – ₹25,000 <span>/ website</span></div>
-                    <ul class="card-features">
-                        <li><i class="fa-solid fa-check"></i> Responsive UI Design & Animation</li>
-                        <li><i class="fa-solid fa-check"></i> SEO Optimised & Mobile Ready</li>
-                        <li><i class="fa-solid fa-check"></i> WhatsApp Lead Capture Integration</li>
-                    </ul>
-                    <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Business%20Website%20Development" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                <!-- Media Demos & Charts -->
+                <div class="media-preview-box">
+                    <h4 style="font-family:'Orbitron'; font-size:0.9rem; color:var(--neon-blue); margin-bottom:12px;">
+                        <i class="fa-brands fa-youtube" style="color: red;"></i> Video Demonstrations & Dashboard Previews
+                    </h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 15px;">
+                        <div>
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/k-rItj7_1Yk" title="Data Management Demo 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <p style="font-size:0.75rem; color:var(--text-dim); text-align:center;">Data Cleaning & Automated Excel MIS Setup</p>
+                        </div>
+                        <div>
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/Z5gEfJXPJBM" title="Data Management Demo 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <p style="font-size:0.75rem; color:var(--text-dim); text-align:center;">Power BI Advanced Analytics Demonstration</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                        <a href="https://drive.google.com/file/d/1QRpVVyE5bR0t3z_H_nKhZQS_RoFVraMo/view?usp=sharing" target="_blank" class="btn-ai-outline">
+                            <i class="fa-solid fa-chart-pie" style="color:var(--neon-cyan);"></i> Analytics Chart Preview 1
+                        </a>
+                        <a href="https://drive.google.com/file/d/1lh1PDRZIHA30KYSPWzd_PCiRT4cAuc7Z/view?usp=sharing" target="_blank" class="btn-ai-outline">
+                            <i class="fa-solid fa-chart-line" style="color:var(--accent-amber);"></i> Analytics Chart Preview 2
+                        </a>
+                    </div>
                 </div>
 
-                <div class="service-card-item">
-                    <div class="card-badge gold">Custom Portal</div>
-                    <h3>Custom Web Tools & Portals</h3>
-                    <p>Custom web applications, business calculators, employee portals, and API dashboard systems.</p>
-                    <div class="card-price-tag">₹15,000 – ₹45,000 <span>/ tool</span></div>
-                    <ul class="card-features">
-                        <li><i class="fa-solid fa-check"></i> Tailored Internal Web Dashboards</li>
-                        <li><i class="fa-solid fa-check"></i> Dynamic Calculators & Data Portals</li>
-                        <li><i class="fa-solid fa-check"></i> Third-Party API Integrations</li>
-                    </ul>
-                    <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Custom%20Web%20Tools%20Building" target="_blank" class="btn-ai-primary">Inquire Now</a>
-                </div>
-            </div>
+                <div class="services-grid">
+                    <div class="service-card-item">
+                        <div class="card-badge">Excel</div>
+                        <h3>Basic Excel Cleanup</h3>
+                        <p>Cleaning messy datasets, formatting, deduplication, and bank statement conversions.</p>
+                        <div class="card-price-tag">₹1,500 – ₹3,000 <span>/ project</span></div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Remove Duplicates & Blanks</li>
+                            <li><i class="fa-solid fa-check"></i> Bank Statement to Clean Excel</li>
+                            <li><i class="fa-solid fa-check"></i> Standard Formatting</li>
+                        </ul>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Basic%20Excel%20Cleanup" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                    </div>
 
-            <div class="services-section-title" id="sec-finance">
-                <i class="fa-solid fa-calculator"></i> 5. Account & Finance
-            </div>
-            <div class="services-grid">
-                <div class="service-card-item">
-                    <div class="card-badge">Tax Return</div>
-                    <h3>GST Filing & Compliance</h3>
-                    <p>Accurate GSTR-1 and GSTR-3B return filing, monthly compliance, and invoice management.</p>
-                    <div class="card-price-tag">₹1,000 – ₹2,500 <span>/ month</span></div>
-                    <ul class="card-features">
-                        <li><i class="fa-solid fa-check"></i> GSTR-1 & GSTR-3B Timely Filings</li>
-                        <li><i class="fa-solid fa-check"></i> Invoice Cleaning & Categorisation</li>
-                        <li><i class="fa-solid fa-check"></i> Zero Penalty Assurance</li>
-                    </ul>
-                    <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20GST%20Filing%20Service" target="_blank" class="btn-ai-primary">Inquire Now</a>
-                </div>
+                    <div class="service-card-item">
+                        <div class="card-badge gold">Popular</div>
+                        <h3>Advanced Excel Dashboard</h3>
+                        <p>Dynamic executive business dashboards built using XLOOKUP, INDEX/MATCH, and Pivots.</p>
+                        <div class="card-price-tag">₹5,000 – ₹15,000 <span>/ dashboard</span></div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Dynamic Pivot & Chart Layouts</li>
+                            <li><i class="fa-solid fa-check"></i> Automated KPI Summary Cards</li>
+                            <li><i class="fa-solid fa-check"></i> Multi-Source Data Links</li>
+                        </ul>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Advanced%20Excel%20Dashboard" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                    </div>
 
-                <div class="service-card-item">
-                    <div class="card-badge">ITC Match</div>
-                    <h3>GST Reconciliation (2A / 2B)</h3>
-                    <p>Matching purchase books with GSTR-2A/2B to claim maximum Input Tax Credit (ITC).</p>
-                    <div class="card-price-tag">₹2,500 – ₹6,000 <span>/ match</span></div>
-                    <ul class="card-features">
-                        <li><i class="fa-solid fa-check"></i> Book vs Portal Automated Matching</li>
-                        <li><i class="fa-solid fa-check"></i> Maximum Input Tax Credit Claim</li>
-                        <li><i class="fa-solid fa-check"></i> Vendor Mismatch Reports</li>
-                    </ul>
-                    <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20GST%20Reconciliation" target="_blank" class="btn-ai-primary">Inquire Now</a>
-                </div>
+                    <div class="service-card-item">
+                        <div class="card-badge">Automation</div>
+                        <h3>Excel Macros & Automation</h3>
+                        <p>VBA macros and Google Apps Scripts for 1-click repetitive work automation.</p>
+                        <div class="card-price-tag">₹3,000 – ₹12,000 <span>/ automation</span></div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Custom VBA / Script Code</li>
+                            <li><i class="fa-solid fa-check"></i> One-Click Auto Processing</li>
+                            <li><i class="fa-solid fa-check"></i> Error-Free Bulk Generation</li>
+                        </ul>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Excel%20Automation" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                    </div>
 
-                <div class="service-card-item">
-                    <div class="card-badge gold">Annual Tax</div>
-                    <h3>ITR Filing (Salaried & Business)</h3>
-                    <p>Income Tax Return filing for individuals, freelancers, professionals, and businesses.</p>
-                    <div class="card-price-tag">₹1,500 – ₹5,000 <span>/ return</span></div>
-                    <ul class="card-features">
-                        <li><i class="fa-solid fa-check"></i> ITR-1, ITR-2, ITR-3, ITR-4 Filings</li>
-                        <li><i class="fa-solid fa-check"></i> Tax Savings Optimisation</li>
-                        <li><i class="fa-solid fa-check"></i> Computation Sheet & Acknowledgement</li>
-                    </ul>
-                    <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20ITR%20Filing%20Service" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                    <div class="service-card-item">
+                        <div class="card-badge">Power BI</div>
+                        <h3>Power BI Dashboards</h3>
+                        <p>Interactive Power BI reports with DAX calculations, Power Query ETL, and real-time insights.</p>
+                        <div class="card-price-tag">₹10,000 – ₹35,000 <span>/ report</span></div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Single or Multi-Page Tab Layouts</li>
+                            <li><i class="fa-solid fa-check"></i> Power Query ETL & DAX Measures</li>
+                            <li><i class="fa-solid fa-check"></i> Interactive Slicers & Filters</li>
+                        </ul>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Power%20BI%20Dashboard" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                    </div>
                 </div>
             </div>
 
-            <div class="services-section-title" id="sec-maintenance">
-                <i class="fa-solid fa-arrows-rotate"></i> 6. Maintenance & Packages
+            <!-- ZOHO SERVICES BLOCK -->
+            <div class="service-category-block" id="sec-zoho">
+                <div class="services-section-title">
+                    <i class="fa-solid fa-diagram-project"></i> 2. Zoho Services & CRM Architecture
+                </div>
+
+                <!-- Media Demo Link -->
+                <div class="media-preview-box">
+                    <h4 style="font-family:'Orbitron'; font-size:0.9rem; color:var(--neon-cyan); margin-bottom:8px;">
+                        <i class="fa-solid fa-folder-open"></i> Zoho CRM Live Dashboards & Architecture Samples
+                    </h4>
+                    <p style="font-size:0.82rem; color:var(--text-dim); margin-bottom:12px;">Explore our archived portfolio of deployed Zoho CRM modules, Deluge workflow blueprints, and sales pipelines:</p>
+                    <a href="https://drive.google.com/drive/u/0/folders/1lcGQsFw438eGbImlo3VsjKBQIlch3UoN" target="_blank" class="btn-ai-outline">
+                        <i class="fa-brands fa-google-drive" style="color:var(--accent-green);"></i> Open Zoho CRM Dashboards Folder
+                    </a>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card-item">
+                        <div class="card-badge gold">Full Suite</div>
+                        <h3>Zoho Implementation</h3>
+                        <p>End-to-end Zoho CRM deployment, multi-module architecture, and 60L+ record data migration.</p>
+                        <div class="card-price-tag">₹35,000 – ₹80,000 <span>/ setup</span></div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Full System Deployment & User Roles</li>
+                            <li><i class="fa-solid fa-check"></i> Bulk Data Migration (60L+ Records)</li>
+                            <li><i class="fa-solid fa-check"></i> End-to-End Sales Pipeline Setup</li>
+                        </ul>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Zoho%20Implementation" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                    </div>
+
+                    <div class="service-card-item">
+                        <div class="card-badge">Custom UI</div>
+                        <h3>Zoho Customisation</h3>
+                        <p>Tailored module design, custom fields, layout rules, and specific business logic mapping.</p>
+                        <div class="card-price-tag">₹12,000 – ₹25,000 <span>/ project</span></div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Custom Modules & Field Layouts</li>
+                            <li><i class="fa-solid fa-check"></i> Conditional Layout Rules</li>
+                            <li><i class="fa-solid fa-check"></i> Business Logic Mapping</li>
+                        </ul>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Zoho%20Customisation" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                    </div>
+
+                    <div class="service-card-item">
+                        <div class="card-badge">Automation</div>
+                        <h3>Zoho Automation</h3>
+                        <p>Automated lead routing, Deluge scripts, email/WhatsApp triggers, and workflow blueprints.</p>
+                        <div class="card-price-tag">₹15,000 – ₹40,000 <span>/ workflow</span></div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Deluge Scripting & API Webhooks</li>
+                            <li><i class="fa-solid fa-check"></i> Automatic Lead Assignment Rules</li>
+                            <li><i class="fa-solid fa-check"></i> Email & WhatsApp Triggers</li>
+                        </ul>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Zoho%20Automation" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                    </div>
+                </div>
             </div>
-            <div class="services-grid">
-                <div class="service-card-item">
-                    <div class="card-badge">Basic</div>
-                    <h3>Basic Monthly Plan</h3>
-                    <p>Weekly Excel reports, minor dataset cleaning, monthly review call, and dedicated support.</p>
-                    <div class="card-price-tag">₹2,500 <span>/ month</span></div>
-                    <ul class="card-features">
-                        <li><i class="fa-solid fa-check"></i> Weekly Excel MIS Reports</li>
-                        <li><i class="fa-solid fa-check"></i> Minor Data Cleaning</li>
-                        <li><i class="fa-solid fa-check"></i> WhatsApp Support & Review Call</li>
-                    </ul>
-                    <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Basic%20Maintenance%20Plan" target="_blank" class="btn-ai-primary">Inquire Now</a>
+
+            <!-- STAFF TRAINING BLOCK -->
+            <div class="service-category-block" id="sec-training">
+                <div class="services-section-title">
+                    <i class="fa-solid fa-user-graduate"></i> 3. Staff & Freelancing Training
+                </div>
+                <div class="services-grid">
+                    <div class="service-card-item">
+                        <div class="card-badge">Corporate</div>
+                        <h3>Staff Training & Workshops</h3>
+                        <p>Corporate team coaching for Excel, Power BI, and MIS automation to boost team productivity.</p>
+                        <div class="card-price-tag">₹4,000 – ₹25,000 <span>/ workshop</span></div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Group Batches (3-10 Staff) & Workshops</li>
+                            <li><i class="fa-solid fa-check"></i> Real Company Dataset Practice</li>
+                            <li><i class="fa-solid fa-check"></i> SOPs & Practical Study Material</li>
+                        </ul>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Staff%20Training" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                    </div>
+
+                    <div class="service-card-item">
+                        <div class="card-badge gold">New Career</div>
+                        <h3>Freelancing Mentorship</h3>
+                        <p>Guidance to set up Fiverr/Upwork profiles, get international clients, and deliver data/MIS projects.</p>
+                        <div class="card-price-tag">₹5,000 – ₹10,000 <span>/ course</span></div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Fiverr & Upwork Account Optimisation</li>
+                            <li><i class="fa-solid fa-check"></i> Client Pitching & Proposal Writing</li>
+                            <li><i class="fa-solid fa-check"></i> Portfolio Building & Live Projects</li>
+                        </ul>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Freelancing%20Training" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WEBSITE BUILDING BLOCK -->
+            <div class="service-category-block" id="sec-web">
+                <div class="services-section-title">
+                    <i class="fa-solid fa-code"></i> 4. Website & Tools Building
                 </div>
 
-                <div class="service-card-item">
-                    <div class="card-badge gold">Standard</div>
-                    <h3>Standard Monthly Plan</h3>
-                    <p>Daily/Weekly reporting, Excel + Power BI hybrid dashboards, validation, and full monthly MIS package.</p>
-                    <div class="card-price-tag">₹5,000 <span>/ month</span></div>
-                    <ul class="card-features">
-                        <li><i class="fa-solid fa-check"></i> Daily / Weekly MIS Reporting</li>
-                        <li><i class="fa-solid fa-check"></i> Auto-Updated Power BI + Excel Mix</li>
-                        <li><i class="fa-solid fa-check"></i> Data Cleaning & Validation Suite</li>
-                    </ul>
-                    <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Standard%20Maintenance%20Plan" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                <!-- Media Demo Video -->
+                <div class="media-preview-box">
+                    <h4 style="font-family:'Orbitron'; font-size:0.9rem; color:var(--accent-amber); margin-bottom:12px;">
+                        <i class="fa-brands fa-youtube" style="color: red;"></i> Web Development & Tool Showcase
+                    </h4>
+                    <div style="max-width: 600px; margin: 0 auto;">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/_QKHHNyvtfo" title="Website & Tools Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="service-card-item">
-                    <div class="card-badge">Combo Pack</div>
-                    <h3>Business Starter Pack</h3>
-                    <p>Complete all-in-one starter bundle for growing businesses to organize data and upskill team.</p>
-                    <div class="card-price-tag">₹12,000 <span>/ package</span></div>
-                    <ul class="card-features">
-                        <li><i class="fa-solid fa-check"></i> Custom Excel Dashboard</li>
-                        <li><i class="fa-solid fa-check"></i> Data Cleaning Setup</li>
-                        <li><i class="fa-solid fa-check"></i> Weekly Reports Setup + 1 Staff Training</li>
-                    </ul>
-                    <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Business%20Starter%20Pack" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                <div class="services-grid">
+                    <div class="service-card-item">
+                        <div class="card-badge">Web Dev</div>
+                        <h3>Business Website Development</h3>
+                        <p>Modern, fast-loading, responsive business website with contact forms and mobile optimisation.</p>
+                        <div class="card-price-tag">₹8,000 – ₹25,000 <span>/ website</span></div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Responsive UI Design & Animation</li>
+                            <li><i class="fa-solid fa-check"></i> SEO Optimised & Mobile Ready</li>
+                            <li><i class="fa-solid fa-check"></i> WhatsApp Lead Capture Integration</li>
+                        </ul>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Business%20Website%20Development" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                    </div>
+
+                    <div class="service-card-item">
+                        <div class="card-badge gold">Custom Portal</div>
+                        <h3>Custom Web Tools & Portals</h3>
+                        <p>Custom web applications, business calculators, employee portals, and API dashboard systems.</p>
+                        <div class="card-price-tag">₹15,000 – ₹45,000 <span>/ tool</span></div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Tailored Internal Web Dashboards</li>
+                            <li><i class="fa-solid fa-check"></i> Dynamic Calculators & Data Portals</li>
+                            <li><i class="fa-solid fa-check"></i> Third-Party API Integrations</li>
+                        </ul>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Custom%20Web%20Tools%20Building" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACCOUNT & FINANCE BLOCK -->
+            <div class="service-category-block" id="sec-finance">
+                <div class="services-section-title">
+                    <i class="fa-solid fa-calculator"></i> 5. Account & Finance
+                </div>
+                <div class="services-grid">
+                    <div class="service-card-item">
+                        <div class="card-badge">Tax Return</div>
+                        <h3>GST Filing & Compliance</h3>
+                        <p>Accurate GSTR-1 and GSTR-3B return filing, monthly compliance, and invoice management.</p>
+                        <div class="card-price-tag">₹1,000 – ₹2,500 <span>/ month</span></div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> GSTR-1 & GSTR-3B Timely Filings</li>
+                            <li><i class="fa-solid fa-check"></i> Invoice Cleaning & Categorisation</li>
+                            <li><i class="fa-solid fa-check"></i> Zero Penalty Assurance</li>
+                        </ul>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20GST%20Filing%20Service" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                    </div>
+
+                    <div class="service-card-item">
+                        <div class="card-badge">ITC Match</div>
+                        <h3>GST Reconciliation (2A / 2B)</h3>
+                        <p>Matching purchase books with GSTR-2A/2B to claim maximum Input Tax Credit (ITC).</p>
+                        <div class="card-price-tag">₹2,500 – ₹6,000 <span>/ match</span></div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Book vs Portal Automated Matching</li>
+                            <li><i class="fa-solid fa-check"></i> Maximum Input Tax Credit Claim</li>
+                            <li><i class="fa-solid fa-check"></i> Vendor Mismatch Reports</li>
+                        </ul>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20GST%20Reconciliation" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                    </div>
+
+                    <div class="service-card-item">
+                        <div class="card-badge gold">Annual Tax</div>
+                        <h3>ITR Filing (Salaried & Business)</h3>
+                        <p>Income Tax Return filing for individuals, freelancers, professionals, and businesses.</p>
+                        <div class="card-price-tag">₹1,500 – ₹5,000 <span>/ return</span></div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> ITR-1, ITR-2, ITR-3, ITR-4 Filings</li>
+                            <li><i class="fa-solid fa-check"></i> Tax Savings Optimisation</li>
+                            <li><i class="fa-solid fa-check"></i> Computation Sheet & Acknowledgement</li>
+                        </ul>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20ITR%20Filing%20Service" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAINTENANCE BLOCK -->
+            <div class="service-category-block" id="sec-maintenance">
+                <div class="services-section-title">
+                    <i class="fa-solid fa-arrows-rotate"></i> 6. Maintenance & Packages
+                </div>
+
+                <!-- Media Demo Link -->
+                <div class="media-preview-box">
+                    <h4 style="font-family:'Orbitron'; font-size:0.9rem; color:var(--neon-purple); margin-bottom:8px;">
+                        <i class="fa-solid fa-book-open"></i> Official Service Brochure & Retainer Guidelines
+                    </h4>
+                    <p style="font-size:0.82rem; color:var(--text-dim); margin-bottom:12px;">Download or view complete service deliverables, SLAs, and package brochures:</p>
+                    <a href="https://lh3.googleusercontent.com/d/1o5c7M15Wtm7VIm_iP2VKny-AtwQpJSLT" target="_blank" class="btn-ai-outline">
+                        <i class="fa-brands fa-google-drive" style="color:var(--neon-purple);"></i> View Service Brochure Folder
+                    </a>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card-item">
+                        <div class="card-badge">Basic</div>
+                        <h3>Basic Monthly Plan</h3>
+                        <p>Weekly Excel reports, minor dataset cleaning, monthly review call, and dedicated support.</p>
+                        <div class="card-price-tag">₹2,500 <span>/ month</span></div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Weekly Excel MIS Reports</li>
+                            <li><i class="fa-solid fa-check"></i> Minor Data Cleaning</li>
+                            <li><i class="fa-solid fa-check"></i> WhatsApp Support & Review Call</li>
+                        </ul>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Basic%20Maintenance%20Plan" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                    </div>
+
+                    <div class="service-card-item">
+                        <div class="card-badge gold">Standard</div>
+                        <h3>Standard Monthly Plan</h3>
+                        <p>Daily/Weekly reporting, Excel + Power BI hybrid dashboards, validation, and full monthly MIS package.</p>
+                        <div class="card-price-tag">₹5,000 <span>/ month</span></div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Daily / Weekly MIS Reporting</li>
+                            <li><i class="fa-solid fa-check"></i> Auto-Updated Power BI + Excel Mix</li>
+                            <li><i class="fa-solid fa-check"></i> Data Cleaning & Validation Suite</li>
+                        </ul>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Standard%20Maintenance%20Plan" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                    </div>
+
+                    <div class="service-card-item">
+                        <div class="card-badge">Combo Pack</div>
+                        <h3>Business Starter Pack</h3>
+                        <p>Complete all-in-one starter bundle for growing businesses to organize data and upskill team.</p>
+                        <div class="card-price-tag">₹12,000 <span>/ package</span></div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Custom Excel Dashboard</li>
+                            <li><i class="fa-solid fa-check"></i> Data Cleaning Setup</li>
+                            <li><i class="fa-solid fa-check"></i> Weekly Reports Setup + 1 Staff Training</li>
+                        </ul>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Business%20Starter%20Pack" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                    </div>
                 </div>
             </div>
 
         </div>
     </div>
 
+    <!-- PORTFOLIO TAB -->
     <div id="tab-portfolio" class="page-tab">
         <div class="container">
             <div class="banner-header" id="case-studies">
@@ -1064,19 +1299,19 @@
             </div>
 
             <div class="user-type-grid">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf4pN3YlZrRTX05xWbZM2TXQ_sMDDTI614TwKhiGgEcqoW7rw/viewform" target="_blank" class="user-card">
+                <a onclick="showTab('contact', 'contact-student')" class="user-card" style="cursor:pointer;">
                     <img src="https://lh3.googleusercontent.com/d/1AWytaTh_6xiMiDqgpUY0ghjoAAKlodao" alt="Students" onerror="this.src='https://via.placeholder.com/200x140?text=Students'">
                     <h4>🎓 Students</h4>
                     <p style="font-size:0.8rem; color:var(--text-dim); margin-top:5px;">Master Power BI & Data Analytics</p>
                 </a>
                 
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfy_f8XxKX-WpShsvXXxp1y8e_QUmLOgEbHb87usFOw7RdO4Q/viewform" target="_blank" class="user-card">
+                <a onclick="showTab('contact', 'contact-pro')" class="user-card" style="cursor:pointer;">
                     <img src="https://lh3.googleusercontent.com/d/1yqRF5z0biggBapCY-dH2P6MduWIo3mSZ" alt="Professionals" onerror="this.src='https://via.placeholder.com/200x140?text=Professionals'">
                     <h4>👨‍💼 Professionals</h4>
                     <p style="font-size:0.8rem; color:var(--text-dim); margin-top:5px;">Upskill & Accelerate Career Growth</p>
                 </a>
 
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfU9iYd9jDZP5c3NwymyGr2PIrhxytVPN3KKAaMk9jG1y8t0Q/viewform" target="_blank" class="user-card">
+                <a onclick="showTab('contact', 'contact-biz')" class="user-card" style="cursor:pointer;">
                     <img src="https://lh3.googleusercontent.com/d/1v_Cr969uAKtjOOlKUbTGP8heuSdydr5W" alt="Businesses" onerror="this.src='https://via.placeholder.com/200x140?text=Businesses'">
                     <h4>🏢 Businesses</h4>
                     <p style="font-size:0.8rem; color:var(--text-dim); margin-top:5px;">Automate Workflows & Scale Operations</p>
@@ -1090,46 +1325,141 @@
         </div>
     </div>
 
+    <!-- CONTACT TAB -->
     <div id="tab-contact" class="page-tab">
         <div class="container">
             <div class="banner-header">
-                <h2>Get In Touch</h2>
+                <h2>Get In Touch & Consultation Portals</h2>
+                <p style="color: var(--text-dim); margin-top: 6px; font-size: 0.9rem;">Select your domain to explore dedicated programs and access official registration forms:</p>
             </div>
 
-            <p style="text-align:center; color: var(--text-dim); margin-bottom: 25px; font-size: 0.9rem;">Select your inquiry type to initiate immediate consultation.</p>
-            
-            <div class="user-type-grid" style="max-width: 900px; margin: 0 auto 30px auto;">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf4pN3YlZrRTX05xWbZM2TXQ_sMDDTI614TwKhiGgEcqoW7rw/viewform" id="contact-student" target="_blank" class="user-card">
-                    <img src="https://lh3.googleusercontent.com/d/1AWytaTh_6xiMiDqgpUY0ghjoAAKlodao" alt="Students">
-                    <h4>🎓 Student Portal</h4>
-                    <p style="font-size:0.8rem; color:var(--text-dim); margin-top:5px;">Mentorship & Learning tracks</p>
-                </a>
-
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfy_f8XxKX-WpShsvXXxp1y8e_QUmLOgEbHb87usFOw7RdO4Q/viewform" id="contact-pro" target="_blank" class="user-card">
-                    <img src="https://lh3.googleusercontent.com/d/1yqRF5z0biggBapCY-dH2P6MduWIo3mSZ" alt="Professionals">
-                    <h4>👨‍💼 Professional Portal</h4>
-                    <p style="font-size:0.8rem; color:var(--text-dim); margin-top:5px;">Analytics career development</p>
-                </a>
-
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfU9iYd9jDZP5c3NwymyGr2PIrhxytVPN3KKAaMk9jG1y8t0Q/viewform" id="contact-biz" target="_blank" class="user-card">
-                    <img src="https://lh3.googleusercontent.com/d/1v_Cr969uAKtjOOlKUbTGP8heuSdydr5W" alt="Businesses">
-                    <h4>🏢 Business Consultation</h4>
-                    <p style="font-size:0.8rem; color:var(--text-dim); margin-top:5px;">Enterprise automation & audit</p>
-                </a>
+            <!-- CONTACT FILTER BUTTONS -->
+            <div class="filter-buttons-container">
+                <button class="service-filter-btn active-filter" onclick="filterContacts('all', this)">
+                    <i class="fa-solid fa-border-all"></i> All Portals
+                </button>
+                <button class="service-filter-btn" onclick="filterContacts('contact-student', this)">
+                    <i class="fa-solid fa-graduation-cap"></i> Student Portal
+                </button>
+                <button class="service-filter-btn" onclick="filterContacts('contact-pro', this)">
+                    <i class="fa-solid fa-user-tie"></i> Professional Portal
+                </button>
+                <button class="service-filter-btn" onclick="filterContacts('contact-biz', this)">
+                    <i class="fa-solid fa-building"></i> Business Consultation
+                </button>
             </div>
 
-            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://wa.me/919891881990" target="_blank" class="btn-ai-primary">
-                    <i class="fa-brands fa-whatsapp" style="font-size: 1.1rem;"></i> WhatsApp Direct
-                </a>
+            <!-- 1. STUDENT PORTAL BLOCK -->
+            <div class="contact-category-block" id="contact-student">
+                <div class="services-section-title">
+                    <i class="fa-solid fa-graduation-cap"></i> 1. Student Career Kickstart Portal
+                </div>
+                <div class="contact-detail-card">
+                    <div class="contact-detail-img-box">
+                        <img src="https://lh3.googleusercontent.com/d/1AWytaTh_6xiMiDqgpUY0ghjoAAKlodao" alt="Student Training" onerror="this.src='https://via.placeholder.com/220x180?text=Student+Program'">
+                    </div>
+                    <div class="contact-detail-content">
+                        <h3>Career Kickstart Program (Data & Analytics Track)</h3>
+                        <p>Specifically structured for students and fresh graduates seeking to build high-demand corporate technical skills. Learn Advanced Excel, SQL, Power BI, and Freelancing fundamentals with real corporate dataset projects.</p>
+                        <ul class="contact-feature-list">
+                            <li><i class="fa-solid fa-check"></i> Basic to Advanced Practical Curriculum</li>
+                            <li><i class="fa-solid fa-check"></i> Hands-on Case Studies & Live Projects</li>
+                            <li><i class="fa-solid fa-check"></i> Resume Building & Portfolio Review</li>
+                            <li><i class="fa-solid fa-check"></i> Freelancing Guidance (Fiverr & Upwork)</li>
+                        </ul>
+                        <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 15px;">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf4pN3YlZrRTX05xWbZM2TXQ_sMDDTI614TwKhiGgEcqoW7rw/viewform" target="_blank" class="btn-ai-primary">
+                                <i class="fa-solid fa-file-pen"></i> Fill Student Application Form
+                            </a>
+                            <a href="https://wa.me/919891881990?text=Hi,%20I%20am%20a%20student%20inquiring%20about%20Career%20Kickstart%20Program" target="_blank" class="btn-ai-outline">
+                                <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i> WhatsApp Support
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                <a href="https://t.me/fly2laksh" target="_blank" class="btn-ai-outline">
-                    <i class="fa-brands fa-telegram" style="font-size: 1.1rem; color: #38bdf8;"></i> Telegram Channel
-                </a>
+            <!-- 2. PROFESSIONAL PORTAL BLOCK -->
+            <div class="contact-category-block" id="contact-pro">
+                <div class="services-section-title">
+                    <i class="fa-solid fa-user-tie"></i> 2. Working Professional Upskilling Portal
+                </div>
+                <div class="contact-detail-card">
+                    <div class="contact-detail-img-box">
+                        <img src="https://lh3.googleusercontent.com/d/1yqRF5z0biggBapCY-dH2P6MduWIo3mSZ" alt="Professional Upskilling" onerror="this.src='https://via.placeholder.com/220x180?text=Professional+Portal'">
+                    </div>
+                    <div class="contact-detail-content">
+                        <h3>Professional Advancement & MIS Automation</h3>
+                        <p>Designed for corporate executives, accountants, and MIS leads to double workplace speed, automate repetitive manual reports, and master enterprise BI reporting for faster career growth and promotions.</p>
+                        <ul class="contact-feature-list">
+                            <li><i class="fa-solid fa-check"></i> Advanced DAX, Power Query & VBA Macros</li>
+                            <li><i class="fa-solid fa-check"></i> Zoho CRM Architecture & Webhook Automation</li>
+                            <li><i class="fa-solid fa-check"></i> Corporate Time-Saving Workflow Automation</li>
+                            <li><i class="fa-solid fa-check"></i> 1-on-1 Mentorship & Career Guidance</li>
+                        </ul>
+                        <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 15px;">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfy_f8XxKX-WpShsvXXxp1y8e_QUmLOgEbHb87usFOw7RdO4Q/viewform" target="_blank" class="btn-ai-primary">
+                                <i class="fa-solid fa-file-pen"></i> Fill Professional Form
+                            </a>
+                            <a href="https://wa.me/919891881990?text=Hi,%20I%20am%20a%20working%20professional%20inquiring%20about%20upskilling" target="_blank" class="btn-ai-outline">
+                                <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i> Consult Advisor
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. BUSINESS CONSULTATION BLOCK -->
+            <div class="contact-category-block" id="contact-biz">
+                <div class="services-section-title">
+                    <i class="fa-solid fa-building"></i> 3. Enterprise & Business Consultation Portal
+                </div>
+                <div class="contact-detail-card">
+                    <div class="contact-detail-img-box">
+                        <img src="https://lh3.googleusercontent.com/d/1v_Cr969uAKtjOOlKUbTGP8heuSdydr5W" alt="Business Consultation" onerror="this.src='https://via.placeholder.com/220x180?text=Business+Consultation'">
+                    </div>
+                    <div class="contact-detail-content">
+                        <h3>Business Automation, Data & CRM Advisory</h3>
+                        <p>Tailored enterprise solutions for growing businesses, startups, and SMEs. We audit existing workflows, construct custom Zoho CRM systems, build real-time Power BI executive dashboards, and handle financial compliance.</p>
+                        <ul class="contact-feature-list">
+                            <li><i class="fa-solid fa-check"></i> 60L+ Record System Data Migration</li>
+                            <li><i class="fa-solid fa-check"></i> Automated Sales Lead Pipeline Setup</li>
+                            <li><i class="fa-solid fa-check"></i> GST Reconciliation & Tax Compliance</li>
+                            <li><i class="fa-solid fa-check"></i> Custom Web Portal & API Integrations</li>
+                        </ul>
+                        <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 15px;">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfU9iYd9jDZP5c3NwymyGr2PIrhxytVPN3KKAaMk9jG1y8t0Q/viewform" target="_blank" class="btn-ai-primary">
+                                <i class="fa-solid fa-briefcase"></i> Submit Business Consultation Inquiry
+                            </a>
+                            <a href="https://wa.me/919891881990?text=Hi,%20I%20would%20like%20to%20schedule%20a%20Business%20Consultation" target="_blank" class="btn-ai-outline">
+                                <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i> Direct WhatsApp Connect
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GLOBAL DIRECT CHANNELS -->
+            <div style="margin-top: 40px; text-align: center; background: var(--card-bg); border: 1px solid var(--card-border); padding: 25px; border-radius: 14px;">
+                <h3 style="font-family:'Orbitron', sans-serif; color:var(--text-white); margin-bottom: 8px; font-size: 1.1rem;">
+                    Prefer Direct Channel Communication?
+                </h3>
+                <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 18px;">
+                    Reach out directly on our verified social or messaging channels for immediate response.
+                </p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://wa.me/919891881990" target="_blank" class="btn-ai-primary">
+                        <i class="fa-brands fa-whatsapp" style="font-size: 1.1rem;"></i> WhatsApp Direct (+91 98918 81990)
+                    </a>
+                    <a href="https://t.me/fly2laksh" target="_blank" class="btn-ai-outline">
+                        <i class="fa-brands fa-telegram" style="font-size: 1.1rem; color: #38bdf8;"></i> Telegram Channel
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- CHATBOT WIDGET -->
     <div class="chat-widget-btn" onclick="toggleChatBox()">
         <i class="fa-solid fa-robot"></i>
     </div>
@@ -1207,6 +1537,12 @@
             }
 
             if (sectionId) {
+                if (tabId === 'services') {
+                    filterServices(sectionId);
+                } else if (tabId === 'contact') {
+                    filterContacts(sectionId);
+                }
+                
                 setTimeout(() => {
                     const element = document.getElementById(sectionId);
                     if (element) {
@@ -1214,8 +1550,66 @@
                     }
                 }, 150);
             } else {
+                if (tabId === 'services') filterServices('all');
+                if (tabId === 'contact') filterContacts('all');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
+        }
+
+        /* --- SERVICES FILTERING LOGIC --- */
+        function filterServices(categoryId, btnElement = null) {
+            const blocks = document.querySelectorAll('.service-category-block');
+            const buttons = document.querySelectorAll('#tab-services .service-filter-btn');
+
+            if (btnElement) {
+                buttons.forEach(btn => btn.classList.remove('active-filter'));
+                btnElement.classList.add('active-filter');
+            } else {
+                buttons.forEach(btn => {
+                    btn.classList.remove('active-filter');
+                    if (categoryId === 'all' && btn.textContent.includes('All Services')) {
+                        btn.classList.add('active-filter');
+                    } else if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(categoryId)) {
+                        btn.classList.add('active-filter');
+                    }
+                });
+            }
+
+            blocks.forEach(block => {
+                if (categoryId === 'all' || block.id === categoryId) {
+                    block.style.display = 'block';
+                } else {
+                    block.style.display = 'none';
+                }
+            });
+        }
+
+        /* --- CONTACT FILTERING LOGIC --- */
+        function filterContacts(categoryId, btnElement = null) {
+            const blocks = document.querySelectorAll('.contact-category-block');
+            const buttons = document.querySelectorAll('#tab-contact .service-filter-btn');
+
+            if (btnElement) {
+                buttons.forEach(btn => btn.classList.remove('active-filter'));
+                btnElement.classList.add('active-filter');
+            } else {
+                buttons.forEach(btn => {
+                    btn.classList.remove('active-filter');
+                    if (categoryId === 'all' && btn.textContent.includes('All Portals')) {
+                        btn.classList.add('active-filter');
+                    } else if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(categoryId)) {
+                        btn.classList.add('active-filter');
+                    }
+                });
+            }
+
+            blocks.forEach(block => {
+                if (categoryId === 'all' || block.id === categoryId) {
+                    block.style.display = 'block';
+                } else {
+                    block.style.display = 'none';
+                }
+            });
         }
 
         /* --- CHATBOT WIDGET SCRIPT --- */
@@ -1261,7 +1655,7 @@
                 return "🌐 **Website & Tools Rates:**\n- Business Website: ₹8,000 – ₹25,000\n- Custom Web Tools / Portals: ₹15,000 – ₹45,000";
             if (input.includes('gst') || input.includes('itr') || input.includes('finance')) 
                 return "⚖️ **Account & Finance Rates:**\n- GST Filing: ₹1,000 – ₹2,500/month\n- GST Reconciliation (2A/2B): ₹2,500 – ₹6,000\n- ITR Filing: ₹1,500 – ₹5,000/return";
-            if (input.includes('freelance') || input.includes('training')) 
+            if (input.includes('freelance') || input.includes('training') || input.includes('student')) 
                 return "🎓 **Training & Mentorship Rates:**\n- Freelancing Training (Fiverr/Upwork): ₹5,000 – ₹10,000\n- Staff Corporate Workshops: ₹4,000 – ₹25,000";
             return "Kisee bhi query ke liye WhatsApp connect karein: **+91 98918 81990**! 🚀";
         }
