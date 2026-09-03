@@ -6,7 +6,6 @@
     <title>fly2laksh - Enterprise Data, Automation & AI Solutions</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;800;900&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -41,7 +40,6 @@
             width: 100%;
         }
 
-        /* Fullscreen Interactive Canvas */
         #dotCanvas {
             position: fixed;
             top: 0;
@@ -52,7 +50,6 @@
             z-index: 1;
         }
 
-        /* Dynamic Multi-Color Text Animation */
         .ai-dynamic-text { 
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
@@ -69,7 +66,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Top Marquee Bar */
         .top-bar { 
             background: rgba(7, 11, 25, 0.95); 
             color: var(--neon-blue); 
@@ -92,7 +88,6 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* Responsive Navbar */
         nav { 
             background: rgba(7, 11, 25, 0.92); 
             padding: 1rem 8%; 
@@ -145,7 +140,6 @@
             text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
         }
 
-        /* Dropdown Sub-Menu */
         .dropdown-menu {
             position: absolute;
             top: 100%;
@@ -181,7 +175,6 @@
             color: var(--neon-blue) !important;
         }
 
-        /* Tab Animation */
         .page-tab { 
             display: none; 
             position: relative; 
@@ -255,6 +248,97 @@
             font-weight: 300;
         }
 
+        /* --- NEW CENTERED AI BANNER SLIDER STYLES --- */
+        .ai-banner-container {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            margin: 35px auto 15px auto;
+            border-radius: 20px;
+            background: rgba(15, 23, 42, 0.85);
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.35), inset 0 0 20px rgba(139, 92, 246, 0.2);
+            overflow: hidden;
+            backdrop-filter: blur(16px);
+        }
+
+        .ai-banner-slider {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            width: 100%;
+        }
+
+        .ai-banner-slide {
+            min-width: 100%;
+            height: clamp(320px, 55vh, 580px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: #000;
+        }
+
+        .ai-banner-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Nav Controls */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(7, 11, 25, 0.75);
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-blue);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+        }
+        .slider-btn:hover {
+            background: var(--neon-cyan);
+            color: #000;
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .slider-btn.prev { left: 15px; }
+        .slider-btn.next { right: 15px; }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid var(--neon-blue);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .dot.active {
+            background: var(--neon-blue);
+            width: 28px;
+            border-radius: 10px;
+            box-shadow: 0 0 12px var(--neon-blue);
+        }
+
         .banner-header {
             padding: 15px 0;
             margin: 40px 0 20px 0;
@@ -313,7 +397,6 @@
         }
         .pillar-card p { font-size: 0.88rem; color: var(--text-dim); }
 
-        /* --- FILTER BUTTONS --- */
         .filter-buttons-container {
             display: flex;
             justify-content: center;
@@ -342,7 +425,6 @@
             box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
         }
 
-        /* --- CATEGORY BLOCKS & CONTACT CARDS --- */
         .service-category-block, .contact-category-block {
             transition: all 0.4s ease;
         }
@@ -440,7 +522,6 @@
         }
         .card-features li i { color: var(--accent-green); }
 
-        /* Media / Charts Wrapper */
         .media-preview-box {
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid var(--card-border);
@@ -465,7 +546,6 @@
             height: 100%;
         }
 
-        /* Dedicated Contact Detailed Cards */
         .contact-detail-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -589,7 +669,6 @@
             background: rgba(56, 189, 248, 0.1);
         }
 
-        /* --- CHATBOT WIDGET --- */
         .chat-widget-btn {
             position: fixed;
             bottom: 20px;
@@ -704,7 +783,6 @@
             gap: 6px;
         }
 
-        /* Responsive Media Queries */
         @media(max-width: 992px) {
             .container { padding: 0 5%; }
             nav { padding: 0.9rem 5%; }
@@ -758,6 +836,7 @@
                 width: auto;
                 max-width: none;
             }
+            .slider-btn { width: 38px; height: 38px; font-size: 1rem; }
         }
     </style>
 </head>
@@ -839,6 +918,30 @@
                 </div>
             </div>
 
+            <!-- NEW CENTERED FULL-PAGE AI BANNER SLIDER -->
+            <div class="ai-banner-container">
+                <button class="slider-btn prev" onclick="moveBannerSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="slider-btn next" onclick="moveBannerSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+                
+                <div class="ai-banner-slider" id="aiBannerSlider">
+                    <div class="ai-banner-slide"><img src="https://lh3.googleusercontent.com/d/18WzaHcl6VB9Z8QzJWuHXsj4Heero4QWw" alt="Banner 1"></div>
+                    <div class="ai-banner-slide"><img src="https://lh3.googleusercontent.com/d/1XxUVxeiexNCljl1bzj8daCgyekLPUfYd" alt="Banner 2"></div>
+                    <div class="ai-banner-slide"><img src="https://lh3.googleusercontent.com/d/1RLQnKwgxF_li5uI5d45LElanvQnzxQu3" alt="Banner 3"></div>
+                    <div class="ai-banner-slide"><img src="https://lh3.googleusercontent.com/d/1I-xz2zfXEKcjSXRj8Ze-AQ1yQo-ZDfrf" alt="Banner 4"></div>
+                    <div class="ai-banner-slide"><img src="https://lh3.googleusercontent.com/d/14WvEfD1c2Nlh046UPOO-3QBAn897dIMY" alt="Banner 5"></div>
+                    <div class="ai-banner-slide"><img src="https://lh3.googleusercontent.com/d/1rywYBPlDQyZBDgscAiPdHg-0NKNMhNYc" alt="Banner 6"></div>
+                </div>
+
+                <div class="slider-dots" id="sliderDots">
+                    <div class="dot active" onclick="goToBannerSlide(0)"></div>
+                    <div class="dot" onclick="goToBannerSlide(1)"></div>
+                    <div class="dot" onclick="goToBannerSlide(2)"></div>
+                    <div class="dot" onclick="goToBannerSlide(3)"></div>
+                    <div class="dot" onclick="goToBannerSlide(4)"></div>
+                    <div class="dot" onclick="goToBannerSlide(5)"></div>
+                </div>
+            </div>
+
             <div class="banner-header">
                 <h2>Why Choose <span class="ai-dynamic-text">fly2laksh</span>?</h2>
             </div>
@@ -894,7 +997,6 @@
                 </div>
             </div>
 
-            <!-- SERVICE FILTER BUTTONS -->
             <div class="filter-buttons-container">
                 <button class="service-filter-btn active-filter" onclick="filterServices('all', this)">
                     <i class="fa-solid fa-border-all"></i> All Services
@@ -919,13 +1021,11 @@
                 </button>
             </div>
 
-            <!-- DATA MANAGEMENT BLOCK -->
             <div class="service-category-block" id="sec-data">
                 <div class="services-section-title">
                     <i class="fa-solid fa-chart-line"></i> 1. Data Management (Excel & Power BI)
                 </div>
 
-                <!-- Media Demos & Charts -->
                 <div class="media-preview-box">
                     <h4 style="font-family:'Orbitron'; font-size:0.9rem; color:var(--neon-blue); margin-bottom:12px;">
                         <i class="fa-brands fa-youtube" style="color: red;"></i> Video Demonstrations & Dashboard Previews
@@ -1009,13 +1109,11 @@
                 </div>
             </div>
 
-            <!-- ZOHO SERVICES BLOCK -->
             <div class="service-category-block" id="sec-zoho">
                 <div class="services-section-title">
                     <i class="fa-solid fa-diagram-project"></i> 2. Zoho Services & CRM Architecture
                 </div>
 
-                <!-- Media Demo Link -->
                 <div class="media-preview-box">
                     <h4 style="font-family:'Orbitron'; font-size:0.9rem; color:var(--neon-cyan); margin-bottom:8px;">
                         <i class="fa-solid fa-folder-open"></i> Zoho CRM Live Dashboards & Architecture Samples
@@ -1068,7 +1166,6 @@
                 </div>
             </div>
 
-            <!-- STAFF TRAINING BLOCK -->
             <div class="service-category-block" id="sec-training">
                 <div class="services-section-title">
                     <i class="fa-solid fa-user-graduate"></i> 3. Staff & Freelancing Training
@@ -1102,13 +1199,11 @@
                 </div>
             </div>
 
-            <!-- WEBSITE BUILDING BLOCK -->
             <div class="service-category-block" id="sec-web">
                 <div class="services-section-title">
                     <i class="fa-solid fa-code"></i> 4. Website & Tools Building
                 </div>
 
-                <!-- Media Demo Video -->
                 <div class="media-preview-box">
                     <h4 style="font-family:'Orbitron'; font-size:0.9rem; color:var(--accent-amber); margin-bottom:12px;">
                         <i class="fa-brands fa-youtube" style="color: red;"></i> Web Development & Tool Showcase
@@ -1149,7 +1244,6 @@
                 </div>
             </div>
 
-            <!-- ACCOUNT & FINANCE BLOCK -->
             <div class="service-category-block" id="sec-finance">
                 <div class="services-section-title">
                     <i class="fa-solid fa-calculator"></i> 5. Account & Finance
@@ -1196,13 +1290,11 @@
                 </div>
             </div>
 
-            <!-- MAINTENANCE BLOCK -->
             <div class="service-category-block" id="sec-maintenance">
                 <div class="services-section-title">
                     <i class="fa-solid fa-arrows-rotate"></i> 6. Maintenance & Packages
                 </div>
 
-                <!-- Media Demo Link -->
                 <div class="media-preview-box">
                     <h4 style="font-family:'Orbitron'; font-size:0.9rem; color:var(--neon-purple); margin-bottom:8px;">
                         <i class="fa-solid fa-book-open"></i> Official Service Brochure & Retainer Guidelines
@@ -1333,7 +1425,6 @@
                 <p style="color: var(--text-dim); margin-top: 6px; font-size: 0.9rem;">Select your domain to explore dedicated programs and access official registration forms:</p>
             </div>
 
-            <!-- CONTACT FILTER BUTTONS -->
             <div class="filter-buttons-container">
                 <button class="service-filter-btn active-filter" onclick="filterContacts('all', this)">
                     <i class="fa-solid fa-border-all"></i> All Portals
@@ -1349,7 +1440,6 @@
                 </button>
             </div>
 
-            <!-- 1. STUDENT PORTAL BLOCK -->
             <div class="contact-category-block" id="contact-student">
                 <div class="services-section-title">
                     <i class="fa-solid fa-graduation-cap"></i> 1. Student Career Kickstart Portal
@@ -1379,7 +1469,6 @@
                 </div>
             </div>
 
-            <!-- 2. PROFESSIONAL PORTAL BLOCK -->
             <div class="contact-category-block" id="contact-pro">
                 <div class="services-section-title">
                     <i class="fa-solid fa-user-tie"></i> 2. Working Professional Upskilling Portal
@@ -1409,7 +1498,6 @@
                 </div>
             </div>
 
-            <!-- 3. BUSINESS CONSULTATION BLOCK -->
             <div class="contact-category-block" id="contact-biz">
                 <div class="services-section-title">
                     <i class="fa-solid fa-building"></i> 3. Enterprise & Business Consultation Portal
@@ -1439,7 +1527,6 @@
                 </div>
             </div>
 
-            <!-- GLOBAL DIRECT CHANNELS -->
             <div style="margin-top: 40px; text-align: center; background: var(--card-bg); border: 1px solid var(--card-border); padding: 25px; border-radius: 14px;">
                 <h3 style="font-family:'Orbitron', sans-serif; color:var(--text-white); margin-bottom: 8px; font-size: 1.1rem;">
                     Prefer Direct Channel Communication?
@@ -1509,6 +1596,48 @@
     </footer>
 
     <script>
+        /* --- AI BANNER SLIDER LOGIC --- */
+        let currentSlide = 0;
+        const totalSlides = 6;
+        let slideInterval = setInterval(autoBannerSlide, 4000);
+
+        function updateBannerSlider() {
+            const slider = document.getElementById('aiBannerSlider');
+            const dots = document.querySelectorAll('#sliderDots .dot');
+            
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function moveBannerSlide(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateBannerSlider();
+            resetSlideTimer();
+        }
+
+        function goToBannerSlide(index) {
+            currentSlide = index;
+            updateBannerSlider();
+            resetSlideTimer();
+        }
+
+        function autoBannerSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateBannerSlider();
+        }
+
+        function resetSlideTimer() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(autoBannerSlide, 4000);
+        }
+
         function toggleMobileMenu() {
             document.getElementById('nav-links').classList.toggle('active-menu');
         }
@@ -1556,7 +1685,6 @@
             }
         }
 
-        /* --- SERVICES FILTERING LOGIC --- */
         function filterServices(categoryId, btnElement = null) {
             const blocks = document.querySelectorAll('.service-category-block');
             const buttons = document.querySelectorAll('#tab-services .service-filter-btn');
@@ -1584,7 +1712,6 @@
             });
         }
 
-        /* --- CONTACT FILTERING LOGIC --- */
         function filterContacts(categoryId, btnElement = null) {
             const blocks = document.querySelectorAll('.contact-category-block');
             const buttons = document.querySelectorAll('#tab-contact .service-filter-btn');
@@ -1612,7 +1739,6 @@
             });
         }
 
-        /* --- CHATBOT WIDGET SCRIPT --- */
         function toggleChatBox() {
             const chatBox = document.getElementById('chat-box');
             chatBox.style.display = (chatBox.style.display === 'flex') ? 'none' : 'flex';
@@ -1660,7 +1786,6 @@
             return "Kisee bhi query ke liye WhatsApp connect karein: **+91 98918 81990**! 🚀";
         }
 
-        /* --- CANVAS PARTICLES --- */
         const canvas = document.getElementById('dotCanvas');
         const ctx = canvas.getContext('2d');
         function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
