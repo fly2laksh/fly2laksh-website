@@ -861,11 +861,18 @@
         </div>
 
         <ul class="nav-links" id="nav-links">
+            <!-- 1. HOME -->
             <li><a onclick="showTab('home')" id="link-home" class="active-link">HOME</a></li>
             
+            <!-- 2. NAYA SERVICES BUTTON (Pehle Portfolio tha, ab 2nd number par direct link hai) -->
+            <li>
+                <a onclick="showTab('portfolio')" id="link-portfolio">SERVICES</a>
+            </li>
+
+            <!-- 3. NAYA PORTFOLIO BUTTON (Pehle Services tha, ab 3rd number par dropdown ke sath hai) -->
             <li onclick="toggleDropdown(this)">
                 <a id="link-services">
-                    SERVICES <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 2px;"></i>
+                    PORTFOLIO <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 2px;"></i>
                 </a>
                 <ul class="dropdown-menu">
                     <li><a onclick="showTab('services', 'sec-data')" class="dropdown-item"><i class="fa-solid fa-chart-line" style="color:var(--neon-blue);"></i> Data Management (Excel & BI)</a></li>
@@ -877,16 +884,7 @@
                 </ul>
             </li>
 
-            <li onclick="toggleDropdown(this)">
-                <a id="link-portfolio">
-                    PORTFOLIO <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 2px;"></i>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a onclick="showTab('portfolio', 'case-studies')" class="dropdown-item"><i class="fa-solid fa-briefcase"></i> Case Studies & Dashboards</a></li>
-                    <li><a onclick="showTab('portfolio', 'user-portals')" class="dropdown-item"><i class="fa-solid fa-users"></i> Tailored User Portals</a></li>
-                </ul>
-            </li>
-
+            <!-- 4. CONTACT -->
             <li onclick="toggleDropdown(this)">
                 <a id="link-contact">
                     CONTACT <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 2px;"></i>
@@ -1355,70 +1353,133 @@
     <!-- PORTFOLIO TAB -->
     <div id="tab-portfolio" class="page-tab">
         <div class="container">
-            <div class="banner-header" id="case-studies">
-                <h2>Delivered Work & Case Studies</h2>
-            </div>
-
-            <div class="portfolio-grid">
-                <div class="portfolio-card">
-                    <img src="https://lh3.googleusercontent.com/d/1lh1PDRZIHA30KYSPWzd_PCiRT4cAuc7Z" alt="Sales Dashboard" onerror="this.src='https://via.placeholder.com/280x160?text=KPI+Dashboard'">
-                    <h4>Executive KPI Dashboard</h4>
-                    <p style="font-size:0.85rem; color:var(--text-dim);">Power BI transformation for multi-channel sales reporting.</p>
-                </div>
-
-                <div class="portfolio-card">
-                    <img src="https://lh3.googleusercontent.com/d/11NGAdK4saOIrL1FyTdLocfpUh34XrQ2n" alt="Zoho Automation" onerror="this.src='https://via.placeholder.com/280x160?text=Zoho+Automation'">
-                    <h4>Zoho CRM Workflow Engine</h4>
-                    <p style="font-size:0.85rem; color:var(--text-dim);">Automated lead routing & multi-tier notification pipeline.</p>
+            
+            <!-- MAIN HEADING & BUTTON -->
+            <div class="banner-header" id="case-studies" style="margin-bottom: 40px;">
+                <h2 style="font-size: clamp(1.4rem, 2.5vw, 1.8rem); line-height: 1.4;">10 Years of Expertise in Data Analytics, <br> CRM Setup, & Financial Insights.</h2>
+                <p style="color: var(--text-dim); margin-top: 10px; font-size: 1rem;">Explore our delivered projects, automated dashboards, and seamless workflows.</p>
+                <div style="margin-top: 20px;">
+                    <a onclick="showTab('contact', 'contact-biz')" class="btn-ai-primary" style="padding: 12px 25px; font-size: 0.9rem;">
+                        <i class="fa-solid fa-calendar-check"></i> Book Free Consultation
+                    </a>
                 </div>
             </div>
 
-            <div class="portfolio-grid">
-                <div class="portfolio-card">
-                    <img src="https://lh3.googleusercontent.com/d/1tUiqgCek-0GQ8kv2NIW4Wx7-XKfGJq2K" alt="Excel Automation Flyer" onerror="this.src='https://via.placeholder.com/200x200?text=Excel+Automation'">
-                    <h4>Excel Automation Utilities</h4>
+            <!-- SECTION 1: DATA ANALYTICS -->
+            <div class="contact-detail-card" style="margin-bottom: 25px; padding: 25px;">
+                <div class="contact-detail-img-box" style="flex: 0 0 280px; display: flex; align-items: center; border: none; background: transparent;">
+                    <img src="https://lh3.googleusercontent.com/d/1GLxyZMHp9U4rFFHsEY9Z3wNKixERomp1" alt="Data Analytics" style="width: 100%; height: auto; object-fit: contain; border-radius: 8px;">
                 </div>
-                <div class="portfolio-card">
-                    <img src="https://lh3.googleusercontent.com/d/1wieMDvzxo4GG_h_xJt-egoSio18uToyc" alt="Finance Flyer" onerror="this.src='https://via.placeholder.com/200x200?text=Taxation'">
-                    <h4>GST & Financial Compliance</h4>
-                </div>
-                <div class="portfolio-card">
-                    <img src="https://lh3.googleusercontent.com/d/1UySJS3wBrNQdEIwu1gDhfOxHfdDWEibT" alt="Training Flyer" onerror="this.src='https://via.placeholder.com/200x200?text=Training'">
-                    <h4>Corporate Training Program</h4>
+                <div class="contact-detail-content">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px; border-bottom: 1px dashed var(--card-border); padding-bottom: 12px;">
+                        <h3 style="color: var(--neon-blue);"><i class="fa-solid fa-shield-halved"></i> Data Analytics & Business Intelligence</h3>
+                        <a onclick="toggleChatBox()" class="btn-ai-outline" style="padding: 6px 15px; font-size: 0.75rem;"><i class="fa-solid fa-robot"></i> Talk to AI</a>
+                    </div>
+                    <ul class="contact-feature-list" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 0;">
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>Executive KPI Dashboards:</strong> Transformed multi-channel sales data into real-time Power BI tracking systems for leadership teams.</div></li>
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>Excel Process Automation:</strong> Developed custom VBA macros that reduced weekly reporting time from hours to mere minutes.</div></li>
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>Complex Data Modeling:</strong> Engineered SQL-based architectures to clean and unify fragmented records into a single source of truth.</div></li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="banner-header" id="user-portals">
-                <h2>Tailored Solutions For Every Need</h2>
+            <!-- SECTION 2: ZOHO CRM -->
+            <div class="contact-detail-card" style="margin-bottom: 25px; padding: 25px;">
+                <div class="contact-detail-img-box" style="flex: 0 0 280px; display: flex; align-items: center; border: none; background: transparent;">
+                    <img src="https://lh3.googleusercontent.com/d/1Ibn-ZC_qkSV3GOkgw77FTLgBx_toEw-R" alt="Zoho CRM" style="width: 100%; height: auto; object-fit: contain; border-radius: 8px;">
+                </div>
+                <div class="contact-detail-content">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px; border-bottom: 1px dashed var(--card-border); padding-bottom: 12px;">
+                        <h3 style="color: var(--neon-purple);"><i class="fa-solid fa-rocket"></i> Zoho CRM Setup & Automation</h3>
+                        <a onclick="showTab('contact', 'contact-biz')" class="btn-ai-outline" style="padding: 6px 15px; font-size: 0.75rem;"><i class="fa-solid fa-briefcase"></i> Book Your Project</a>
+                    </div>
+                    <ul class="contact-feature-list" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 0;">
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>End-to-End Sales Pipelines:</strong> Successfully mapped and deployed complete lead-to-deal lifecycles for service-based businesses.</div></li>
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>Custom Workflow Blueprints:</strong> Automated multi-tier notification systems, email alerts, and task assignments to ensure zero lead leakage.</div></li>
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>Large-Scale Data Migration:</strong> Cleaned, structured, and migrated over 60 Lakh+ historical records into Zoho CRM with 100% accuracy.</div></li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="user-type-grid">
-                <a onclick="showTab('contact', 'contact-student')" class="user-card" style="cursor:pointer;">
-                    <img src="https://lh3.googleusercontent.com/d/1AWytaTh_6xiMiDqgpUY0ghjoAAKlodao" alt="Students" onerror="this.src='https://via.placeholder.com/200x140?text=Students'">
-                    <h4>🎓 Students</h4>
-                    <p style="font-size:0.8rem; color:var(--text-dim); margin-top:5px;">Master Power BI & Data Analytics</p>
+            <!-- SECTION 3: FINANCE & ACCOUNTING -->
+            <div class="contact-detail-card" style="margin-bottom: 25px; padding: 25px;">
+                <div class="contact-detail-img-box" style="flex: 0 0 280px; display: flex; align-items: center; border: none; background: transparent;">
+                    <img src="https://lh3.googleusercontent.com/d/1_NsBCMBh4IBqZ-QlRsvZL6tFR9ZPdQSP" alt="Finance & Accounting" style="width: 100%; height: auto; object-fit: contain; border-radius: 8px;">
+                </div>
+                <div class="contact-detail-content">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px; border-bottom: 1px dashed var(--card-border); padding-bottom: 12px;">
+                        <h3 style="color: var(--accent-green);"><i class="fa-solid fa-scale-balanced"></i> Finance & Accounting Services</h3>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20need%20help%20with%20GST%20and%20Finance" target="_blank" class="btn-ai-outline" style="padding: 6px 15px; font-size: 0.75rem;"><i class="fa-brands fa-whatsapp"></i> Chat with Expert</a>
+                    </div>
+                    <ul class="contact-feature-list" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 0;">
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>GST Portal Automation:</strong> Designed Excel-to-JSON utility tools that process thousands of B2B invoices for lightning-fast portal uploads.</div></li>
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>Automated Reconciliation Engine:</strong> Created 2A/2B matching systems to quickly identify vendor discrepancies and maximize Input Tax Credit (ITC).</div></li>
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>Dynamic Financial Statements:</strong> Automated P&L and Balance Sheet generation to provide instant financial visibility to business owners.</div></li>
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>Dynamic Financial Statements:</strong> Stop manual entry on the GST Portal. Use our Automated Excel Utility to convert thousands of invoices into JSON format in seconds.</div></li>
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>GST registration, monthly filing, and income tax return (ITR) preparation for small businesses.</div></li>
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>Financial modeling for budgeting and forecasting in Excel involves building a structured workbook that separates historical data, driver-based assumptions, and dynamic projections to evaluate future financial performance.</div></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SECTION 4: TRAINING SERVICES -->
+            <div class="contact-detail-card" style="margin-bottom: 25px; padding: 25px;">
+                <div class="contact-detail-img-box" style="flex: 0 0 280px; display: flex; align-items: center; border: none; background: transparent;">
+                    <img src="https://lh3.googleusercontent.com/d/1irpPp3DX-x4JQGbKid0UbzEFCSuuA9cv" alt="Staff Training" style="width: 100%; height: auto; object-fit: contain; border-radius: 8px;">
+                </div>
+                <div class="contact-detail-content">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px; border-bottom: 1px dashed var(--card-border); padding-bottom: 12px;">
+                        <h3 style="color: var(--accent-amber);"><i class="fa-solid fa-gear"></i> Data Solutions & Staff Training</h3>
+                        <a onclick="showTab('contact', 'contact-pro')" class="btn-ai-outline" style="padding: 6px 15px; font-size: 0.75rem;"><i class="fa-solid fa-chalkboard-user"></i> Join Program</a>
+                    </div>
+                    <ul class="contact-feature-list" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 0;">
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>Corporate Skill Advancement:</strong> Conducted hands-on Power BI and Advanced Excel workshops, upskilling multiple corporate teams.</div></li>
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>Freelancer Mentorship Success:</strong> Guided students and professionals to launch successful profiles on Upwork and Fiverr, securing global clients.</div></li>
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>Live Data Projects:</strong> Mentored candidates through real-world corporate data cleaning and analysis case studies to build strong portfolios.</div></li>
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>Live Data Projects:</strong>Corporate Staff Trainer & Data Analysis: I act as a dedicated Staff Trainer, teaching Excel and Power BI to teams to help them handle data better.</div></li>
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>Live Data Projects:</strong>Zoho CRM Setup & Automation: Complete setup of Zoho CRM for managing leads, sales pipelines, and automating business workflows.</div></li>
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>Live Data Projects:</strong>Business Consulting: Helping small businesses identify gaps in their data strategy and providing actionable roadmaps.</div></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SECTION 5: NEW - WEBSITE & TOOL BUILDER -->
+            <div class="contact-detail-card" style="margin-bottom: 35px; padding: 25px;">
+                <div class="contact-detail-img-box" style="flex: 0 0 280px; display: flex; align-items: center; border: none; background: transparent;">
+                    <img src="https://lh3.googleusercontent.com/d/1rNhXG3WzBXyfafEHHcxoVs4REQqzutTk" alt="Website Builder" style="width: 100%; height: auto; object-fit: contain; border-radius: 8px;">
+                </div>
+                <div class="contact-detail-content">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px; border-bottom: 1px dashed var(--card-border); padding-bottom: 12px;">
+                        <h3 style="color: var(--neon-cyan);"><i class="fa-solid fa-laptop-code"></i> Website & Custom Tool Builder</h3>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20to%20build%20a%20website/tool" target="_blank" class="btn-ai-primary" style="padding: 6px 15px; font-size: 0.75rem;"><i class="fa-solid fa-code"></i> Build Your Website</a>
+                    </div>
+                    <ul class="contact-feature-list" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 0;">
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>High-Conversion Landing Pages:</strong> Designed and launched mobile-optimized, fast-loading business websites integrated with lead capture.</div></li>
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>Internal Business Portals:</strong> Built secure, custom web applications for employee management, attendance, and client tracking.</div></li>
+                        <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>Smart Calculators & Utilities:</strong> Developed dynamic web-based calculators and pricing tools embedded directly into client platforms.</div></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FOOTER BUTTON -->
+            <div style="text-align: center;">
+                <a onclick="showTab('contact', 'contact-biz')" class="btn-ai-primary" style="background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple)); padding: 12px 30px; font-size: 0.95rem;">
+                    <i class="fa-solid fa-bolt"></i> Ready to Automate Your Business? Contact Us
                 </a>
-                
-                <a onclick="showTab('contact', 'contact-pro')" class="user-card" style="cursor:pointer;">
-                    <img src="https://lh3.googleusercontent.com/d/1yqRF5z0biggBapCY-dH2P6MduWIo3mSZ" alt="Professionals" onerror="this.src='https://via.placeholder.com/200x140?text=Professionals'">
-                    <h4>👨‍💼 Professionals</h4>
-                    <p style="font-size:0.8rem; color:var(--text-dim); margin-top:5px;">Upskill & Accelerate Career Growth</p>
-                </a>
-
-                <a onclick="showTab('contact', 'contact-biz')" class="user-card" style="cursor:pointer;">
-                    <img src="https://lh3.googleusercontent.com/d/1v_Cr969uAKtjOOlKUbTGP8heuSdydr5W" alt="Businesses" onerror="this.src='https://via.placeholder.com/200x140?text=Businesses'">
-                    <h4>🏢 Businesses</h4>
-                    <p style="font-size:0.8rem; color:var(--text-dim); margin-top:5px;">Automate Workflows & Scale Operations</p>
-                </a>
             </div>
 
-            <div style="text-align: center; margin-top: 35px;">
-                <h3 style="color:var(--neon-blue); font-family:'Orbitron', sans-serif; margin-bottom:12px; font-size: 1.1rem;">Enterprise Analytics Interface Sample</h3>
-                <img src="https://lh3.googleusercontent.com/d/1QRpVVyE5bR0t3z_H_nKhZQS_RoFVraMo" alt="Full Power BI Dashboard" class="dashboard-large" onerror="this.src='https://via.placeholder.com/800x400?text=Sample+Power+BI+Dashboard+Full+View'">
-            </div>
         </div>
     </div>
 
+    </div>            <!-- FOOTER BUTTON -->
+            <div style="text-align: center;">
+                <a onclick="showTab('home')" class="btn-ai-primary" style="background: linear-gradient(135deg, var(--accent-green), #047857); padding: 12px 30px; font-size: 0.95rem;">
+                    <i class="fa-solid fa-folder-open"></i> View Our Complete Portfolio
+                </a>
+            </div>
+
+        </div>
+    </div>
     <!-- CONTACT TAB -->
     <div id="tab-contact" class="page-tab">
         <div class="container">
