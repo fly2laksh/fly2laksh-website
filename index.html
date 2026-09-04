@@ -929,7 +929,8 @@
                     <div class="ai-banner-slide"><img src="https://lh3.googleusercontent.com/d/1RLQnKwgxF_li5uI5d45LElanvQnzxQu3" alt="Banner 3"></div>
                     <div class="ai-banner-slide"><img src="https://lh3.googleusercontent.com/d/1I-xz2zfXEKcjSXRj8Ze-AQ1yQo-ZDfrf" alt="Banner 4"></div>
                     <div class="ai-banner-slide"><img src="https://lh3.googleusercontent.com/d/14WvEfD1c2Nlh046UPOO-3QBAn897dIMY" alt="Banner 5"></div>
-                    <div class="ai-banner-slide"><img src="https://lh3.googleusercontent.com/d/1rywYBPlDQyZBDgscAiPdHg-0NKNMhNYc" alt="Banner 6"></div>
+                    <div class="ai-banner-slide"><img src="https://lh3.googleusercontent.com/d/1gZ7rA-DTsmSzVu3A0A7TghcLuusTyp4u" alt="Banner 6"></div>
+                    <div class="ai-banner-slide"><img src="https://lh3.googleusercontent.com/d/1rywYBPlDQyZBDgscAiPdHg-0NKNMhNYc" alt="Banner 7"></div>
                 </div>
 
                 <div class="slider-dots" id="sliderDots">
@@ -938,6 +939,7 @@
                     <div class="dot" onclick="goToBannerSlide(2)"></div>
                     <div class="dot" onclick="goToBannerSlide(3)"></div>
                     <div class="dot" onclick="goToBannerSlide(4)"></div>
+                    <div class="dot" onclick="goToBannerSlide(5)"></div>
                     <div class="dot" onclick="goToBannerSlide(5)"></div>
                 </div>
             </div>
@@ -1598,8 +1600,8 @@
     <script>
         /* --- AI BANNER SLIDER LOGIC --- */
         let currentSlide = 0;
-        const totalSlides = 6;
-        let slideInterval = setInterval(autoBannerSlide, 4000);
+        const totalSlides = 7;
+        let slideInterval = setInterval(autoBannerSlide, 2000);
 
         function updateBannerSlider() {
             const slider = document.getElementById('aiBannerSlider');
