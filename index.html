@@ -8,6 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- SheetJS Library for Excel processing (Added for GST Tool) -->
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+
     <style>
         :root {
             --bg-dark: #070b19;
@@ -783,6 +786,79 @@
             gap: 6px;
         }
 
+        /* --- ADDED CSS FOR THE INTEGRATION TAB (GST TOOL) --- */
+        .tool-container {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 25px;
+            padding: 60px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            margin: 0 auto;
+        }
+        .company-logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+        .tool-container h2 {
+            margin-top: 0;
+            color: var(--text-white);
+            font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+        }
+        .tool-container p {
+            color: var(--text-dim);
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+        .input-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+        .input-group input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid var(--card-border);
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--text-white);
+            box-sizing: border-box;
+        }
+        .btn-ai-secondary {
+            background: linear-gradient(135deg, var(--accent-green), #047857);
+            color: var(--text-white) !important;
+            border: none;
+            padding: 14px 24px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+            box-sizing: border-box;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        .btn-ai-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+        }
+        .integration-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 40px 0;
+        }
+
         @media(max-width: 992px) {
             .container { padding: 0 5%; }
             nav { padding: 0.9rem 5%; }
@@ -793,6 +869,7 @@
             .contact-detail-card { flex-direction: column; text-align: center; }
             .contact-detail-img-box { width: 100%; flex: 0 0 auto; }
             .contact-feature-list { text-align: left; }
+            .tool-container { padding: 30px 20px; }
         }
 
         @media(max-width: 768px) {
@@ -864,12 +941,12 @@
             <!-- 1. HOME -->
             <li><a onclick="showTab('home')" id="link-home" class="active-link">HOME</a></li>
             
-            <!-- 2. NAYA SERVICES BUTTON (Pehle Portfolio tha, ab 2nd number par direct link hai) -->
+            <!-- 2. SERVICES BUTTON -->
             <li>
                 <a onclick="showTab('portfolio')" id="link-portfolio">SERVICES</a>
             </li>
 
-            <!-- 3. NAYA PORTFOLIO BUTTON (Pehle Services tha, ab 3rd number par dropdown ke sath hai) -->
+            <!-- 3. PORTFOLIO BUTTON -->
             <li onclick="toggleDropdown(this)">
                 <a id="link-services">
                     PORTFOLIO <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 2px;"></i>
@@ -882,6 +959,11 @@
                     <li><a onclick="showTab('services', 'sec-finance')" class="dropdown-item"><i class="fa-solid fa-calculator" style="color:var(--accent-green);"></i> Account & Finance</a></li>
                     <li><a onclick="showTab('services', 'sec-maintenance')" class="dropdown-item"><i class="fa-solid fa-arrows-rotate" style="color:var(--neon-purple);"></i> Maintenance & Packages</a></li>
                 </ul>
+            </li>
+
+            <!-- NEW INTEGRATION BUTTON ADDED HERE -->
+            <li>
+                <a onclick="showTab('integration')" id="link-integration">INTEGRATION</a>
             </li>
 
             <!-- 4. CONTACT -->
@@ -938,7 +1020,7 @@
                     <div class="dot" onclick="goToBannerSlide(3)"></div>
                     <div class="dot" onclick="goToBannerSlide(4)"></div>
                     <div class="dot" onclick="goToBannerSlide(5)"></div>
-                    <div class="dot" onclick="goToBannerSlide(5)"></div>
+                    <div class="dot" onclick="goToBannerSlide(6)"></div>
                 </div>
             </div>
 
@@ -1463,16 +1545,6 @@
 
             <!-- FOOTER BUTTON -->
             <div style="text-align: center;">
-                <a onclick="showTab('contact', 'contact-biz')" class="btn-ai-primary" style="background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple)); padding: 12px 30px; font-size: 0.95rem;">
-                    <i class="fa-solid fa-bolt"></i> Ready to Automate Your Business? Contact Us
-                </a>
-            </div>
-
-        </div>
-    </div>
-
-    </div>            <!-- FOOTER BUTTON -->
-            <div style="text-align: center;">
                 <a onclick="showTab('home')" class="btn-ai-primary" style="background: linear-gradient(135deg, var(--accent-green), #047857); padding: 12px 30px; font-size: 0.95rem;">
                     <i class="fa-solid fa-folder-open"></i> View Our Complete Portfolio
                 </a>
@@ -1480,6 +1552,32 @@
 
         </div>
     </div>
+
+    <!-- NEW INTEGRATION TAB (MERGED GST TOOL) -->
+    <div id="tab-integration" class="page-tab">
+        <div class="integration-wrapper">
+            <div class="tool-container">
+                <img src="https://lh3.googleusercontent.com/d/1y8ION0fBqiMpDEwtkCef_3myUWnqyEI9" alt="Company Logo" class="company-logo">
+                
+                <h2><i class="fa-solid fa-scale-balanced" style="color: var(--accent-green);"></i> Finance & Accounting Automation</h2>
+                <p>Seamlessly process your sales records. Generate GST Portal ready JSON files or export directly for Tally/Zoho book entries.</p>
+
+                <div class="input-group">
+                    <label for="excelUpload"><i class="fa-solid fa-file-excel"></i> Upload Sales Record (Excel/CSV)</label>
+                    <input type="file" id="excelUpload" accept=".xlsx, .xls, .csv">
+                </div>
+
+                <button class="btn-ai-primary" onclick="generateGSTJSON()" style="padding: 14px 24px; font-size: 1rem; width: 100%; border-radius: 8px;">
+                    <i class="fa-solid fa-bolt"></i> Generate GST JSON Format
+                </button>
+
+                <button class="btn-ai-secondary" onclick="exportForAccounting()">
+                    <i class="fa-solid fa-file-invoice-dollar"></i> Export for Tally / Zoho Entry
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- CONTACT TAB -->
     <div id="tab-contact" class="page-tab">
         <div class="container">
@@ -1884,6 +1982,157 @@
             requestAnimationFrame(animateCanvas);
         }
         animateCanvas();
+
+        /* --- ADDED JAVASCRIPT FOR THE INTEGRATION TAB (GST TOOL) --- */
+        
+        function readExcelFile(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const data = new Uint8Array(e.target.result);
+                        const workbook = XLSX.read(data, { type: 'array' });
+                        const firstSheetName = workbook.SheetNames[0];
+                        const worksheet = workbook.Sheets[firstSheetName];
+                        const jsonData = XLSX.utils.sheet_to_json(worksheet, { defval: "" });
+                        resolve(jsonData);
+                    } catch (error) {
+                        reject(error);
+                    }
+                };
+                reader.onerror = (error) => reject(error);
+                reader.readAsArrayBuffer(file);
+            });
+        }
+
+        function downloadFile(content, fileName, contentType) {
+            const blob = new Blob([content], { type: contentType });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        async function generateGSTJSON() {
+            const fileInput = document.getElementById('excelUpload');
+            if (!fileInput.files[0]) {
+                alert("Please upload the sales record file first!");
+                return;
+            }
+
+            try {
+                const rows = await readExcelFile(fileInput.files[0]);
+                
+                let b2bData = [];
+                let b2csData = [];
+
+                rows.forEach(row => {
+                    const gstin = row['GSTIN'] || row['Customer GSTIN'] || '';
+                    const invNo = row['Invoice Number'] || row['Invoice No'] || '';
+                    const invDate = row['Invoice Date'] || '';
+                    const totalVal = parseFloat(row['Total Amount'] || row['Invoice Value'] || 0);
+                    const taxableVal = parseFloat(row['Taxable Value'] || 0);
+                    const rate = parseFloat(row['GST Rate'] || 18);
+
+                    if (gstin.trim() !== '') {
+                        b2bData.push({
+                            "ctin": gstin,
+                            "inv": [{
+                                "inum": invNo,
+                                "idt": invDate,
+                                "val": totalVal,
+                                "itms": [{
+                                    "num": 1,
+                                    "itm_det": {
+                                        "txval": taxableVal,
+                                        "rt": rate
+                                    }
+                                }]
+                            }]
+                        });
+                    } else {
+                        b2csData.push({
+                            "sply_ty": "INTRA",
+                            "rt": rate,
+                            "txval": taxableVal
+                        });
+                    }
+                });
+
+                const gstJSONObject = {
+                    "gstin": "33AAAAA0000A1Z5", // Placeholder
+                    "fp": "032026",
+                    "b2b": b2bData,
+                    "b2cs": b2csData
+                };
+
+                const jsonString = JSON.stringify(gstJSONObject, null, 2);
+                downloadFile(jsonString, "GSTR1_Sales_Data.json", "application/json");
+
+            } catch (err) {
+                alert("Error processing Excel file: " + err.message);
+            }
+        }
+
+        async function exportForAccounting() {
+            const fileInput = document.getElementById('excelUpload');
+            if (!fileInput.files[0]) {
+                alert("Please upload the sales record file first!");
+                return;
+            }
+
+            try {
+                const rows = await readExcelFile(fileInput.files[0]);
+
+                let csvRows = [];
+                csvRows.push([
+                    "Invoice Date",
+                    "Invoice Number",
+                    "Customer Name",
+                    "GSTIN",
+                    "Taxable Value",
+                    "CGST",
+                    "SGST",
+                    "IGST",
+                    "Total Amount"
+                ].join(","));
+
+                rows.forEach(row => {
+                    const date = row['Invoice Date'] || '';
+                    const invNo = row['Invoice Number'] || row['Invoice No'] || '';
+                    const name = row['Customer Name'] || 'Cash Sale';
+                    const gstin = row['GSTIN'] || row['Customer GSTIN'] || '';
+                    const taxable = parseFloat(row['Taxable Value'] || 0);
+                    const rate = parseFloat(row['GST Rate'] || 18);
+                    
+                    const taxAmount = (taxable * rate) / 100;
+                    const cgst = gstin.startsWith("33") ? taxAmount / 2 : 0;
+                    const sgst = gstin.startsWith("33") ? taxAmount / 2 : 0;
+                    const igst = !gstin.startsWith("33") ? taxAmount : 0;
+                    const total = taxable + taxAmount;
+
+                    csvRows.push([
+                        `"${date}"`,
+                        `"${invNo}"`,
+                        `"${name}"`,
+                        `"${gstin}"`,
+                        taxable.toFixed(2),
+                        cgst.toFixed(2),
+                        sgst.toFixed(2),
+                        igst.toFixed(2),
+                        total.toFixed(2)
+                    ].join(","));
+                });
+
+                const csvContent = csvRows.join("\n");
+                downloadFile(csvContent, "Accounting_Import_Ready.csv", "text/csv");
+
+            } catch (err) {
+                alert("Error exporting CSV: " + err.message);
+            }
+        }
     </script>
 </body>
 </html>
