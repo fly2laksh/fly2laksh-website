@@ -251,6 +251,75 @@
             font-weight: 300;
         }
 
+        /* --- PROFESSIONAL MODAL POPUP FOR CONSULTATION FORM --- */
+        .consultation-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(7, 11, 25, 0.85);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            padding: 20px;
+        }
+        .consultation-modal-box {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--neon-blue);
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.3);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .modal-close-btn:hover { color: var(--neon-blue); }
+        
+        .form-group {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            font-family: 'Orbitron', sans-serif;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--card-border);
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--text-white);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--neon-blue);
+        }
+
         /* --- NEW CENTERED AI BANNER SLIDER STYLES --- */
         .ai-banner-container {
             position: relative;
@@ -980,6 +1049,50 @@
         </ul>
     </nav>
 
+    <!-- PROFESSIONAL CONSULTATION MODAL POPUP -->
+    <div class="consultation-modal-overlay" id="consultationModal">
+        <div class="consultation-modal-box">
+            <button class="modal-close-btn" onclick="closeConsultationModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h3 style="font-family: 'Orbitron', sans-serif; color: var(--neon-blue); font-size: 1.2rem;">Book a Free Consultation</h3>
+                <p style="color: var(--text-dim); font-size: 0.8rem; margin-top: 5px;">Fill your requirement details below. Saves to Google Sheet & opens WhatsApp.</p>
+            </div>
+            
+            <form id="consultationForm" onsubmit="submitConsultationForm(event)">
+                <div class="form-group">
+                    <label><i class="fa-solid fa-user"></i> Your Name *</label>
+                    <input type="text" id="c_name" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-phone"></i> WhatsApp Number *</label>
+                    <input type="tel" id="c_phone" required placeholder="e.g. 9891881990">
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-envelope"></i> Email Address *</label>
+                    <input type="email" id="c_email" required placeholder="Enter your email address">
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-briefcase"></i> Service Required *</label>
+                    <select id="c_service" required>
+                        <option value="" disabled selected>Select Service Domain</option>
+                        <option value="Data Management & Power BI">Data Management & Power BI</option>
+                        <option value="Zoho CRM Implementation">Zoho CRM Implementation</option>
+                        <option value="GST & Tax Compliance">GST & Tax Compliance</option>
+                        <option value="Website & Tools Building">Website & Tools Building</option>
+                        <option value="Staff Training & Mentorship">Staff Training & Mentorship</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-comment-dots"></i> Project Requirement / Details</label>
+                    <textarea id="c_message" rows="3" placeholder="Briefly describe what you want to automate or build..."></textarea>
+                </div>
+                <button type="submit" class="btn-ai-primary" style="width: 100%; padding: 12px; justify-content: center; font-size: 0.9rem;">
+                    <i class="fa-solid fa-paper-plane"></i> Submit & Connect via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- HOME TAB -->
     <div id="tab-home" class="page-tab active-tab">
         <div class="container">
@@ -994,6 +1107,12 @@
                         <p class="hero-desc-text">
                             We convert messy, unstructured enterprise data into real-time business intelligence and automate sales workflows so you scale faster with precision.
                         </p>
+                        <!-- ADDED BOOK A FREE CONSULTATION BUTTON -->
+                        <div style="margin-top: 20px;">
+                            <button onclick="openConsultationModal()" class="btn-ai-primary" style="padding: 12px 25px; font-size: 0.9rem;">
+                                <i class="fa-solid fa-calendar-check"></i> Book a Free Consultation
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1210,7 +1329,7 @@
                         <i class="fa-brands fa-google-drive" style="color:var(--accent-green);"></i> Open Zoho CRM Dashboards Folder
                     </a>
                 </div> <div style="text-align: center; margin-top: 25px; margin-bottom: 25px;"> <img src="https://lh3.googleusercontent.com/d/16G3fdG0cW4FM-InnJiMU_2Tt9jarnhOc" 
-                       alt="Zoho CRM Preview" style="width: 100%; max-width: 1500px; height: auto; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 4px 20px rgba(0,0,0,0.4);"> </div>
+                        alt="Zoho CRM Preview" style="width: 100%; max-width: 1500px; height: auto; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 4px 20px rgba(0,0,0,0.4);"> </div>
 
                 <div class="services-grid">
                     <div class="service-card-item">
@@ -1249,7 +1368,7 @@
                             <li><i class="fa-solid fa-check"></i> Automatic Lead Assignment Rules</li>
                             <li><i class="fa-solid fa-check"></i> Email & WhatsApp Triggers</li>
                         </ul>
-                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Zoho%20Automation" target="_blank" class="btn-ai-primary">Inquire Now</a>
+                        <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20Zooh%20Automation" target="_blank" class="btn-ai-primary">Inquire Now</a>
                     </div>
                 </div>
             </div>
@@ -1447,9 +1566,9 @@
                 <h2 style="font-size: clamp(1.4rem, 2.5vw, 1.8rem); line-height: 1.4;">10 Years of Expertise in Data Analytics, <br> CRM Setup, & Financial Insights.</h2>
                 <p style="color: var(--text-dim); margin-top: 10px; font-size: 1rem;">Explore our delivered projects, automated dashboards, and seamless workflows.</p>
                 <div style="margin-top: 20px;">
-                    <a onclick="showTab('contact', 'contact-biz')" class="btn-ai-primary" style="padding: 12px 25px; font-size: 0.9rem;">
+                    <button onclick="openConsultationModal()" class="btn-ai-primary" style="padding: 12px 25px; font-size: 0.9rem;">
                         <i class="fa-solid fa-calendar-check"></i> Book Free Consultation
-                    </a>
+                    </button>
                 </div>
             </div>
 
@@ -1479,7 +1598,7 @@
                 <div class="contact-detail-content">
                     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px; border-bottom: 1px dashed var(--card-border); padding-bottom: 12px;">
                         <h3 style="color: var(--neon-purple);"><i class="fa-solid fa-rocket"></i> Zoho CRM Setup & Automation</h3>
-                        <a onclick="showTab('contact', 'contact-biz')" class="btn-ai-outline" style="padding: 6px 15px; font-size: 0.75rem;"><i class="fa-solid fa-briefcase"></i> Book Your Project</a>
+                        <button onclick="openConsultationModal()" class="btn-ai-outline" style="padding: 6px 15px; font-size: 0.75rem;"><i class="fa-solid fa-briefcase"></i> Book Your Project</button>
                     </div>
                     <ul class="contact-feature-list" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 0;">
                         <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>End-to-End Sales Pipelines:</strong> Successfully mapped and deployed complete lead-to-deal lifecycles for service-based businesses.</div></li>
@@ -1518,7 +1637,7 @@
                 <div class="contact-detail-content">
                     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px; border-bottom: 1px dashed var(--card-border); padding-bottom: 12px;">
                         <h3 style="color: var(--accent-amber);"><i class="fa-solid fa-gear"></i> Data Solutions & Staff Training</h3>
-                        <a onclick="showTab('contact', 'contact-pro')" class="btn-ai-outline" style="padding: 6px 15px; font-size: 0.75rem;"><i class="fa-solid fa-chalkboard-user"></i> Join Program</a>
+                        <button onclick="openConsultationModal()" class="btn-ai-outline" style="padding: 6px 15px; font-size: 0.75rem;"><i class="fa-solid fa-chalkboard-user"></i> Join Program</button>
                     </div>
                     <ul class="contact-feature-list" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 0;">
                         <li><i class="fa-solid fa-check" style="margin-top: 4px; align-self: flex-start;"></i> <div><strong>Corporate Skill Advancement:</strong> Conducted hands-on Power BI and Advanced Excel workshops, upskilling multiple corporate teams.</div></li>
@@ -1763,6 +1882,52 @@
     </footer>
 
     <script>
+        // --- CONSULTATION MODAL LOGIC & GOOGLE SHEET / WHATSAPP INTEGRATION ---
+        function openConsultationModal() {
+            document.getElementById('consultationModal').style.display = 'flex';
+        }
+
+        function closeConsultationModal() {
+            document.getElementById('consultationModal').style.display = 'none';
+        }
+
+        function submitConsultationForm(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('c_name').value;
+            const phone = document.getElementById('c_phone').value;
+            const email = document.getElementById('c_email').value;
+            const service = document.getElementById('c_service').value;
+            const message = document.getElementById('c_message').value;
+
+            // Yahan apna Google Apps Script Web App URL daalein:
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxcBrhpXaN8g740niCfegGHFS-ncme7I8z4YW1X8orRQdEw-GLJLq3G6rh8NwJYbPPnGg/exec';
+
+            // Google Sheet me data bhejne ke liye fetch request
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name, phone: phone, email: email, service: service, message: message })
+            })
+            .then(() => {
+                console.log('Saved to Google Sheet');
+            })
+            .catch(error => console.error('Error!', error.message));
+
+            // WhatsApp Direct Redirection Logic
+            const whatsappNumber = "919891881990";
+            const text = `*New Consultation Inquiry* 🚀%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Email:* ${encodeURIComponent(email)}%0A*Service:* ${encodeURIComponent(service)}%0A*Details:* ${encodeURIComponent(message)}`;
+            
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${text}`;
+
+            alert("Thank you! Your details have been saved, and WhatsApp is opening...");
+            window.open(whatsappURL, '_blank');
+            
+            closeConsultationModal();
+            document.getElementById('consultationForm').reset();
+        }
+
         /* --- AI BANNER SLIDER LOGIC --- */
         let currentSlide = 0;
         const totalSlides = 7;
@@ -1989,8 +2154,7 @@
         }
         animateCanvas();
 
-        /* --- ADDED JAVASCRIPT FOR THE INTEGRATION TAB (GST TOOL) --- */
-        
+        /* --- GST TOOL JAVASCRIPT --- */
         function readExcelFile(file) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
@@ -2030,7 +2194,6 @@
 
             try {
                 const rows = await readExcelFile(fileInput.files[0]);
-                
                 let b2bData = [];
                 let b2csData = [];
 
@@ -2068,7 +2231,7 @@
                 });
 
                 const gstJSONObject = {
-                    "gstin": "33AAAAA0000A1Z5", // Placeholder
+                    "gstin": "33AAAAA0000A1Z5",
                     "fp": "032026",
                     "b2b": b2bData,
                     "b2cs": b2csData
@@ -2091,18 +2254,9 @@
 
             try {
                 const rows = await readExcelFile(fileInput.files[0]);
-
                 let csvRows = [];
                 csvRows.push([
-                    "Invoice Date",
-                    "Invoice Number",
-                    "Customer Name",
-                    "GSTIN",
-                    "Taxable Value",
-                    "CGST",
-                    "SGST",
-                    "IGST",
-                    "Total Amount"
+                    "Invoice Date", "Invoice Number", "Customer Name", "GSTIN", "Taxable Value", "CGST", "SGST", "IGST", "Total Amount"
                 ].join(","));
 
                 rows.forEach(row => {
@@ -2120,15 +2274,8 @@
                     const total = taxable + taxAmount;
 
                     csvRows.push([
-                        `"${date}"`,
-                        `"${invNo}"`,
-                        `"${name}"`,
-                        `"${gstin}"`,
-                        taxable.toFixed(2),
-                        cgst.toFixed(2),
-                        sgst.toFixed(2),
-                        igst.toFixed(2),
-                        total.toFixed(2)
+                        `"${date}"`, `"${invNo}"`, `"${name}"`, `"${gstin}"`,
+                        taxable.toFixed(2), cgst.toFixed(2), sgst.toFixed(2), igst.toFixed(2), total.toFixed(2)
                     ].join(","));
                 });
 
