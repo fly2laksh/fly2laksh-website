@@ -1191,9 +1191,13 @@
             <div class="banner-header">
                 <h2>Official Services, Demos & Pricing</h2>
                 <p style="color: var(--text-dim); margin-top: 6px; font-size: 0.9rem;">Explore video demonstrations, sample dashboards, and official rate cards across all domain pillars:</p>
-                <div style="margin-top: 15px;">
-                    <a href="https://drive.google.com/file/d/1o5c7M15Wtm7VIm_iP2VKny-AtwQpJSLT/view?usp=sharing" target="_blank" class="btn-ai-outline">
-                        <i class="fa-solid fa-file-pdf" style="color: var(--neon-pink);"></i> View Master Pricing Rate Card
+                <!-- DUAL BROCHURE BUTTONS ADDED HERE -->
+                <div style="margin-top: 15px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://lh3.googleusercontent.com/d/1aXXeEnxnDOqIfApBO4dLRhNfjJdl36NS" target="_blank" class="btn-ai-outline">
+                        <i class="fa-solid fa-file-lines" style="color: var(--neon-blue);"></i> Service Brochure
+                    </a>
+                    <a href="https://lh3.googleusercontent.com/d/1jkKWnwUeC42D5nvJvzaanU5Y9S3vd3MK" target="_blank" class="btn-ai-outline">
+                        <i class="fa-solid fa-file-pdf" style="color: var(--neon-pink);"></i> Service Rate Brochure
                     </a>
                 </div>
             </div>
@@ -1507,9 +1511,15 @@
                         <i class="fa-solid fa-book-open"></i> Official Service Brochure & Retainer Guidelines
                     </h4>
                     <p style="font-size:0.82rem; color:var(--text-dim); margin-bottom:12px;">Download or view complete service deliverables, SLAs, and package brochures:</p>
-                    <a href="https://lh3.googleusercontent.com/d/1o5c7M15Wtm7VIm_iP2VKny-AtwQpJSLT" target="_blank" class="btn-ai-outline">
-                        <i class="fa-brands fa-google-drive" style="color:var(--neon-purple);"></i> View Service Brochure Folder
-                    </a>
+                    <!-- UPDATED DUAL BROCHURE BUTTONS IN MAINTENANCE BOX TOO -->
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="https://lh3.googleusercontent.com/d/1aXXeEnxnDOqIfApBO4dLRhNfjJdl36NS" target="_blank" class="btn-ai-outline">
+                            <i class="fa-solid fa-file-lines" style="color: var(--neon-blue);"></i> Service Brochure
+                        </a>
+                        <a href="https://lh3.googleusercontent.com/d/1jkKWnwUeC42D5nvJvzaanU5Y9S3vd3MK" target="_blank" class="btn-ai-outline">
+                            <i class="fa-solid fa-file-pdf" style="color: var(--neon-purple);"></i> Service Rate Brochure
+                        </a>
+                    </div>
                 </div>
 
                 <div class="services-grid">
@@ -2262,7 +2272,7 @@
                 rows.forEach(row => {
                     const date = row['Invoice Date'] || '';
                     const invNo = row['Invoice Number'] || row['Invoice No'] || '';
-                    const name = row['Customer Name'] || 'Cash Sale';
+                    name = row['Customer Name'] || 'Cash Sale';
                     const gstin = row['GSTIN'] || row['Customer GSTIN'] || '';
                     const taxable = parseFloat(row['Taxable Value'] || 0);
                     const rate = parseFloat(row['GST Rate'] || 18);
