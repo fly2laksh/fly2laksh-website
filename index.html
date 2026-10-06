@@ -113,7 +113,7 @@
             gap: 10px; 
             cursor: pointer;
         }
-        .bird-logo-img { height: 64px; width: auto; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.6)); }
+        .bird-logo-img { height: 54px; width: auto; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.6)); }
 
         .mobile-toggle {
             display: none;
@@ -984,9 +984,37 @@
             }
             .slider-btn { width: 38px; height: 38px; font-size: 1rem; }
         }
+
+        /* Preloader CSS */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--bg-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            transition: opacity 0.8s ease-out;
+        }
+
+        #preloader img {
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.8));
+        }
     </style>
 </head>
 <body>
+
+    <!-- Preloader Start -->
+    <div id="preloader">
+        <img src="https://lh3.googleusercontent.com/d/1tvZBBsKyv8va1sVQUfavozZ-gfqSEL2-" alt="Loading GIF">
+    </div>
+    <!-- Preloader End -->
 
     <canvas id="dotCanvas"></canvas>
 
@@ -998,7 +1026,7 @@
 
     <nav>
         <a class="logo" onclick="showTab('home')">
-            <img src="https://lh3.googleusercontent.com/d/1tvZBBsKyv8va1sVQUfavozZ-gfqSEL2-" alt="Bird Logo" class="bird-logo-img">
+            <img src="https://lh3.googleusercontent.com/d/1DrfDHGh7tVpvoJGQNwGz_chNXc7T5xVh" alt="Bird Logo" class="bird-logo-img">
             <span class="ai-dynamic-text"></span>
         </a>
         
@@ -2296,6 +2324,21 @@
                 alert("Error exporting CSV: " + err.message);
             }
         }
+
+        // Preloader Logic
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const preloader = document.getElementById('preloader');
+                if(preloader) {
+                    preloader.style.opacity = '0'; // Smooth fade out start
+                    
+                    // Fade out complete hone ke baad usko background se hata dena
+                    setTimeout(function() {
+                        preloader.style.display = 'none';
+                    }, 800); // 0.8 seconds wait karega fade effect ke liye
+                }
+            }, 3000); // 3000 milliseconds = 3 seconds wait time before fading
+        });
     </script>
 </body>
 </html>
