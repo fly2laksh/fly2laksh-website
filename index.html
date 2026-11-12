@@ -1011,9 +1011,7 @@
 <body>
 
     <!-- Preloader Start -->
-    <div id="preloader">
-        <img src="https://lh3.googleusercontent.com/d/1tvZBBsKyv8va1sVQUfavozZ-gfqSEL2-" alt="Loading GIF">
-    </div>
+    <div id="dynamic-intro-container"></div>
     <!-- Preloader End -->
 
     <canvas id="dotCanvas"></canvas>
@@ -2338,6 +2336,27 @@
                     }, 800); // 0.8 seconds wait karega fade effect ke liye
                 }
             }, 3000); // 3000 milliseconds = 3 seconds wait time before fading
+        });
+    </script>
+        // Page load hote hi intro-banner.html file ko fetch karke website par render kar dega
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('intro-banner.html')
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('dynamic-intro-container').innerHTML = data;
+                    
+                    // Banner ke andar ke scripts/animations ko active karne ke liye
+                    const scripts = document.getElementById('dynamic-intro-container').querySelectorAll('script');
+                    scripts.forEach(script => {
+                        const newScript = document.createElement('script');
+                        newScript.text = script.innerHTML;
+                        document.body.appendChild(newScript);
+                    });
+                })
+                .catch(error => console.error('Error loading banner:', error));
         });
     </script>
 </body>
