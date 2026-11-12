@@ -984,35 +984,9 @@
             }
             .slider-btn { width: 38px; height: 38px; font-size: 1rem; }
         }
-
-        /* Preloader CSS */
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: var(--bg-dark);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 999999;
-            transition: opacity 0.8s ease-out;
-        }
-
-        #preloader img {
-            width: 100vw;
-            height: 100vh;
-            object-fit: contain;
-            filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.8));
-        }
     </style>
 </head>
 <body>
-
-    <!-- Preloader Start -->
-    <iframe src="intro-banner.html" style="width: 100%; height: 100vh; border: none; overflow: hidden; display: block;" scrolling="no"></iframe>
-    <!-- Preloader End -->
 
     <canvas id="dotCanvas"></canvas>
 
@@ -1936,10 +1910,8 @@
             const service = document.getElementById('c_service').value;
             const message = document.getElementById('c_message').value;
 
-            // Yahan apna Google Apps Script Web App URL daalein:
             const scriptURL = 'https://script.google.com/macros/s/AKfycbyjC5lkFtOSnqXx_wRYBpuBX0XlDBAgBf_expPLkFFKFrFwq5tJHcP3td-lmQH7IhYMFg/exec';
 
-            // Google Sheet me data bhejne ke liye fetch request
             fetch(scriptURL, {
                 method: 'POST',
                 mode: 'no-cors',
@@ -1951,7 +1923,6 @@
             })
             .catch(error => console.error('Error!', error.message));
 
-            // WhatsApp Direct Redirection Logic
             const whatsappNumber = "919891881990";
             const text = `*New Consultation Inquiry* 🚀%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Email:* ${encodeURIComponent(email)}%0A*Service:* ${encodeURIComponent(service)}%0A*Details:* ${encodeURIComponent(message)}`;
             
@@ -2322,42 +2293,6 @@
                 alert("Error exporting CSV: " + err.message);
             }
         }
-
-        // Preloader Logic
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                const preloader = document.getElementById('preloader');
-                if(preloader) {
-                    preloader.style.opacity = '0'; // Smooth fade out start
-                    
-                    // Fade out complete hone ke baad usko background se hata dena
-                    setTimeout(function() {
-                        preloader.style.display = 'none';
-                    }, 800); // 0.8 seconds wait karega fade effect ke liye
-                }
-            }, 3000); // 3000 milliseconds = 3 seconds wait time before fading
-        });
-<script>
-        // Page load hote hi intro-banner.html file ko fetch karke website par render kar dega
-        document.addEventListener("DOMContentLoaded", function() {
-            fetch('intro-banner.html')
-                .then(response => {
-                    if (!response.ok) throw new Error('Network response was not ok');
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById('dynamic-intro-container').innerHTML = data;
-                    
-                    // Banner ke andar ke scripts/animations ko active karne ke liye
-                    const scripts = document.getElementById('dynamic-intro-container').querySelectorAll('script');
-                    scripts.forEach(script => {
-                        const newScript = document.createElement('script');
-                        newScript.text = script.innerHTML;
-                        document.body.appendChild(newScript);
-                    });
-                })
-                .catch(error => console.error('Error loading banner:', error));
-        });
     </script>
 </body>
 </html>
