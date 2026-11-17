@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>fly2laksh - Data Management & Report Automation</title>
+    <title>fly2laksh - Enterprise Data, Automation & Zoho Solutions</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -53,8 +53,8 @@
 
         /* Navbar */
         nav { 
-            background: rgba(11, 15, 25, 0.9); 
-            padding: 1rem 8%; 
+            background: rgba(11, 15, 25, 0.92); 
+            padding: 1rem 6%; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
@@ -65,7 +65,7 @@
             border-bottom: 1px solid var(--border-color);
         }
         .logo { 
-            font-size: 1.25rem; 
+            font-size: 1.35rem; 
             font-weight: 800;
             text-decoration: none; 
             display: flex; 
@@ -73,45 +73,56 @@
             gap: 10px; 
             color: #fff;
         }
-        .bird-logo-img { height: 36px; width: auto; }
+        .bird-logo-img { height: 38px; width: auto; }
         .logo span { color: #3b82f6; }
 
         .nav-links { display: flex; gap: 25px; list-style: none; align-items: center; }
         .nav-links a { 
             color: var(--text-muted); 
             text-decoration: none; 
-            font-size: 0.85rem; 
+            font-size: 0.88rem; 
             font-weight: 600;
             transition: color 0.2s; 
         }
         .nav-links a:hover, .nav-links a.active { color: #3b82f6; }
 
         /* Container */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+        .container { max-width: 1240px; margin: 0 auto; padding: 0 5%; }
 
         /* Hero Section */
         .hero {
-            background: var(--card-bg);
+            background: linear-gradient(145deg, #111827 0%, #0f172a 100%);
             border: 1px solid var(--border-color);
             border-radius: 20px;
-            padding: 60px 40px;
+            padding: 65px 40px;
             margin: 40px auto;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
         }
         .hero h1 {
-            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-size: clamp(1.8rem, 3.5vw, 2.7rem);
             font-weight: 800;
-            margin-bottom: 16px;
-            line-height: 1.25;
+            margin-bottom: 18px;
+            line-height: 1.3;
             color: #fff;
         }
-        .hero h1 span { color: #3b82f6; }
+        
+        /* Smooth Text Transition for Dynamic Services */
+        #dynamic-service {
+            color: #3b82f6;
+            display: inline-block;
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+        }
+        .fade-out {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+
         .hero p {
             color: var(--text-muted);
             font-size: clamp(0.95rem, 1.2vw, 1.1rem);
-            max-width: 700px;
-            margin: 0 auto 30px auto;
+            max-width: 720px;
+            margin: 0 auto 32px auto;
         }
 
         /* Buttons */
@@ -119,7 +130,7 @@
             background: var(--primary-blue);
             color: #ffffff;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             padding: 14px 28px;
             border-radius: 10px;
             border: none;
@@ -140,23 +151,23 @@
         .section-title {
             text-align: center;
             margin: 50px 0 30px 0;
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.6rem;
+            font-weight: 800;
             color: #fff;
         }
 
-        /* Services Grid */
+        /* Services Grid (4 Cards Perfectly Aligned) */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
             margin-bottom: 60px;
         }
         .service-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 30px;
+            padding: 26px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -167,7 +178,7 @@
             transform: translateY(-4px);
         }
         .service-card h3 {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: #fff;
             margin-bottom: 10px;
@@ -177,29 +188,29 @@
         }
         .service-card p {
             color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
+            font-size: 0.88rem;
+            margin-bottom: 18px;
         }
         .card-features {
             list-style: none;
-            margin-bottom: 25px;
+            margin-bottom: 22px;
             border-top: 1px solid var(--border-color);
             padding-top: 15px;
         }
         .card-features li {
             color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 10px;
+            font-size: 0.83rem;
+            margin-bottom: 9px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 9px;
         }
         .card-features li i { color: var(--accent-green); }
 
         /* Footer */
         footer {
             background: #030712;
-            padding: 40px 8%;
+            padding: 40px 6%;
             border-top: 1px solid var(--border-color);
             text-align: center;
         }
@@ -208,7 +219,7 @@
             border: 1px solid var(--border-color);
             background: var(--card-bg);
             color: var(--text-muted);
-            padding: 8px 16px;
+            padding: 8px 18px;
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 600;
@@ -219,10 +230,10 @@
             transition: color 0.2s, border-color 0.2s;
         }
         .social-btn:hover { color: #fff; border-color: #3b82f6; }
-        footer p { font-size: 0.8rem; color: var(--text-muted); }
+        footer p { font-size: 0.82rem; color: var(--text-muted); }
 
         @media(max-width: 768px) {
-            .hero { padding: 40px 20px; }
+            .hero { padding: 45px 20px; }
             nav { padding: 1rem 5%; }
         }
     </style>
@@ -231,13 +242,14 @@
 
     <div class="top-bar">
         <div class="marquee-content">
-            ⚡ DATA MANAGEMENT & REPORT AUTOMATION SPECIALIST &nbsp;&nbsp;|&nbsp;&nbsp; 📊 EXCEL, GOOGLE SHEETS, POWER BI & LOOKER STUDIO &nbsp;&nbsp;|&nbsp;&nbsp; 🚀 TRANSFORM MESSY SPREADSHEETS INTO AUTOMATED DASHBOARDS
+            ⚡ DATA MANAGEMENT & REPORT AUTOMATION SPECIALIST &nbsp;&nbsp;|&nbsp;&nbsp; 📊 EXCEL, GOOGLE SHEETS, POWER BI, LOOKER STUDIO & ZOHO CRM &nbsp;&nbsp;|&nbsp;&nbsp; 🚀 TRANSFORM RAW DATA INTO ACTIONABLE BUSINESS INTELLIGENCE
         </div>
     </div>
 
     <nav>
         <a class="logo" href="#">
-            <img src="https://lh3.googleusercontent.com/d/1DrfDHGh7tVpvoJGQNwGz_chNXc7T5xVh" alt="Logo" class="bird-logo-img">
+            <img src="https://lh3.googleusercontent.com/d/1Tq6p4MOqx7cT7fUKdoO2A1fmPsJeiwXK" alt="Logo" class="bird-logo-img">
+            fly2laksh
         </a>
         <ul class="nav-links">
             <li><a href="#" class="active">Home</a></li>
@@ -248,21 +260,21 @@
 
     <div class="container">
         <div class="hero">
-            <h1>Turn Your Messy Spreadsheets into <br><span>Automated Dashboards</span></h1>
+            <h1>Empowering Growing Businesses with <br><span id="dynamic-service">Automated Dashboards</span></h1>
             <p>
-                Eliminate manual copy-pasting and repetitive weekly reporting. We build dynamic, real-time data systems using Excel, Google Sheets, Power BI, and Looker Studio.
+                Eliminate manual copy-pasting, fragmented records, and repetitive weekly reporting. We engineer scalable data pipelines, real-time BI dashboards, and custom CRM workflows.
             </p>
-            <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20a%20free%20data%20audit%20for%20my%20business" target="_blank" class="btn-primary">
+            <a href="https://wa.me/919891881990?text=Hi,%20I%20want%20a%20free%2015-min%20data%20audit%20for%20my%20business" target="_blank" class="btn-primary">
                 <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Book Free 15-Min Data Audit via WhatsApp
             </a>
         </div>
 
-        <h2 class="section-title">Core Data Services & Solutions</h2>
+        <h2 class="section-title">Core Services & Solutions</h2>
 
         <div class="services-grid">
             <div class="service-card">
                 <div>
-                    <h3><i class="fa-solid fa-chart-pie" style="color: #3b82f6;"></i> Interactive Dashboards</h3>
+                    <h3><i class="fa-solid fa-chart-pie" style="color: #3b82f6;"></i> Automated Dashboards</h3>
                     <p>Dynamic Power BI, Looker Studio, and Advanced Excel dashboards for instant visual tracking of business KPIs.</p>
                     <ul class="card-features">
                         <li><i class="fa-solid fa-check"></i> Live Data Slicers & Filters</li>
@@ -270,7 +282,7 @@
                         <li><i class="fa-solid fa-check"></i> Executive KPI Scorecards</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/919891881990?text=Hi,%20I%20need%20an%20Interactive%20Dashboard" target="_blank" class="btn-primary" style="width:100%; justify-content:center; padding:10px; font-size:0.85rem;">Inquire on WhatsApp</a>
+                <a href="https://wa.me/919891881990?text=Hi,%20I%20need%20an%20Automated%20Dashboard" target="_blank" class="btn-primary" style="width:100%; justify-content:center; padding:10px; font-size:0.85rem;">Inquire on WhatsApp</a>
             </div>
 
             <div class="service-card">
@@ -292,11 +304,24 @@
                     <p>Restructuring raw, unstructured, and messy enterprise data into clean, error-free, and scalable databases.</p>
                     <ul class="card-features">
                         <li><i class="fa-solid fa-check"></i> Bank Statement Cleaning</li>
-                        <li><i class="fa-solid fa-check"></i> Bulk Record Organization</li>
+                        <li><i class="fa-solid fa-check"></i> Deduplication & Formatting</li>
                         <li><i class="fa-solid fa-check"></i> Unified Single Source of Truth</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/919891881990?text=Hi,%20I%20need%20Data%20Management" target="_blank" class="btn-primary" style="width:100%; justify-content:center; padding:10px; font-size:0.85rem;">Inquire on WhatsApp</a>
+                <a href="https://wa.me/919891881990?text=Hi,%20I%20need%20Data%20Management%20and%20Cleaning" target="_blank" class="btn-primary" style="width:100%; justify-content:center; padding:10px; font-size:0.85rem;">Inquire on WhatsApp</a>
+            </div>
+
+            <div class="service-card">
+                <div>
+                    <h3><i class="fa-solid fa-diagram-project" style="color: #3b82f6;"></i> Zoho Customisation & Setup</h3>
+                    <p>End-to-end Zoho CRM architecture, automated lead routing, and custom workflow blueprints for sales teams.</p>
+                    <ul class="card-features">
+                        <li><i class="fa-solid fa-check"></i> Custom Modules & Pipelines</li>
+                        <li><i class="fa-solid fa-check"></i> Automated Lead Assignment</li>
+                        <li><i class="fa-solid fa-check"></i> Bulk Data Migration</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/919891881990?text=Hi,%20I%20need%20Zoho%20Customisation%20and%20Setup" target="_blank" class="btn-primary" style="width:100%; justify-content:center; padding:10px; font-size:0.85rem;">Inquire on WhatsApp</a>
             </div>
         </div>
     </div>
@@ -306,9 +331,33 @@
             <a href="https://linkedin.com/in/fly2laksh" target="_blank" class="social-btn"><i class="fa-brands fa-linkedin" style="color: #0a66c2;"></i> LinkedIn</a>
             <a href="https://wa.me/919891881990" target="_blank" class="social-btn"><i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> WhatsApp</a>
         </div>
-        <p>Excel • Google Sheets • Power BI • Looker Studio • Report Automation</p>
+        <p>Excel • Google Sheets • Power BI • Looker Studio • Zoho CRM • Report Automation</p>
         <p style="margin-top: 6px;">© 2026 fly2laksh. All Rights Reserved. Contact: +91 98918 81990</p>
     </footer>
+
+    <!-- Auto-Changing Service Script -->
+    <script>
+        const services = [
+            "Automated Dashboards",
+            "Report Automation",
+            "Data Management",
+            "Data Cleaning",
+            "Zoho Customisation & Setup"
+        ];
+        
+        let currentIndex = 0;
+        const serviceElement = document.getElementById("dynamic-service");
+
+        setInterval(() => {
+            serviceElement.classList.add("fade-out");
+            
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % services.length;
+                serviceElement.textContent = services[currentIndex];
+                serviceElement.classList.remove("fade-out");
+            }, 400);
+        }, 2500);
+    </script>
 
 </body>
 </html>
