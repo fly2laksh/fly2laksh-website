@@ -360,4 +360,350 @@
     </script>
 
 </body>
+</html><!-- ================= FLY2LAKSH CHATBOT WIDGET START ================= -->
+<style>
+    /* Floating Toggle Button */
+    #f2l-chat-toggle {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        color: #fff;
+        border-radius: 50%;
+        border: 2px solid #60a5fa;
+        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
+        cursor: pointer;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    #f2l-chat-toggle:hover {
+        transform: scale(1.08);
+        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.7);
+    }
+
+    /* Chat Window Container */
+    #f2l-chat-window {
+        position: fixed;
+        bottom: 96px;
+        right: 24px;
+        width: 360px;
+        max-width: calc(100vw - 32px);
+        background: #ffffff;
+        color: #111827;
+        border-radius: 18px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+        z-index: 9999;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        border: 1px solid #e5e7eb;
+        animation: f2lSlideUp 0.25s ease-out;
+    }
+    @keyframes f2lSlideUp {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Header */
+    .f2l-chat-header {
+        background: #f8fafc;
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    .f2l-header-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .f2l-bot-avatar {
+        width: 38px;
+        height: 38px;
+        background: #0f172a;
+        color: #38bdf8;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .f2l-header-title h4 {
+        font-size: 0.92rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 0;
+        line-height: 1.2;
+    }
+    .f2l-header-title span {
+        font-size: 0.72rem;
+        color: #16a34a;
+        font-weight: 600;
+    }
+    #f2l-chat-close {
+        background: transparent;
+        border: none;
+        font-size: 1.2rem;
+        color: #64748b;
+        cursor: pointer;
+        padding: 4px;
+    }
+    #f2l-chat-close:hover { color: #0f172a; }
+
+    /* Chat Body */
+    .f2l-chat-body {
+        padding: 14px;
+        max-height: 330px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background: #ffffff;
+    }
+    .f2l-msg {
+        padding: 10px 13px;
+        border-radius: 14px;
+        font-size: 0.83rem;
+        line-height: 1.45;
+        max-width: 88%;
+        word-wrap: break-word;
+    }
+    .f2l-msg-bot {
+        background: #f1f5f9;
+        color: #1e293b;
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+    }
+    .f2l-msg-user {
+        background: #2563eb;
+        color: #ffffff;
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+    }
+
+    /* Quick Reply Chips */
+    .f2l-chips-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 4px;
+    }
+    .f2l-chip {
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        color: #1e293b;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.76rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-align: left;
+    }
+    .f2l-chip:hover {
+        background: #eff6ff;
+        border-color: #2563eb;
+        color: #2563eb;
+    }
+    .f2l-chip-highlight {
+        border-color: #16a34a;
+        color: #15803d;
+        background: #f0fdf4;
+    }
+    .f2l-chip-highlight:hover {
+        background: #dcfce7;
+        border-color: #15803d;
+    }
+
+    /* Input Area */
+    .f2l-input-area {
+        padding: 10px 12px;
+        border-top: 1px solid #e2e8f0;
+        display: flex;
+        gap: 8px;
+        background: #ffffff;
+    }
+    #f2l-chat-input {
+        flex: 1;
+        border: 1.5px solid #cbd5e1;
+        border-radius: 10px;
+        padding: 8px 12px;
+        font-size: 0.82rem;
+        outline: none;
+        font-family: inherit;
+        color: #0f172a;
+    }
+    #f2l-chat-input:focus { border-color: #2563eb; }
+    #f2l-chat-send {
+        background: #16a34a;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 0 14px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    #f2l-chat-send:hover { background: #15803d; }
+
+    /* Bottom Action Footer */
+    .f2l-chat-footer {
+        padding: 10px 12px 12px 12px;
+        background: #f8fafc;
+        border-top: 1px solid #e2e8f0;
+        display: flex;
+        gap: 8px;
+    }
+    .f2l-footer-btn {
+        flex: 1;
+        text-align: center;
+        padding: 8px 10px;
+        border-radius: 8px;
+        font-size: 0.76rem;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        transition: opacity 0.2s;
+    }
+    .f2l-btn-audit {
+        background: #16a34a;
+        color: #ffffff;
+    }
+    .f2l-btn-team {
+        background: #ffffff;
+        color: #0f172a;
+        border: 1px solid #cbd5e1;
+    }
+    .f2l-footer-btn:hover { opacity: 0.9; }
+</style>
+
+<!-- Floating Button -->
+<button id="f2l-chat-toggle" aria-label="Open Support Chat">
+    <i class="fa-solid fa-robot"></i>
+</button>
+
+<!-- Chat Window -->
+<div id="f2l-chat-window">
+    <div class="f2l-chat-header">
+        <div class="f2l-header-left">
+            <div class="f2l-bot-avatar"><i class="fa-solid fa-robot"></i></div>
+            <div class="f2l-header-title">
+                <h4>fly2laksh Assistant & Support</h4>
+                <span>Ask AI • Talk to our team • Free audit</span>
+            </div>
+        </div>
+        <button id="f2l-chat-close" aria-label="Close Chat">&times;</button>
+    </div>
+
+    <div class="f2l-chat-body" id="f2l-chat-body">
+        <div class="f2l-msg f2l-msg-bot">
+            Namaste! I'm <strong>Your AI</strong>. I can help you automate Excel/Google Sheets, build Power BI dashboards, clean messy data, or set up Zoho CRM. Select a topic below or ask me anything:
+        </div>
+
+        <div class="f2l-chips-container" id="f2l-chips">
+            <button class="f2l-chip" onclick="f2lHandleQuery('Automated Dashboards')">📊 Build Automated Dashboards</button>
+            <button class="f2l-chip" onclick="f2lHandleQuery('Report Automation')">⚙️ Automate MIS & Excel Reports</button>
+            <button class="f2l-chip" onclick="f2lHandleQuery('Data Cleaning')">🧹 Clean Messy Data / Bank Statements</button>
+            <button class="f2l-chip" onclick="f2lHandleQuery('Zoho Setup')">🚀 Zoho CRM Setup & Customisation</button>
+            <button class="f2l-chip" onclick="f2lHandleQuery('Pricing')">💰 How much does it cost?</button>
+            <button class="f2l-chip f2l-chip-highlight" onclick="f2lHandleQuery('Free Audit')">🎓 Book Free 15-Min Data Audit</button>
+        </div>
+    </div>
+
+    <div class="f2l-input-area">
+        <input type="text" id="f2l-chat-input" placeholder="Ask about dashboards, Excel, Zoho..." onkeypress="if(event.key==='Enter') f2lSendText()">
+        <button id="f2l-chat-send" onclick="f2lSendText()">Send</button>
+    </div>
+
+    <div class="f2l-chat-footer">
+        <a href="https://wa.me/919891881990?text=Hi%20Rohit,%20I%20want%20to%20book%20a%20Free%2015-Min%20Data%20Audit" target="_blank" class="f2l-footer-btn f2l-btn-audit">
+            🎓 Book Free Audit
+        </a>
+        <a href="https://wa.me/919891881990?text=Hi%20Rohit,%20I%20visited%20fly2laksh.in%20and%20want%20to%20discuss%20a%20project" target="_blank" class="f2l-footer-btn f2l-btn-team">
+            Talk to our team
+        </a>
+    </div>
+</div>
+
+<script>
+    const f2lToggle = document.getElementById('f2l-chat-toggle');
+    const f2lWindow = document.getElementById('f2l-chat-window');
+    const f2lClose = document.getElementById('f2l-chat-close');
+    const f2lBody = document.getElementById('f2l-chat-body');
+    const f2lInput = document.getElementById('f2l-chat-input');
+
+    f2lToggle.addEventListener('click', () => {
+        f2lWindow.style.display = f2lWindow.style.display === 'flex' ? 'none' : 'flex';
+    });
+    f2lClose.addEventListener('click', () => {
+        f2lWindow.style.display = 'none';
+    });
+
+    const f2lResponses = {
+        'Automated Dashboards': "We build real-time, interactive dashboards in <strong>Power BI, Looker Studio, and Advanced Excel</strong> so you can track sales, inventory, and cash flow with one click. <br><br>👉 <a href='https://wa.me/919891881990?text=Hi,%20I%20am%20interested%20in%20Automated%20Dashboards' target='_blank' style='color:#2563eb;font-weight:700;'>Get a Dashboard Demo on WhatsApp</a>",
+        'Report Automation': "Stop wasting hours on manual copy-pasting! Using <strong>Google Apps Script, Power Query, and Excel Macros</strong>, we automate daily/weekly MIS reports completely. <br><br>👉 <a href='https://wa.me/919891881990?text=Hi,%20I%20want%20to%20automate%20my%20reports' target='_blank' style='color:#2563eb;font-weight:700;'>Discuss Your Report Workflow</a>",
+        'Data Cleaning': "We organize unstructured spreadsheets, remove duplicates, and convert messy PDF/Excel bank statements into clean, analysis-ready databases. <br><br>👉 <a href='https://wa.me/919891881990?text=Hi,%20I%20need%20help%20with%20Data%20Cleaning' target='_blank' style='color:#2563eb;font-weight:700;'>Send Sample File on WhatsApp</a>",
+        'Zoho Setup': "We configure <strong>Zoho CRM</strong> from scratch—custom modules, automated lead assignment, WhatsApp/email workflows, and bulk data migration. <br><br>👉 <a href='https://wa.me/919891881990?text=Hi,%20I%20need%20Zoho%20CRM%20setup' target='_blank' style='color:#2563eb;font-weight:700;'>Book Zoho Consultation</a>",
+        'Pricing': "Every business has different data volume. Simple automation & data cleaning starts at very affordable one-time project fees. Let's do a <strong>free 15-min review</strong> to give you an exact quote! <br><br>👉 <a href='https://wa.me/919891881990?text=Hi,%20please%20share%20pricing%20details' target='_blank' style='color:#2563eb;font-weight:700;'>Request Quote on WhatsApp</a>",
+        'Free Audit': "Awesome! In our <strong>Free 15-Minute Data Audit</strong>, we review one of your current Excel/Sheet workflows and show you how to automate it. <br><br>👉 <a href='https://wa.me/919891881990?text=Hi%20Rohit,%20let%27s%20schedule%20my%20Free%2015-Min%20Data%20Audit' target='_blank' style='color:#16a34a;font-weight:700;'>Click Here to Confirm Slot on WhatsApp</a>"
+    };
+
+    function f2lAppendMsg(text, sender) {
+        const div = document.createElement('div');
+        div.className = 'f2l-msg ' + (sender === 'user' ? 'f2l-msg-user' : 'f2l-msg-bot');
+        div.innerHTML = text;
+        f2lBody.appendChild(div);
+        f2lBody.scrollTop = f2lBody.scrollHeight;
+    }
+
+    function f2lHandleQuery(topic) {
+        f2lAppendMsg(topic, 'user');
+        setTimeout(() => {
+            f2lAppendMsg(f2lResponses[topic], 'bot');
+        }, 300);
+    }
+
+    function f2lSendText() {
+        const val = f2lInput.value.trim();
+        if (!val) return;
+        f2lAppendMsg(val, 'user');
+        f2lInput.value = '';
+
+        const q = val.toLowerCase();
+        let reply = "Thanks for reaching out! Our specialist Rohit can assist you directly with this. <br><br>👉 <a href='https://wa.me/919891881990?text=" + encodeURIComponent("Hi Rohit, my query from website: " + val) + "' target='_blank' style='color:#2563eb;font-weight:700;'>Continue Chat on WhatsApp</a>";
+
+        if (q.includes('dashboard') || q.includes('power bi') || q.includes('looker')) {
+            reply = f2lResponses['Automated Dashboards'];
+        } else if (q.includes('automate') || q.includes('automation') || q.includes('mis') || q.includes('excel') || q.includes('sheet')) {
+            reply = f2lResponses['Report Automation'];
+        } else if (q.includes('clean') || q.includes('bank') || q.includes('data')) {
+            reply = f2lResponses['Data Cleaning'];
+        } else if (q.includes('zoho') || q.includes('crm')) {
+            reply = f2lResponses['Zoho Setup'];
+        } else if (q.includes('price') || q.includes('cost') || q.includes('charge') || q.includes('fee')) {
+            reply = f2lResponses['Pricing'];
+        } else if (q.includes('audit') || q.includes('free') || q.includes('call') || q.includes('meeting')) {
+            reply = f2lResponses['Free Audit'];
+        }
+
+        setTimeout(() => {
+            f2lAppendMsg(reply, 'bot');
+        }, 350);
+    }
+</script>
+<!-- ================= FLY2LAKSH CHATBOT WIDGET END ================= -->
+</body>
 </html>
