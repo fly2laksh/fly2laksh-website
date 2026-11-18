@@ -248,7 +248,7 @@
 
     <nav>
         <a class="logo" href="#">
-            <img src="https://lh3.googleusercontent.com/d/1Tq6p4MOqx7cT7fUKdoO2A1fmPsJeiwXK" alt="Logo" class="bird-logo-img">
+            <img src="https://lh3.googleusercontent.com/d/10uSt7-8i-tVkk9uCpuWG1rv5Bb-AwGvx" alt="Logo" class="bird-logo-img">
             fly2laksh
         </a>
         <ul class="nav-links">
@@ -360,31 +360,37 @@
     </script>
 
 </body>
-</html><!-- ================= FLY2LAKSH CHATBOT WIDGET START ================= -->
+<!-- ================= FLY2LAKSH CHATBOT WIDGET START ================= -->
 <style>
-    /* Floating Toggle Button */
+    /* Floating Toggle Button with Custom Image Logo */
     #f2l-chat-toggle {
         position: fixed;
         bottom: 24px;
         right: 24px;
         width: 60px;
         height: 60px;
-        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        background: #0f172a;
         color: #fff;
         border-radius: 50%;
-        border: 2px solid #60a5fa;
-        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
+        border: 2px solid #3b82f6;
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.5);
         cursor: pointer;
         z-index: 9999;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 26px;
+        padding: 0;
+        overflow: hidden;
         transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
     #f2l-chat-toggle:hover {
         transform: scale(1.08);
-        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.7);
+        box-shadow: 0 14px 30px rgba(37, 99, 235, 0.7);
+    }
+    #f2l-chat-toggle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     /* Chat Window Container */
@@ -435,7 +441,13 @@
         align-items: center;
         justify-content: center;
         font-size: 18px;
+        overflow: hidden;
         box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .f2l-bot-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
     .f2l-header-title h4 {
         font-size: 0.92rem;
@@ -590,16 +602,18 @@
     .f2l-footer-btn:hover { opacity: 0.9; }
 </style>
 
-<!-- Floating Button -->
+<!-- Floating Button with Custom Image -->
 <button id="f2l-chat-toggle" aria-label="Open Support Chat">
-    <i class="fa-solid fa-robot"></i>
+    <img src="https://lh3.googleusercontent.com/d/1Tq6p4MOqx7cT7fUKdoO2A1fmPsJeiwXK" alt="AI Chat">
 </button>
 
 <!-- Chat Window -->
 <div id="f2l-chat-window">
     <div class="f2l-chat-header">
         <div class="f2l-header-left">
-            <div class="f2l-bot-avatar"><i class="fa-solid fa-robot"></i></div>
+            <div class="f2l-bot-avatar">
+                <img src="https://lh3.googleusercontent.com/d/1Tq6p4MOqx7cT7fUKdoO2A1fmPsJeiwXK" alt="Bot">
+            </div>
             <div class="f2l-header-title">
                 <h4>fly2laksh Assistant & Support</h4>
                 <span>Ask AI • Talk to our team • Free audit</span>
@@ -610,7 +624,7 @@
 
     <div class="f2l-chat-body" id="f2l-chat-body">
         <div class="f2l-msg f2l-msg-bot">
-            Namaste! I'm <strong>Your AI</strong>. I can help you automate Excel/Google Sheets, build Power BI dashboards, clean messy data, or set up Zoho CRM. Select a topic below or ask me anything:
+            Namaste! I'm <strong>Laksh AI</strong>. I can help you automate Excel/Google Sheets, build Power BI dashboards, clean messy data, or set up Zoho CRM. Select a topic below or ask me anything:
         </div>
 
         <div class="f2l-chips-container" id="f2l-chips">
@@ -704,6 +718,5 @@
         }, 350);
     }
 </script>
-<!-- ================= FLY2LAKSH CHATBOT WIDGET END ================= -->
-</body>
+<!-- ================= FLY2LAKSH CHATBOT WIDGET END ================= --></body>
 </html>
